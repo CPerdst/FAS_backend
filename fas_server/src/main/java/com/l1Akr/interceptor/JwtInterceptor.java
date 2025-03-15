@@ -1,6 +1,5 @@
-package com.l1Akr.interceptors;
+package com.l1Akr.interceptor;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component

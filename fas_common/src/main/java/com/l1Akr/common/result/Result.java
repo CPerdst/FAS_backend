@@ -46,6 +46,5 @@ public class Result<T> {
     //失败返回封装-使用自定义提示信息
     public static Result<String> error(String message) {
         return new Result<String>(message);
-
     }
 }

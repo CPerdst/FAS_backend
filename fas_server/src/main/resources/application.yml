@@ -15,8 +15,62 @@ jwt:
 logging:
   level:
     root: INFO  # 根日志级别
+    com.l1Akr.mapper: TRACE
   file:
     name: app.log  # 日志文件名
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.l1Akr.entity
+
+
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+#  group-configs:
+#    #分组名
+#    - group: default
+#      #按路径匹配
+#      pathsToMatch: /**
+#      packagesToScan: com.l1Akr.controller
+
+knife4j:
+  # 开启增强配置
+  enable: true
+  # 开启生产环境屏蔽（如果是生产环境，需要把下面配置设置true）
+  #  production: true
+  setting:
+    language: zh_cn
+    swagger-model-name: 实体类列表
+
+#knife4j配置
+#knife4j:
+#  #是否启用增强设置
+#  enable: true
+#  #开启生产环境屏蔽
+#  production: false
+#  #是否启用登录认证
+#  basic:
+#    enable: true
+#    username: admin
+#    password: 123456
+#  setting:
+#    language: zh_cn
+#    enable-version: true
+#    enable-swagger-models: true
+#    swagger-model-name: 用户模块
+#    enable-search: true
+
 
 ## springdoc-openapi项目配置
 #springdoc:
@@ -35,4 +89,5 @@ logging:
 #knife4j:
 #  enable: true
 #  setting:
+
 #    language: zh_cn
