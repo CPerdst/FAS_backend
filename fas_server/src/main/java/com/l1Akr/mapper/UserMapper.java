@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserMapper {
 
-    public UserDAO InsertByUser(UserDAO userDAO);
+    void insertByUser(UserDAO userDAO);
+
+    UserDAO findByUser(UserDAO userDAO);
 
 }

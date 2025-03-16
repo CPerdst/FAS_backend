@@ -1,6 +1,6 @@
 package com.l1Akr.common.exception;
 
-import com.l1Akr.common.result.ResultEnum;
+import com.l1Akr.common.enums.ResultEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

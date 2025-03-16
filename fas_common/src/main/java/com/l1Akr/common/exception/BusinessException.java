@@ -1,6 +1,6 @@
 package com.l1Akr.common.exception;
 
-import com.l1Akr.common.result.ResultEnum;
+import com.l1Akr.common.enums.ResultEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,13 +10,13 @@ public class BusinessException extends RuntimeException {
 
     public final ResultEnum code;
 
-    public BusinessException(ResultEnum code, String message, Throwable cause) {
-        super(message, cause);
+    public BusinessException(ResultEnum code, Throwable cause) {
+        super(code.message(), cause);
         this.code = code;
     }
 
-    public BusinessException(ResultEnum code, String message) {
-        super(message);
+    public BusinessException(ResultEnum code) {
+        super(code.message());
         this.code = code;
     }
 

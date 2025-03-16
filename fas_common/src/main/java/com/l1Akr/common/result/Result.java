@@ -1,5 +1,6 @@
 package com.l1Akr.common.result;
 
+import com.l1Akr.common.enums.ResultEnum;
 import lombok.Data;
 
 @Data

@@ -1,4 +1,4 @@
-package com.l1Akr.common.result;
+package com.l1Akr.common.enums;
 
 import lombok.Getter;
 

@@ -1,16 +1,17 @@
-package com.l1Akr.dao;
+package com.l1Akr.vo;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDAO {
+public class UserInfoVO {
     public Integer id;
     public String username;
-    public String password;
     public Boolean sex;
     public String telephone;
     public Date createTime;

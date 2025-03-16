@@ -1,0 +1,1070 @@
+2025-03-16T07:22:54.214+08:00  INFO 97654 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 97654 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:22:54.216+08:00  INFO 97654 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:22:55.019+08:00  INFO 97654 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:22:55.028+08:00  INFO 97654 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:22:55.029+08:00  INFO 97654 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:22:55.060+08:00  INFO 97654 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:22:55.061+08:00  INFO 97654 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 815 ms
+2025-03-16T07:22:55.326+08:00  INFO 97654 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T07:22:55.417+08:00  INFO 97654 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T07:22:55.587+08:00  INFO 97654 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T07:22:55.599+08:00  INFO 97654 --- [main] com.l1Akr.Application                    : Started Application in 1.72 seconds (process running for 2.088)
+2025-03-16T07:22:58.608+08:00  INFO 97654 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T07:22:58.608+08:00  INFO 97654 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T07:22:58.609+08:00  INFO 97654 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T07:22:58.664+08:00  INFO 97654 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Register User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T07:22:58.679+08:00  INFO 97654 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T07:22:58.873+08:00  INFO 97654 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6dedacc3
+2025-03-16T07:22:58.875+08:00  INFO 97654 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T07:22:58.881+08:00 DEBUG 97654 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==>  Preparing: INSERT INTO userRegisterDTO (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?)
+2025-03-16T07:22:58.900+08:00  WARN 97654 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: 
+### Error updating database.  Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'userRegisterDTO' in 'class com.l1Akr.dao.UserDAO'
+### The error may exist in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: INSERT INTO userRegisterDTO (username, password, sex, telephone, create_time, update_time)         VALUES (?, ?, ?, ?, ?)
+### Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'userRegisterDTO' in 'class com.l1Akr.dao.UserDAO'
+2025-03-16T07:24:18.402+08:00  INFO 97654 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T07:24:18.405+08:00  INFO 97654 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T07:24:18.409+08:00  INFO 97654 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T07:24:18.418+08:00  INFO 97654 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T07:24:19.990+08:00  INFO 98263 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 98263 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:24:19.992+08:00  INFO 98263 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:24:20.816+08:00  INFO 98263 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:24:20.823+08:00  INFO 98263 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:24:20.824+08:00  INFO 98263 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:24:20.852+08:00  INFO 98263 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:24:20.852+08:00  INFO 98263 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 816 ms
+2025-03-16T07:24:21.157+08:00  INFO 98263 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T07:24:21.290+08:00  INFO 98263 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T07:24:21.482+08:00  INFO 98263 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T07:24:21.490+08:00  INFO 98263 --- [main] com.l1Akr.Application                    : Started Application in 1.857 seconds (process running for 2.257)
+2025-03-16T07:24:27.638+08:00  INFO 98263 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T07:24:27.638+08:00  INFO 98263 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T07:24:27.640+08:00  INFO 98263 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T07:24:27.704+08:00  INFO 98263 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Register User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T07:24:27.718+08:00  INFO 98263 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T07:24:27.929+08:00  INFO 98263 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7392998
+2025-03-16T07:24:27.932+08:00  INFO 98263 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T07:24:27.937+08:00 DEBUG 98263 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T07:24:27.955+08:00  WARN 98263 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: 
+### Error updating database.  Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'userDAO' in 'class com.l1Akr.dao.UserDAO'
+### The error may exist in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: INSERT INTO user (username, password, sex, telephone, create_time, update_time)         VALUES (?, ?, ?, ?, ?, ?)
+### Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'userDAO' in 'class com.l1Akr.dao.UserDAO'
+2025-03-16T07:26:18.550+08:00  INFO 98263 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T07:26:18.555+08:00  INFO 98263 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T07:26:18.561+08:00  INFO 98263 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T07:26:18.572+08:00  INFO 98263 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T07:26:21.422+08:00  INFO 99115 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 99115 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:26:21.424+08:00  INFO 99115 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:26:22.360+08:00  INFO 99115 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:26:22.375+08:00  INFO 99115 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:26:22.376+08:00  INFO 99115 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:26:22.411+08:00  INFO 99115 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:26:22.411+08:00  INFO 99115 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 953 ms
+2025-03-16T07:26:22.681+08:00  INFO 99115 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T07:26:22.797+08:00  INFO 99115 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T07:26:22.998+08:00  INFO 99115 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T07:26:23.009+08:00  INFO 99115 --- [main] com.l1Akr.Application                    : Started Application in 1.964 seconds (process running for 2.395)
+2025-03-16T07:26:40.206+08:00  INFO 99115 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T07:26:40.207+08:00  INFO 99115 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T07:26:40.208+08:00  INFO 99115 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T07:26:40.268+08:00  INFO 99115 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Register User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T07:26:40.281+08:00  INFO 99115 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T07:26:40.503+08:00  INFO 99115 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@23099b0c
+2025-03-16T07:26:40.505+08:00  INFO 99115 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T07:26:40.511+08:00 DEBUG 99115 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T07:26:40.533+08:00  WARN 99115 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: 
+### Error updating database.  Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'userDAO' in 'class com.l1Akr.dao.UserDAO'
+### The error may exist in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: INSERT INTO user (username, password, sex, telephone, create_time, update_time)         VALUES (?, ?, ?, ?, ?, ?)
+### Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'userDAO' in 'class com.l1Akr.dao.UserDAO'
+2025-03-16T07:27:58.854+08:00  INFO 99115 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T07:27:58.857+08:00  INFO 99115 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T07:27:58.862+08:00  INFO 99115 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T07:27:58.872+08:00  INFO 99115 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T07:28:00.525+08:00  INFO 99765 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 99765 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:28:00.528+08:00  INFO 99765 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:28:01.462+08:00  INFO 99765 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:28:01.470+08:00  INFO 99765 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:28:01.471+08:00  INFO 99765 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:28:01.505+08:00  INFO 99765 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:28:01.506+08:00  INFO 99765 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 938 ms
+2025-03-16T07:28:01.718+08:00  WARN 99765 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'usersController': Unsatisfied dependency expressed through field 'userService': Error creating bean with name 'userServiceImpl' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/service/implement/UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userMapper' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/mapper/UserMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+2025-03-16T07:28:01.720+08:00  INFO 99765 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-03-16T07:28:01.736+08:00  INFO 99765 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-03-16T07:28:01.754+08:00 ERROR 99765 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'usersController': Unsatisfied dependency expressed through field 'userService': Error creating bean with name 'userServiceImpl' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/service/implement/UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userMapper' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/mapper/UserMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1445) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.3.jar:6.2.3]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.3.jar:6.2.3]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.4.3.jar:3.4.3]
+	at com.l1Akr.Application.main(Application.java:13) ~[classes/:na]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userServiceImpl' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/service/implement/UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userMapper' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/mapper/UserMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 22 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userMapper' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/mapper/UserMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1542) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1436) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1606) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 35 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1527) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 46 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:199) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 59 common frames omitted
+Caused by: java.io.IOException: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:695) ~[mybatis-spring-3.0.4.jar:3.0.4]
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:572) ~[mybatis-spring-3.0.4.jar:3.0.4]
+	at org.mybatis.spring.SqlSessionFactoryBean.getObject(SqlSessionFactoryBean.java:712) ~[mybatis-spring-3.0.4.jar:3.0.4]
+	at org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration.sqlSessionFactory(MybatisAutoConfiguration.java:189) ~[mybatis-spring-boot-starter-3.0.4.jar:3.0.4]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 62 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'UserDAO'.  Cause: java.lang.ClassNotFoundException: Cannot find class: UserDAO
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:125) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:98) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:693) ~[mybatis-spring-3.0.4.jar:3.0.4]
+	... 70 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'UserDAO'.  Cause: java.lang.ClassNotFoundException: Cannot find class: UserDAO
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:103) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:78) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:141) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:133) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:123) ~[mybatis-3.5.17.jar:3.5.17]
+	... 72 common frames omitted
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'UserDAO'.  Cause: java.lang.ClassNotFoundException: Cannot find class: UserDAO
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:128) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:132) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:101) ~[mybatis-3.5.17.jar:3.5.17]
+	... 76 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Cannot find class: UserDAO
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:226) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:103) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:322) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:124) ~[mybatis-3.5.17.jar:3.5.17]
+	... 78 common frames omitted
+
+2025-03-16T07:28:07.913+08:00  INFO 99934 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 99934 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:28:07.916+08:00  INFO 99934 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:28:08.733+08:00  INFO 99934 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:28:08.740+08:00  INFO 99934 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:28:08.741+08:00  INFO 99934 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:28:08.770+08:00  INFO 99934 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:28:08.771+08:00  INFO 99934 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 818 ms
+2025-03-16T07:28:08.891+08:00  WARN 99934 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'usersController': Unsatisfied dependency expressed through field 'userService': Error creating bean with name 'userServiceImpl' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/service/implement/UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userMapper' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/mapper/UserMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+2025-03-16T07:28:08.893+08:00  INFO 99934 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-03-16T07:28:08.901+08:00  INFO 99934 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-03-16T07:28:08.911+08:00 ERROR 99934 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'usersController': Unsatisfied dependency expressed through field 'userService': Error creating bean with name 'userServiceImpl' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/service/implement/UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userMapper' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/mapper/UserMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1445) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.3.jar:6.2.3]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.3.jar:6.2.3]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.4.3.jar:3.4.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.4.3.jar:3.4.3]
+	at com.l1Akr.Application.main(Application.java:13) ~[classes/:na]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userServiceImpl' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/service/implement/UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userMapper' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/mapper/UserMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 22 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userMapper' defined in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/com/l1Akr/mapper/UserMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1542) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1436) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1606) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 35 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/mybatis/spring/boot/autoconfigure/MybatisAutoConfiguration.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1527) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 46 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:199) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:88) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:168) ~[spring-beans-6.2.3.jar:6.2.3]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 59 common frames omitted
+Caused by: java.io.IOException: Failed to parse mapping resource: 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:695) ~[mybatis-spring-3.0.4.jar:3.0.4]
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:572) ~[mybatis-spring-3.0.4.jar:3.0.4]
+	at org.mybatis.spring.SqlSessionFactoryBean.getObject(SqlSessionFactoryBean.java:712) ~[mybatis-spring-3.0.4.jar:3.0.4]
+	at org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration.sqlSessionFactory(MybatisAutoConfiguration.java:189) ~[mybatis-spring-boot-starter-3.0.4.jar:3.0.4]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:171) ~[spring-beans-6.2.3.jar:6.2.3]
+	... 62 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'UserDAO'.  Cause: java.lang.ClassNotFoundException: Cannot find class: UserDAO
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:125) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:98) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:693) ~[mybatis-spring-3.0.4.jar:3.0.4]
+	... 70 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'UserDAO'.  Cause: java.lang.ClassNotFoundException: Cannot find class: UserDAO
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:103) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:78) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:141) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:133) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:123) ~[mybatis-3.5.17.jar:3.5.17]
+	... 72 common frames omitted
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'UserDAO'.  Cause: java.lang.ClassNotFoundException: Cannot find class: UserDAO
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:128) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:132) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:101) ~[mybatis-3.5.17.jar:3.5.17]
+	... 76 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Cannot find class: UserDAO
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:226) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:103) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:322) ~[mybatis-3.5.17.jar:3.5.17]
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:124) ~[mybatis-3.5.17.jar:3.5.17]
+	... 78 common frames omitted
+
+2025-03-16T07:28:32.216+08:00  INFO 100166 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 100166 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:28:32.218+08:00  INFO 100166 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:28:32.975+08:00  INFO 100166 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:28:32.982+08:00  INFO 100166 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:28:32.982+08:00  INFO 100166 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:28:33.007+08:00  INFO 100166 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:28:33.008+08:00  INFO 100166 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 753 ms
+2025-03-16T07:28:33.253+08:00  INFO 100166 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T07:28:33.340+08:00  INFO 100166 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T07:28:33.508+08:00  INFO 100166 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T07:28:33.515+08:00  INFO 100166 --- [main] com.l1Akr.Application                    : Started Application in 1.623 seconds (process running for 1.986)
+2025-03-16T07:28:38.600+08:00  INFO 100166 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T07:28:38.601+08:00  INFO 100166 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T07:28:38.602+08:00  INFO 100166 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T07:28:38.657+08:00  INFO 100166 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Register User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T07:28:38.671+08:00  INFO 100166 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T07:28:38.874+08:00  INFO 100166 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@71c42742
+2025-03-16T07:28:38.876+08:00  INFO 100166 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T07:28:38.882+08:00 DEBUG 100166 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T07:28:38.899+08:00  WARN 100166 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: 
+### Error updating database.  Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'userDAO' in 'class com.l1Akr.dao.UserDAO'
+### The error may exist in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]
+### The error may involve com.l1Akr.mapper.UserMapper.InsertByUser-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO user (username, password, sex, telephone, create_time, update_time)         VALUES (?, ?, ?, ?, ?, ?)
+### Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'userDAO' in 'class com.l1Akr.dao.UserDAO'
+2025-03-16T07:29:46.783+08:00  INFO 100166 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T07:29:46.787+08:00  INFO 100166 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T07:29:46.791+08:00  INFO 100166 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T07:29:46.801+08:00  INFO 100166 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T07:29:48.411+08:00  INFO 100716 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 100716 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:29:48.413+08:00  INFO 100716 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:29:49.273+08:00  INFO 100716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:29:49.281+08:00  INFO 100716 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:29:49.281+08:00  INFO 100716 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:29:49.311+08:00  INFO 100716 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:29:49.312+08:00  INFO 100716 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 856 ms
+2025-03-16T07:29:49.586+08:00  INFO 100716 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T07:29:49.683+08:00  INFO 100716 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T07:29:49.872+08:00  INFO 100716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T07:29:49.879+08:00  INFO 100716 --- [main] com.l1Akr.Application                    : Started Application in 1.87 seconds (process running for 2.254)
+2025-03-16T07:29:53.484+08:00  INFO 100716 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T07:29:53.484+08:00  INFO 100716 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T07:29:53.485+08:00  INFO 100716 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T07:29:53.542+08:00  INFO 100716 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Register User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T07:29:53.555+08:00  INFO 100716 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T07:29:53.755+08:00  INFO 100716 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@aeb1e2c
+2025-03-16T07:29:53.757+08:00  INFO 100716 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T07:29:53.762+08:00 DEBUG 100716 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T07:29:53.783+08:00  WARN 100716 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: 
+### Error updating database.  Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'create_time' in 'class com.l1Akr.dao.UserDAO'
+### The error may exist in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]
+### The error may involve com.l1Akr.mapper.UserMapper.InsertByUser-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO user (username, password, sex, telephone, create_time, update_time)         VALUES (?, ?, ?, ?, ?, ?)
+### Cause: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'create_time' in 'class com.l1Akr.dao.UserDAO'
+2025-03-16T07:30:20.295+08:00  INFO 100716 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T07:30:20.301+08:00  INFO 100716 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T07:30:20.305+08:00  INFO 100716 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T07:30:20.317+08:00  INFO 100716 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T07:30:21.842+08:00  INFO 101030 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 101030 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:30:21.844+08:00  INFO 101030 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:30:22.614+08:00  INFO 101030 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:30:22.621+08:00  INFO 101030 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:30:22.622+08:00  INFO 101030 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:30:22.647+08:00  INFO 101030 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:30:22.648+08:00  INFO 101030 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 770 ms
+2025-03-16T07:30:22.882+08:00  INFO 101030 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T07:30:22.974+08:00  INFO 101030 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T07:30:23.178+08:00  INFO 101030 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T07:30:23.186+08:00  INFO 101030 --- [main] com.l1Akr.Application                    : Started Application in 1.69 seconds (process running for 2.071)
+2025-03-16T07:30:25.428+08:00  INFO 101030 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T07:30:25.428+08:00  INFO 101030 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T07:30:25.429+08:00  INFO 101030 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T07:30:25.498+08:00  INFO 101030 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Register User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T07:30:25.513+08:00  INFO 101030 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T07:30:25.723+08:00  INFO 101030 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6dedacc3
+2025-03-16T07:30:25.725+08:00  INFO 101030 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T07:30:25.730+08:00 DEBUG 101030 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T07:30:25.744+08:00 DEBUG 101030 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean), 12345678901(String), 2025-03-16 07:30:25.5(Timestamp), 2025-03-16 07:30:25.5(Timestamp)
+2025-03-16T07:30:25.764+08:00 DEBUG 101030 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : <==    Updates: 1
+2025-03-16T07:30:25.775+08:00  WARN 101030 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: Mapper method 'com.l1Akr.mapper.UserMapper.InsertByUser' has an unsupported return type: class com.l1Akr.dao.UserDAO
+2025-03-16T07:33:50.653+08:00  INFO 101030 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T07:33:50.656+08:00  INFO 101030 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T07:33:50.661+08:00  INFO 101030 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T07:33:50.672+08:00  INFO 101030 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T07:34:10.133+08:00  INFO 102734 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 102734 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:34:10.135+08:00  INFO 102734 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:34:10.905+08:00  INFO 102734 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:34:10.915+08:00  INFO 102734 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:34:10.915+08:00  INFO 102734 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:34:10.945+08:00  INFO 102734 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:34:10.945+08:00  INFO 102734 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 776 ms
+2025-03-16T07:34:11.208+08:00  INFO 102734 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T07:34:11.302+08:00  INFO 102734 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T07:34:11.496+08:00  INFO 102734 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T07:34:11.504+08:00  INFO 102734 --- [main] com.l1Akr.Application                    : Started Application in 1.705 seconds (process running for 2.066)
+2025-03-16T07:34:33.842+08:00  INFO 102734 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T07:34:33.846+08:00  INFO 102734 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T07:34:35.531+08:00  INFO 103009 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 103009 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:34:35.534+08:00  INFO 103009 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:34:36.461+08:00  INFO 103009 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:34:36.473+08:00  INFO 103009 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:34:36.474+08:00  INFO 103009 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:34:36.514+08:00  INFO 103009 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:34:36.515+08:00  INFO 103009 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 947 ms
+2025-03-16T07:34:36.888+08:00  INFO 103009 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T07:34:37.014+08:00  INFO 103009 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T07:34:37.246+08:00  INFO 103009 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T07:34:37.259+08:00  INFO 103009 --- [main] com.l1Akr.Application                    : Started Application in 2.17 seconds (process running for 2.569)
+2025-03-16T07:34:38.927+08:00  INFO 103009 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T07:34:38.927+08:00  INFO 103009 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T07:34:38.928+08:00  INFO 103009 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T07:34:38.999+08:00  INFO 103009 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Register User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T07:34:39.013+08:00  INFO 103009 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T07:34:39.247+08:00  INFO 103009 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ab64551
+2025-03-16T07:34:39.249+08:00  INFO 103009 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T07:34:39.256+08:00 DEBUG 103009 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T07:34:39.276+08:00 DEBUG 103009 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean), 12345678901(String), 2025-03-16 07:34:39.001(Timestamp), 2025-03-16 07:34:39.001(Timestamp)
+2025-03-16T07:34:39.293+08:00 DEBUG 103009 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : <==    Updates: 1
+2025-03-16T07:48:19.990+08:00  INFO 103009 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T07:48:19.993+08:00  INFO 103009 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T07:48:19.997+08:00  INFO 103009 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T07:48:20.007+08:00  INFO 103009 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T07:48:23.048+08:00  INFO 109848 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 109848 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:48:23.050+08:00  INFO 109848 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:48:23.803+08:00  INFO 109848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:48:23.812+08:00  INFO 109848 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:48:23.812+08:00  INFO 109848 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:48:23.841+08:00  INFO 109848 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:48:23.842+08:00  INFO 109848 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 760 ms
+2025-03-16T07:48:24.108+08:00  INFO 109848 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T07:48:24.199+08:00  INFO 109848 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T07:48:24.372+08:00  INFO 109848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T07:48:24.380+08:00  INFO 109848 --- [main] com.l1Akr.Application                    : Started Application in 1.686 seconds (process running for 2.095)
+2025-03-16T07:48:38.584+08:00  INFO 109848 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T07:48:38.584+08:00  INFO 109848 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T07:48:38.585+08:00  INFO 109848 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T07:48:38.644+08:00  INFO 109848 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T07:48:38.648+08:00  WARN 109848 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: Invalid bound statement (not found): com.l1Akr.mapper.UserMapper.findByUser
+2025-03-16T07:52:10.912+08:00  INFO 109848 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T07:52:10.916+08:00  INFO 109848 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T07:52:13.650+08:00  INFO 111696 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 111696 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:52:13.653+08:00  INFO 111696 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:52:14.499+08:00  INFO 111696 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:52:14.507+08:00  INFO 111696 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:52:14.508+08:00  INFO 111696 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:52:14.537+08:00  INFO 111696 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:52:14.538+08:00  INFO 111696 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 849 ms
+2025-03-16T07:52:14.803+08:00  INFO 111696 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T07:52:14.898+08:00  INFO 111696 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T07:52:15.100+08:00  INFO 111696 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T07:52:15.109+08:00  INFO 111696 --- [main] com.l1Akr.Application                    : Started Application in 1.885 seconds (process running for 2.389)
+2025-03-16T07:52:21.699+08:00  INFO 111696 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T07:52:21.699+08:00  INFO 111696 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T07:52:21.700+08:00  INFO 111696 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T07:52:21.758+08:00  INFO 111696 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Register User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T07:52:21.773+08:00  INFO 111696 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T07:52:21.983+08:00  INFO 111696 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ab64551
+2025-03-16T07:52:21.985+08:00  INFO 111696 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T07:52:21.990+08:00 DEBUG 111696 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T07:52:22.004+08:00 DEBUG 111696 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean), 12345678901(String), 2025-03-16 07:52:21.76(Timestamp), 2025-03-16 07:52:21.76(Timestamp)
+2025-03-16T07:52:22.019+08:00 DEBUG 111696 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : <==    Updates: 1
+2025-03-16T07:52:23.825+08:00  INFO 111696 --- [http-nio-8000-exec-2] com.l1Akr.controller.UsersController     : Register User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T07:52:23.826+08:00 DEBUG 111696 --- [http-nio-8000-exec-2] c.l1Akr.mapper.UserMapper.InsertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T07:52:23.827+08:00 DEBUG 111696 --- [http-nio-8000-exec-2] c.l1Akr.mapper.UserMapper.InsertByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean), 12345678901(String), 2025-03-16 07:52:23.826(Timestamp), 2025-03-16 07:52:23.826(Timestamp)
+2025-03-16T07:52:23.947+08:00  WARN 111696 --- [http-nio-8000-exec-2] com.l1Akr.config.GlobalExceptionAdvice   : doBusinessException has occurred: 用户已存在
+2025-03-16T07:55:53.005+08:00  INFO 111696 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T07:55:53.010+08:00  INFO 111696 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T07:55:53.015+08:00  INFO 111696 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T07:55:53.025+08:00  INFO 111696 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T07:55:55.506+08:00  INFO 113741 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 113741 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T07:55:55.508+08:00  INFO 113741 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T07:55:56.303+08:00  INFO 113741 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T07:55:56.311+08:00  INFO 113741 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T07:55:56.312+08:00  INFO 113741 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T07:55:56.344+08:00  INFO 113741 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T07:55:56.344+08:00  INFO 113741 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 791 ms
+2025-03-16T07:55:56.631+08:00  INFO 113741 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T07:55:56.733+08:00  INFO 113741 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T07:55:56.938+08:00  INFO 113741 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T07:55:56.946+08:00  INFO 113741 --- [main] com.l1Akr.Application                    : Started Application in 1.812 seconds (process running for 2.185)
+2025-03-16T07:55:58.040+08:00  INFO 113741 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T07:55:58.041+08:00  INFO 113741 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T07:55:58.043+08:00  INFO 113741 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T07:55:58.120+08:00  INFO 113741 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Register User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T07:55:58.137+08:00  INFO 113741 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T07:55:58.375+08:00  INFO 113741 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ab64551
+2025-03-16T07:55:58.377+08:00  INFO 113741 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T07:55:58.382+08:00 DEBUG 113741 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T07:55:58.400+08:00 DEBUG 113741 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.InsertByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean), 12345678901(String), 2025-03-16 07:55:58.123(Timestamp), 2025-03-16 07:55:58.123(Timestamp)
+2025-03-16T07:55:58.528+08:00  WARN 113741 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doBusinessException has occurred: 用户已存在
+2025-03-16T08:03:43.223+08:00  INFO 113741 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:03:43.229+08:00  INFO 113741 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:03:43.235+08:00  INFO 113741 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:03:43.246+08:00  INFO 113741 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:03:45.602+08:00  INFO 117870 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 117870 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:03:45.604+08:00  INFO 117870 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:03:46.383+08:00  INFO 117870 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:03:46.391+08:00  INFO 117870 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:03:46.391+08:00  INFO 117870 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:03:46.419+08:00  INFO 117870 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:03:46.419+08:00  INFO 117870 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 770 ms
+2025-03-16T08:03:46.671+08:00  INFO 117870 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:03:46.764+08:00  INFO 117870 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:03:46.979+08:00  INFO 117870 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:03:46.987+08:00  INFO 117870 --- [main] com.l1Akr.Application                    : Started Application in 1.737 seconds (process running for 2.099)
+2025-03-16T08:03:53.280+08:00  INFO 117870 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:03:53.280+08:00  INFO 117870 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:03:53.281+08:00  INFO 117870 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T08:03:53.357+08:00  INFO 117870 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:03:53.393+08:00  INFO 117870 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:03:53.611+08:00  INFO 117870 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@157d4563
+2025-03-16T08:03:53.612+08:00  INFO 117870 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:03:53.617+08:00 DEBUG 117870 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? password = ? sex = ?
+2025-03-16T08:03:53.632+08:00 DEBUG 117870 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:03:53.736+08:00  WARN 117870 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'password = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'
+  ' at line 3
+### The error may exist in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from user          WHERE username = ?             password = ?             sex = ?
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'password = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'
+  ' at line 3
+; bad SQL grammar []
+2025-03-16T08:04:21.580+08:00  INFO 117870 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:04:21.583+08:00  INFO 117870 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:04:21.587+08:00  INFO 117870 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:04:21.596+08:00  INFO 117870 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:04:23.320+08:00  INFO 118318 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 118318 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:04:23.322+08:00  INFO 118318 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:04:24.092+08:00  INFO 118318 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:04:24.100+08:00  INFO 118318 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:04:24.101+08:00  INFO 118318 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:04:24.128+08:00  INFO 118318 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:04:24.129+08:00  INFO 118318 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 773 ms
+2025-03-16T08:04:24.385+08:00  INFO 118318 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:04:24.481+08:00  INFO 118318 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:04:24.670+08:00  INFO 118318 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:04:24.678+08:00  INFO 118318 --- [main] com.l1Akr.Application                    : Started Application in 1.764 seconds (process running for 2.252)
+2025-03-16T08:04:34.526+08:00  INFO 118318 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:04:34.527+08:00  INFO 118318 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:04:34.528+08:00  INFO 118318 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T08:04:34.597+08:00  INFO 118318 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:04:34.625+08:00  INFO 118318 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:04:34.835+08:00  INFO 118318 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7430203f
+2025-03-16T08:04:34.836+08:00  INFO 118318 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:04:34.841+08:00 DEBUG 118318 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ?, password = ?, sex = ?,
+2025-03-16T08:04:34.857+08:00 DEBUG 118318 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:04:34.953+08:00  WARN 118318 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+            password = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c' at line 2
+### The error may exist in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from user          WHERE username = ?,             password = ?,             sex = ?,
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+            password = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c' at line 2
+; bad SQL grammar []
+2025-03-16T08:05:04.165+08:00  INFO 118318 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:05:04.167+08:00  INFO 118318 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:05:04.170+08:00  INFO 118318 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:05:04.177+08:00  INFO 118318 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:05:05.711+08:00  INFO 119309 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 119309 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:05:05.713+08:00  INFO 119309 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:05:06.493+08:00  INFO 119309 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:05:06.500+08:00  INFO 119309 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:05:06.501+08:00  INFO 119309 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:05:06.530+08:00  INFO 119309 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:05:06.531+08:00  INFO 119309 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 776 ms
+2025-03-16T08:05:06.804+08:00  INFO 119309 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:05:06.902+08:00  INFO 119309 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:05:07.084+08:00  INFO 119309 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:05:07.092+08:00  INFO 119309 --- [main] com.l1Akr.Application                    : Started Application in 1.797 seconds (process running for 2.201)
+2025-03-16T08:05:09.854+08:00  INFO 119309 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:05:09.854+08:00  INFO 119309 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:05:09.855+08:00  INFO 119309 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-16T08:05:09.921+08:00  INFO 119309 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:05:09.946+08:00  INFO 119309 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:05:10.178+08:00  INFO 119309 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7430203f
+2025-03-16T08:05:10.179+08:00  INFO 119309 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:05:10.184+08:00 DEBUG 119309 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ?, password = ?, sex = ?,
+2025-03-16T08:05:10.198+08:00 DEBUG 119309 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:05:10.297+08:00  WARN 119309 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+            password = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c' at line 2
+### The error may exist in file [/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes/mapper/UserMapper.xml]
+### The error may involve com.l1Akr.mapper.UserMapper.findByUser-Inline
+### The error occurred while setting parameters
+### SQL: select * from user          WHERE username = ?,             password = ?,             sex = ?,
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+            password = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c' at line 2
+; bad SQL grammar []
+2025-03-16T08:08:13.659+08:00  INFO 119309 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:08:13.662+08:00  INFO 119309 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:08:13.667+08:00  INFO 119309 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:08:13.678+08:00  INFO 119309 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:08:15.182+08:00  INFO 120985 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 120985 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:08:15.184+08:00  INFO 120985 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:08:15.927+08:00  INFO 120985 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:08:15.935+08:00  INFO 120985 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:08:15.935+08:00  INFO 120985 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:08:15.966+08:00  INFO 120985 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:08:15.967+08:00  INFO 120985 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 749 ms
+2025-03-16T08:08:16.246+08:00  INFO 120985 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:08:16.348+08:00  INFO 120985 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:08:16.529+08:00  INFO 120985 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:08:16.537+08:00  INFO 120985 --- [main] com.l1Akr.Application                    : Started Application in 1.687 seconds (process running for 2.055)
+2025-03-16T08:08:41.318+08:00  INFO 120985 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:08:41.318+08:00  INFO 120985 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:08:41.320+08:00  INFO 120985 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-03-16T08:08:41.392+08:00  INFO 120985 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:08:41.424+08:00  INFO 120985 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:08:41.636+08:00  INFO 120985 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7430203f
+2025-03-16T08:08:41.637+08:00  INFO 120985 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:08:41.643+08:00 DEBUG 120985 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:08:41.658+08:00 DEBUG 120985 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:08:41.678+08:00 TRACE 120985 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:08:41.679+08:00 TRACE 120985 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:08:41.681+08:00 DEBUG 120985 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:08:41.696+08:00  WARN 120985 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: The Secret cannot be null
+2025-03-16T08:09:47.594+08:00  INFO 120985 --- [http-nio-8000-exec-3] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:09:47.596+08:00 DEBUG 120985 --- [http-nio-8000-exec-3] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:09:47.597+08:00 DEBUG 120985 --- [http-nio-8000-exec-3] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:09:47.598+08:00 TRACE 120985 --- [http-nio-8000-exec-3] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:09:47.599+08:00 TRACE 120985 --- [http-nio-8000-exec-3] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:09:47.600+08:00 DEBUG 120985 --- [http-nio-8000-exec-3] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:09:47.601+08:00  WARN 120985 --- [http-nio-8000-exec-3] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: The Secret cannot be null
+2025-03-16T08:09:48.486+08:00  INFO 120985 --- [http-nio-8000-exec-4] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:09:48.488+08:00 DEBUG 120985 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:09:48.488+08:00 DEBUG 120985 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:09:48.489+08:00 TRACE 120985 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:09:48.490+08:00 TRACE 120985 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:09:48.491+08:00 DEBUG 120985 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:09:48.491+08:00  WARN 120985 --- [http-nio-8000-exec-4] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: The Secret cannot be null
+2025-03-16T08:09:49.538+08:00  INFO 120985 --- [http-nio-8000-exec-5] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:09:49.540+08:00 DEBUG 120985 --- [http-nio-8000-exec-5] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:09:49.540+08:00 DEBUG 120985 --- [http-nio-8000-exec-5] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:09:49.542+08:00 TRACE 120985 --- [http-nio-8000-exec-5] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:09:49.543+08:00 TRACE 120985 --- [http-nio-8000-exec-5] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:09:49.543+08:00 DEBUG 120985 --- [http-nio-8000-exec-5] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:09:49.544+08:00  WARN 120985 --- [http-nio-8000-exec-5] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: The Secret cannot be null
+2025-03-16T08:11:18.769+08:00  INFO 120985 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:11:18.772+08:00  INFO 120985 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:11:18.776+08:00  INFO 120985 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:11:18.783+08:00  INFO 120985 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:11:20.777+08:00  INFO 122587 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 122587 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:11:20.779+08:00  INFO 122587 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:11:21.589+08:00  INFO 122587 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:11:21.627+08:00  INFO 122587 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 812 ms
+2025-03-16T08:11:21.880+08:00  INFO 122587 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:11:21.980+08:00  INFO 122587 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:11:22.179+08:00  INFO 122587 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:11:22.187+08:00  INFO 122587 --- [main] com.l1Akr.Application                    : Started Application in 1.719 seconds (process running for 2.057)
+2025-03-16T08:11:22.189+08:00  INFO 122587 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:11:22.192+08:00  INFO 122587 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:11:26.274+08:00  INFO 122771 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 122771 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:11:26.278+08:00  INFO 122771 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:11:27.196+08:00  INFO 122771 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:11:27.206+08:00  INFO 122771 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:11:27.207+08:00  INFO 122771 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:11:27.245+08:00  INFO 122771 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:11:27.245+08:00  INFO 122771 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 926 ms
+2025-03-16T08:11:33.166+08:00  INFO 122771 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:11:33.268+08:00  INFO 122771 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:11:39.168+08:00  INFO 122771 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:11:39.178+08:00  INFO 122771 --- [main] com.l1Akr.Application                    : Started Application in 13.331 seconds (process running for 14.588)
+2025-03-16T08:11:49.305+08:00  INFO 122771 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:11:49.306+08:00  INFO 122771 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:11:49.307+08:00  INFO 122771 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T08:11:49.392+08:00  INFO 122771 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:11:58.452+08:00  INFO 122771 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:11:59.426+08:00  INFO 122771 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@334fb8b2
+2025-03-16T08:11:59.432+08:00  INFO 122771 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:11:59.472+08:00 DEBUG 122771 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:11:59.620+08:00 DEBUG 122771 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:11:59.765+08:00 TRACE 122771 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:11:59.769+08:00 TRACE 122771 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:11:59.774+08:00 DEBUG 122771 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:12:41.834+08:00  WARN 122771 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: The Secret cannot be null
+2025-03-16T08:12:41.845+08:00  INFO 122771 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:12:41.898+08:00  INFO 122771 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:12:41.901+08:00  INFO 122771 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:12:41.921+08:00  INFO 122771 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:18:11.805+08:00  INFO 126422 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 126422 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:18:11.807+08:00  INFO 126422 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:18:12.565+08:00  INFO 126422 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:18:12.573+08:00  INFO 126422 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:18:12.574+08:00  INFO 126422 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:18:12.606+08:00  INFO 126422 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:18:12.606+08:00  INFO 126422 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 768 ms
+2025-03-16T08:18:12.847+08:00  INFO 126422 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:18:12.933+08:00  INFO 126422 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:18:13.101+08:00  INFO 126422 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:18:13.108+08:00  INFO 126422 --- [main] com.l1Akr.Application                    : Started Application in 1.633 seconds (process running for 1.998)
+2025-03-16T08:18:17.308+08:00  INFO 126422 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:18:17.308+08:00  INFO 126422 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:18:17.309+08:00  INFO 126422 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T08:18:17.368+08:00  INFO 126422 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:18:17.393+08:00  INFO 126422 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:18:17.596+08:00  INFO 126422 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6566b11b
+2025-03-16T08:18:17.598+08:00  INFO 126422 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:18:17.603+08:00 DEBUG 126422 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:18:17.617+08:00 DEBUG 126422 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:18:17.630+08:00 TRACE 126422 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:18:17.631+08:00 TRACE 126422 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:18:17.632+08:00 DEBUG 126422 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:18:17.642+08:00  WARN 126422 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: The Secret cannot be null
+2025-03-16T08:18:45.636+08:00  INFO 126422 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:18:45.638+08:00  INFO 126422 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:18:45.642+08:00  INFO 126422 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:18:45.649+08:00  INFO 126422 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:19:12.119+08:00  INFO 127152 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 127152 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:19:12.121+08:00  INFO 127152 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:19:12.903+08:00  INFO 127152 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:19:12.910+08:00  INFO 127152 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:19:12.911+08:00  INFO 127152 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:19:12.939+08:00  INFO 127152 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:19:12.940+08:00  INFO 127152 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 782 ms
+2025-03-16T08:19:13.196+08:00  INFO 127152 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:19:13.285+08:00  INFO 127152 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:19:13.458+08:00  INFO 127152 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:19:13.465+08:00  INFO 127152 --- [main] com.l1Akr.Application                    : Started Application in 1.644 seconds (process running for 2.06)
+2025-03-16T08:19:17.936+08:00  INFO 127152 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:19:17.936+08:00  INFO 127152 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:19:17.938+08:00  INFO 127152 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-03-16T08:19:17.995+08:00  INFO 127152 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:19:18.019+08:00  INFO 127152 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:19:18.225+08:00  INFO 127152 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2667b1dc
+2025-03-16T08:19:18.226+08:00  INFO 127152 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:19:18.231+08:00 DEBUG 127152 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:19:18.246+08:00 DEBUG 127152 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:19:18.259+08:00 TRACE 127152 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:19:18.261+08:00 TRACE 127152 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:19:18.262+08:00 DEBUG 127152 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:19:18.271+08:00  WARN 127152 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: The Secret cannot be null
+2025-03-16T08:19:35.049+08:00  INFO 127152 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:19:35.052+08:00  INFO 127152 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:19:35.056+08:00  INFO 127152 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:19:35.064+08:00  INFO 127152 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:23:59.805+08:00  INFO 129594 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 129594 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:23:59.808+08:00  INFO 129594 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:24:00.549+08:00  INFO 129594 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:24:00.556+08:00  INFO 129594 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:24:00.557+08:00  INFO 129594 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:24:00.585+08:00  INFO 129594 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:24:00.585+08:00  INFO 129594 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 747 ms
+2025-03-16T08:24:00.843+08:00  INFO 129594 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:24:00.941+08:00  INFO 129594 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:24:01.127+08:00  INFO 129594 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:24:01.134+08:00  INFO 129594 --- [main] com.l1Akr.Application                    : Started Application in 1.637 seconds (process running for 1.991)
+2025-03-16T08:24:09.881+08:00  INFO 129594 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:24:09.881+08:00  INFO 129594 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:24:09.882+08:00  INFO 129594 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T08:24:09.940+08:00  INFO 129594 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:24:09.967+08:00  INFO 129594 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:24:10.159+08:00  INFO 129594 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5ad95f14
+2025-03-16T08:24:10.160+08:00  INFO 129594 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:24:10.166+08:00 DEBUG 129594 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:24:10.180+08:00 DEBUG 129594 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:24:10.193+08:00 TRACE 129594 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:24:10.195+08:00 TRACE 129594 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:24:10.196+08:00 DEBUG 129594 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:24:10.206+08:00  WARN 129594 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doException has occurred: The Secret cannot be null
+2025-03-16T08:24:15.296+08:00  INFO 129594 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:24:15.299+08:00  INFO 129594 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:24:15.303+08:00  INFO 129594 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:24:15.309+08:00  INFO 129594 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:28:54.167+08:00  INFO 132214 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 132214 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:28:54.169+08:00  INFO 132214 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:28:54.883+08:00  INFO 132214 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:28:54.891+08:00  INFO 132214 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:28:54.891+08:00  INFO 132214 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:28:54.923+08:00  INFO 132214 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:28:54.924+08:00  INFO 132214 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 724 ms
+2025-03-16T08:28:55.181+08:00  INFO 132214 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:28:55.271+08:00  INFO 132214 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:28:55.442+08:00  INFO 132214 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:28:55.449+08:00  INFO 132214 --- [main] com.l1Akr.Application                    : Started Application in 1.598 seconds (process running for 1.946)
+2025-03-16T08:29:03.832+08:00  INFO 132214 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:29:03.833+08:00  INFO 132214 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:29:03.834+08:00  INFO 132214 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T08:29:03.893+08:00  INFO 132214 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:29:03.919+08:00  INFO 132214 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:29:04.166+08:00  INFO 132214 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@40b002aa
+2025-03-16T08:29:04.168+08:00  INFO 132214 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:29:04.173+08:00 DEBUG 132214 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:29:04.188+08:00 DEBUG 132214 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:29:04.202+08:00 TRACE 132214 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:29:04.203+08:00 TRACE 132214 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:29:04.205+08:00 DEBUG 132214 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:31:15.646+08:00  INFO 132214 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:31:15.650+08:00  INFO 132214 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:31:15.654+08:00  INFO 132214 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:31:15.665+08:00  INFO 132214 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:31:18.752+08:00  INFO 133611 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 133611 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:31:18.754+08:00  INFO 133611 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:31:19.551+08:00  INFO 133611 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:31:19.558+08:00  INFO 133611 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:31:19.558+08:00  INFO 133611 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:31:19.586+08:00  INFO 133611 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:31:19.587+08:00  INFO 133611 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 802 ms
+2025-03-16T08:31:19.863+08:00  INFO 133611 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:31:19.958+08:00  INFO 133611 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:31:20.144+08:00  INFO 133611 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:31:20.151+08:00  INFO 133611 --- [main] com.l1Akr.Application                    : Started Application in 1.713 seconds (process running for 2.056)
+2025-03-16T08:31:20.876+08:00  INFO 133611 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:31:20.877+08:00  INFO 133611 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:31:20.878+08:00  INFO 133611 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T08:31:20.938+08:00  INFO 133611 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:31:20.964+08:00  INFO 133611 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:31:21.173+08:00  INFO 133611 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ae36b0e
+2025-03-16T08:31:21.175+08:00  INFO 133611 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:31:21.180+08:00 DEBUG 133611 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:31:21.194+08:00 DEBUG 133611 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:31:21.207+08:00 TRACE 133611 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:31:21.209+08:00 TRACE 133611 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:31:21.210+08:00 DEBUG 133611 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:31:22.686+08:00  INFO 133611 --- [http-nio-8000-exec-2] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:31:22.688+08:00 DEBUG 133611 --- [http-nio-8000-exec-2] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:31:22.688+08:00 DEBUG 133611 --- [http-nio-8000-exec-2] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:31:22.690+08:00 TRACE 133611 --- [http-nio-8000-exec-2] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:31:22.690+08:00 TRACE 133611 --- [http-nio-8000-exec-2] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:31:22.691+08:00 DEBUG 133611 --- [http-nio-8000-exec-2] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:31:23.786+08:00  INFO 133611 --- [http-nio-8000-exec-3] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:31:23.788+08:00 DEBUG 133611 --- [http-nio-8000-exec-3] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:31:23.788+08:00 DEBUG 133611 --- [http-nio-8000-exec-3] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:31:23.790+08:00 TRACE 133611 --- [http-nio-8000-exec-3] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:31:23.790+08:00 TRACE 133611 --- [http-nio-8000-exec-3] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:31:23.791+08:00 DEBUG 133611 --- [http-nio-8000-exec-3] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:31:24.289+08:00  INFO 133611 --- [http-nio-8000-exec-4] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:31:24.290+08:00 DEBUG 133611 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:31:24.291+08:00 DEBUG 133611 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:31:24.292+08:00 TRACE 133611 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:31:24.293+08:00 TRACE 133611 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:31:24.293+08:00 DEBUG 133611 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:31:25.569+08:00  INFO 133611 --- [http-nio-8000-exec-7] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 148 ms
+2025-03-16T08:31:28.466+08:00  INFO 133611 --- [http-nio-8000-exec-8] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:31:28.468+08:00 DEBUG 133611 --- [http-nio-8000-exec-8] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:31:28.468+08:00 DEBUG 133611 --- [http-nio-8000-exec-8] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:31:28.470+08:00 TRACE 133611 --- [http-nio-8000-exec-8] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:31:28.470+08:00 TRACE 133611 --- [http-nio-8000-exec-8] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:31:28.471+08:00 DEBUG 133611 --- [http-nio-8000-exec-8] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:31:56.518+08:00  INFO 133611 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:31:56.521+08:00  INFO 133611 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:31:56.526+08:00  INFO 133611 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:31:56.535+08:00  INFO 133611 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:31:58.029+08:00  INFO 134047 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 134047 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:31:58.032+08:00  INFO 134047 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:31:58.813+08:00  INFO 134047 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:31:58.821+08:00  INFO 134047 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:31:58.821+08:00  INFO 134047 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:31:58.849+08:00  INFO 134047 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:31:58.850+08:00  INFO 134047 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 782 ms
+2025-03-16T08:31:59.127+08:00  INFO 134047 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:31:59.224+08:00  INFO 134047 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:31:59.416+08:00  INFO 134047 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:31:59.423+08:00  INFO 134047 --- [main] com.l1Akr.Application                    : Started Application in 1.758 seconds (process running for 2.124)
+2025-03-16T08:32:03.895+08:00  INFO 134047 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:32:03.896+08:00  INFO 134047 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:32:03.897+08:00  INFO 134047 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T08:32:03.962+08:00  INFO 134047 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=maziyang, password=123456, sex=true)
+2025-03-16T08:32:03.989+08:00  INFO 134047 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:32:04.198+08:00  INFO 134047 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36cf69ae
+2025-03-16T08:32:04.199+08:00  INFO 134047 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:32:04.205+08:00 DEBUG 134047 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:32:04.219+08:00 DEBUG 134047 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: maziyang(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean)
+2025-03-16T08:32:04.233+08:00 TRACE 134047 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:32:04.234+08:00 TRACE 134047 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 2, maziyang, 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92, 1, 12345678901, 2025-03-16 07:52:22, 2025-03-16 07:52:22
+2025-03-16T08:32:04.235+08:00 DEBUG 134047 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:32:16.691+08:00  INFO 134047 --- [http-nio-8000-exec-2] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=admin, password=admin, sex=true)
+2025-03-16T08:32:16.693+08:00 DEBUG 134047 --- [http-nio-8000-exec-2] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:32:16.694+08:00 DEBUG 134047 --- [http-nio-8000-exec-2] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: admin(String), 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918(String), true(Boolean)
+2025-03-16T08:32:16.695+08:00 TRACE 134047 --- [http-nio-8000-exec-2] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:32:16.696+08:00 TRACE 134047 --- [http-nio-8000-exec-2] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 1, admin, 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918, 1, 12345678901, 2025-03-15 23:51:55, 2025-03-15 23:51:55
+2025-03-16T08:32:16.696+08:00 DEBUG 134047 --- [http-nio-8000-exec-2] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:32:57.108+08:00  INFO 134047 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:32:57.111+08:00  INFO 134047 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:32:57.115+08:00  INFO 134047 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:32:57.124+08:00  INFO 134047 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:32:59.324+08:00  INFO 134754 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 134754 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:32:59.326+08:00  INFO 134754 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:33:00.075+08:00  INFO 134754 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:33:00.082+08:00  INFO 134754 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:33:00.083+08:00  INFO 134754 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:33:00.110+08:00  INFO 134754 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:33:00.110+08:00  INFO 134754 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 753 ms
+2025-03-16T08:33:00.373+08:00  INFO 134754 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:33:00.455+08:00  INFO 134754 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:33:00.617+08:00  INFO 134754 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:33:00.624+08:00  INFO 134754 --- [main] com.l1Akr.Application                    : Started Application in 1.616 seconds (process running for 1.928)
+2025-03-16T08:33:03.124+08:00  INFO 134754 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:33:03.125+08:00  INFO 134754 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:33:03.126+08:00  INFO 134754 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T08:33:03.184+08:00  INFO 134754 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=admin, password=admin, sex=true)
+2025-03-16T08:33:03.213+08:00  INFO 134754 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:33:03.417+08:00  INFO 134754 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2e9c870d
+2025-03-16T08:33:03.419+08:00  INFO 134754 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:33:03.424+08:00 DEBUG 134754 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ? and sex = ?
+2025-03-16T08:33:03.438+08:00 DEBUG 134754 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: admin(String), 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918(String), true(Boolean)
+2025-03-16T08:33:03.452+08:00 TRACE 134754 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:33:03.453+08:00 TRACE 134754 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 1, admin, 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918, 1, 12345678901, 2025-03-15 23:51:55, 2025-03-15 23:51:55
+2025-03-16T08:33:03.454+08:00 DEBUG 134754 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:33:26.497+08:00  INFO 134754 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:33:26.500+08:00  INFO 134754 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:33:26.503+08:00  INFO 134754 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:33:26.511+08:00  INFO 134754 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:33:28.651+08:00  INFO 135158 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 135158 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:33:28.653+08:00  INFO 135158 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:33:29.426+08:00  INFO 135158 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:33:29.434+08:00  INFO 135158 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:33:29.434+08:00  INFO 135158 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:33:29.461+08:00  INFO 135158 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:33:29.462+08:00  INFO 135158 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 776 ms
+2025-03-16T08:33:29.721+08:00  INFO 135158 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:33:29.809+08:00  INFO 135158 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:33:30.006+08:00  INFO 135158 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:33:30.013+08:00  INFO 135158 --- [main] com.l1Akr.Application                    : Started Application in 1.682 seconds (process running for 2.003)
+2025-03-16T08:33:32.232+08:00  INFO 135158 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:33:32.232+08:00  INFO 135158 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:33:32.234+08:00  INFO 135158 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-03-16T08:33:32.299+08:00  INFO 135158 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserDTO(username=admin, password=admin, sex=true)
+2025-03-16T08:33:32.326+08:00  INFO 135158 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:33:32.526+08:00  INFO 135158 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2e9c870d
+2025-03-16T08:33:32.527+08:00  INFO 135158 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:33:32.532+08:00 DEBUG 135158 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ?
+2025-03-16T08:33:32.546+08:00 DEBUG 135158 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: admin(String), 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918(String)
+2025-03-16T08:33:32.558+08:00 TRACE 135158 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:33:32.559+08:00 TRACE 135158 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 1, admin, 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918, 1, 12345678901, 2025-03-15 23:51:55, 2025-03-15 23:51:55
+2025-03-16T08:33:32.561+08:00 DEBUG 135158 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:38:07.675+08:00  INFO 135158 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:38:07.678+08:00  INFO 135158 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:38:07.684+08:00  INFO 135158 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:38:07.696+08:00  INFO 135158 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:38:10.586+08:00  INFO 137632 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 137632 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:38:10.590+08:00  INFO 137632 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:38:11.354+08:00  INFO 137632 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:38:11.363+08:00  INFO 137632 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:38:11.363+08:00  INFO 137632 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:38:11.396+08:00  INFO 137632 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:38:11.397+08:00  INFO 137632 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 776 ms
+2025-03-16T08:38:11.667+08:00  INFO 137632 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:38:11.758+08:00  INFO 137632 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:38:11.932+08:00  INFO 137632 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:38:11.939+08:00  INFO 137632 --- [main] com.l1Akr.Application                    : Started Application in 1.672 seconds (process running for 2.043)
+2025-03-16T08:38:15.638+08:00  INFO 137632 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:38:15.638+08:00  INFO 137632 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:38:15.640+08:00  INFO 137632 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-03-16T08:38:16.046+08:00  INFO 137632 --- [http-nio-8000-exec-3] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 170 ms
+2025-03-16T08:38:18.845+08:00  INFO 137632 --- [http-nio-8000-exec-4] com.l1Akr.controller.UsersController     : Login User: UserLoginDTO(username=admin, password=admin)
+2025-03-16T08:38:18.873+08:00  INFO 137632 --- [http-nio-8000-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:38:19.076+08:00  INFO 137632 --- [http-nio-8000-exec-4] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e04c396
+2025-03-16T08:38:19.079+08:00  INFO 137632 --- [http-nio-8000-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:38:19.085+08:00 DEBUG 137632 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ?
+2025-03-16T08:38:19.104+08:00 DEBUG 137632 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: admin(String), 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918(String)
+2025-03-16T08:38:19.118+08:00 TRACE 137632 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:38:19.119+08:00 TRACE 137632 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 1, admin, 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918, 1, 12345678901, 2025-03-15 23:51:55, 2025-03-15 23:51:55
+2025-03-16T08:38:19.121+08:00 DEBUG 137632 --- [http-nio-8000-exec-4] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:38:50.696+08:00  INFO 137632 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:38:50.698+08:00  INFO 137632 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:38:50.702+08:00  INFO 137632 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:38:50.710+08:00  INFO 137632 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-16T08:38:53.345+08:00  INFO 138142 --- [main] com.l1Akr.Application                    : Starting Application using Java 17.0.14 with PID 138142 (/home/maziyang/FAS_Project/FAS_backend/fas_server/target/classes started by maziyang in /home/maziyang/FAS_Project/FAS_backend)
+2025-03-16T08:38:53.348+08:00  INFO 138142 --- [main] com.l1Akr.Application                    : No active profile set, falling back to 1 default profile: "default"
+2025-03-16T08:38:54.076+08:00  INFO 138142 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-03-16T08:38:54.083+08:00  INFO 138142 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-16T08:38:54.084+08:00  INFO 138142 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-16T08:38:54.113+08:00  INFO 138142 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-16T08:38:54.114+08:00  INFO 138142 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 735 ms
+2025-03-16T08:38:54.417+08:00  INFO 138142 --- [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-03-16T08:38:54.508+08:00  INFO 138142 --- [main] com.l1Akr.config.WebMvcConfiguration     : 开始设置静态资源映射...
+2025-03-16T08:38:54.684+08:00  INFO 138142 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/'
+2025-03-16T08:38:54.691+08:00  INFO 138142 --- [main] com.l1Akr.Application                    : Started Application in 1.69 seconds (process running for 2.018)
+2025-03-16T08:38:57.325+08:00  INFO 138142 --- [http-nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-16T08:38:57.326+08:00  INFO 138142 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-16T08:38:57.327+08:00  INFO 138142 --- [http-nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-16T08:38:57.382+08:00  INFO 138142 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Login User: UserLoginDTO(username=admin, password=admin)
+2025-03-16T08:38:57.407+08:00  INFO 138142 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-16T08:38:57.610+08:00  INFO 138142 --- [http-nio-8000-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5c666d11
+2025-03-16T08:38:57.611+08:00  INFO 138142 --- [http-nio-8000-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-16T08:38:57.617+08:00 DEBUG 138142 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==>  Preparing: select * from user WHERE username = ? and password = ?
+2025-03-16T08:38:57.631+08:00 DEBUG 138142 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : ==> Parameters: admin(String), 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918(String)
+2025-03-16T08:38:57.643+08:00 TRACE 138142 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==    Columns: id, username, password, sex, telephone, create_time, update_time
+2025-03-16T08:38:57.645+08:00 TRACE 138142 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==        Row: 1, admin, 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918, 1, 12345678901, 2025-03-15 23:51:55, 2025-03-15 23:51:55
+2025-03-16T08:38:57.646+08:00 DEBUG 138142 --- [http-nio-8000-exec-1] com.l1Akr.mapper.UserMapper.findByUser   : <==      Total: 1
+2025-03-16T08:39:57.013+08:00  INFO 138142 --- [http-nio-8000-exec-2] com.l1Akr.controller.UsersController     : Register User: UserRegisterDTO(username=maziyanga, password=123456, sex=true)
+2025-03-16T08:39:57.016+08:00 DEBUG 138142 --- [http-nio-8000-exec-2] c.l1Akr.mapper.UserMapper.insertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T08:39:57.017+08:00 DEBUG 138142 --- [http-nio-8000-exec-2] c.l1Akr.mapper.UserMapper.insertByUser   : ==> Parameters: maziyanga(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean), 12345678901(String), 2025-03-16 08:39:57.014(Timestamp), 2025-03-16 08:39:57.014(Timestamp)
+2025-03-16T08:39:57.030+08:00 DEBUG 138142 --- [http-nio-8000-exec-2] c.l1Akr.mapper.UserMapper.insertByUser   : <==    Updates: 1
+2025-03-16T08:39:59.607+08:00  INFO 138142 --- [http-nio-8000-exec-3] com.l1Akr.controller.UsersController     : Register User: UserRegisterDTO(username=maziyanga, password=123456, sex=true)
+2025-03-16T08:39:59.608+08:00 DEBUG 138142 --- [http-nio-8000-exec-3] c.l1Akr.mapper.UserMapper.insertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T08:39:59.609+08:00 DEBUG 138142 --- [http-nio-8000-exec-3] c.l1Akr.mapper.UserMapper.insertByUser   : ==> Parameters: maziyanga(String), 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92(String), true(Boolean), 12345678901(String), 2025-03-16 08:39:59.607(Timestamp), 2025-03-16 08:39:59.607(Timestamp)
+2025-03-16T08:39:59.722+08:00  WARN 138142 --- [http-nio-8000-exec-3] com.l1Akr.config.GlobalExceptionAdvice   : doBusinessException has occurred: 用户已存在
+2025-03-16T08:40:02.762+08:00  INFO 138142 --- [http-nio-8000-exec-4] com.l1Akr.controller.UsersController     : Register User: UserRegisterDTO(username=maziyanga, password=123456a, sex=true)
+2025-03-16T08:40:02.764+08:00 DEBUG 138142 --- [http-nio-8000-exec-4] c.l1Akr.mapper.UserMapper.insertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T08:40:02.765+08:00 DEBUG 138142 --- [http-nio-8000-exec-4] c.l1Akr.mapper.UserMapper.insertByUser   : ==> Parameters: maziyanga(String), f707fdda7c874ff49ebfb2c88a2860c5ff4ce3d94a21efb76566ad0f92c9ad57(String), true(Boolean), 12345678901(String), 2025-03-16 08:40:02.763(Timestamp), 2025-03-16 08:40:02.763(Timestamp)
+2025-03-16T08:40:02.770+08:00  WARN 138142 --- [http-nio-8000-exec-4] com.l1Akr.config.GlobalExceptionAdvice   : doBusinessException has occurred: 用户已存在
+2025-03-16T08:40:05.026+08:00  INFO 138142 --- [http-nio-8000-exec-5] com.l1Akr.controller.UsersController     : Register User: UserRegisterDTO(username=maziyangaa, password=123456a, sex=true)
+2025-03-16T08:40:05.027+08:00 DEBUG 138142 --- [http-nio-8000-exec-5] c.l1Akr.mapper.UserMapper.insertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T08:40:05.028+08:00 DEBUG 138142 --- [http-nio-8000-exec-5] c.l1Akr.mapper.UserMapper.insertByUser   : ==> Parameters: maziyangaa(String), f707fdda7c874ff49ebfb2c88a2860c5ff4ce3d94a21efb76566ad0f92c9ad57(String), true(Boolean), 12345678901(String), 2025-03-16 08:40:05.026(Timestamp), 2025-03-16 08:40:05.026(Timestamp)
+2025-03-16T08:40:05.037+08:00 DEBUG 138142 --- [http-nio-8000-exec-5] c.l1Akr.mapper.UserMapper.insertByUser   : <==    Updates: 1
+2025-03-16T08:40:07.090+08:00  INFO 138142 --- [http-nio-8000-exec-6] com.l1Akr.controller.UsersController     : Register User: UserRegisterDTO(username=maziyangaa, password=123456aa, sex=true)
+2025-03-16T08:40:07.091+08:00 DEBUG 138142 --- [http-nio-8000-exec-6] c.l1Akr.mapper.UserMapper.insertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T08:40:07.093+08:00 DEBUG 138142 --- [http-nio-8000-exec-6] c.l1Akr.mapper.UserMapper.insertByUser   : ==> Parameters: maziyangaa(String), 307dc76cfd3b6c02470771f937d8b87d0e2aa10056fc5750d916ab321ffa3f4f(String), true(Boolean), 12345678901(String), 2025-03-16 08:40:07.09(Timestamp), 2025-03-16 08:40:07.09(Timestamp)
+2025-03-16T08:40:07.098+08:00  WARN 138142 --- [http-nio-8000-exec-6] com.l1Akr.config.GlobalExceptionAdvice   : doBusinessException has occurred: 用户已存在
+2025-03-16T08:40:07.577+08:00  INFO 138142 --- [http-nio-8000-exec-7] com.l1Akr.controller.UsersController     : Register User: UserRegisterDTO(username=maziyangaa, password=123456aa, sex=true)
+2025-03-16T08:40:07.578+08:00 DEBUG 138142 --- [http-nio-8000-exec-7] c.l1Akr.mapper.UserMapper.insertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T08:40:07.578+08:00 DEBUG 138142 --- [http-nio-8000-exec-7] c.l1Akr.mapper.UserMapper.insertByUser   : ==> Parameters: maziyangaa(String), 307dc76cfd3b6c02470771f937d8b87d0e2aa10056fc5750d916ab321ffa3f4f(String), true(Boolean), 12345678901(String), 2025-03-16 08:40:07.577(Timestamp), 2025-03-16 08:40:07.577(Timestamp)
+2025-03-16T08:40:07.587+08:00  WARN 138142 --- [http-nio-8000-exec-7] com.l1Akr.config.GlobalExceptionAdvice   : doBusinessException has occurred: 用户已存在
+2025-03-16T08:40:07.736+08:00  INFO 138142 --- [http-nio-8000-exec-8] com.l1Akr.controller.UsersController     : Register User: UserRegisterDTO(username=maziyangaa, password=123456aa, sex=true)
+2025-03-16T08:40:07.737+08:00 DEBUG 138142 --- [http-nio-8000-exec-8] c.l1Akr.mapper.UserMapper.insertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T08:40:07.737+08:00 DEBUG 138142 --- [http-nio-8000-exec-8] c.l1Akr.mapper.UserMapper.insertByUser   : ==> Parameters: maziyangaa(String), 307dc76cfd3b6c02470771f937d8b87d0e2aa10056fc5750d916ab321ffa3f4f(String), true(Boolean), 12345678901(String), 2025-03-16 08:40:07.736(Timestamp), 2025-03-16 08:40:07.736(Timestamp)
+2025-03-16T08:40:07.742+08:00  WARN 138142 --- [http-nio-8000-exec-8] com.l1Akr.config.GlobalExceptionAdvice   : doBusinessException has occurred: 用户已存在
+2025-03-16T08:40:12.368+08:00  INFO 138142 --- [http-nio-8000-exec-9] com.l1Akr.controller.UsersController     : Register User: UserRegisterDTO(username=maziyangaasda, password=123456aa, sex=true)
+2025-03-16T08:40:12.369+08:00 DEBUG 138142 --- [http-nio-8000-exec-9] c.l1Akr.mapper.UserMapper.insertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T08:40:12.370+08:00 DEBUG 138142 --- [http-nio-8000-exec-9] c.l1Akr.mapper.UserMapper.insertByUser   : ==> Parameters: maziyangaasda(String), 307dc76cfd3b6c02470771f937d8b87d0e2aa10056fc5750d916ab321ffa3f4f(String), true(Boolean), 12345678901(String), 2025-03-16 08:40:12.368(Timestamp), 2025-03-16 08:40:12.368(Timestamp)
+2025-03-16T08:40:12.381+08:00 DEBUG 138142 --- [http-nio-8000-exec-9] c.l1Akr.mapper.UserMapper.insertByUser   : <==    Updates: 1
+2025-03-16T08:40:12.956+08:00  INFO 138142 --- [http-nio-8000-exec-10] com.l1Akr.controller.UsersController     : Register User: UserRegisterDTO(username=maziyangaasda, password=123456aa, sex=true)
+2025-03-16T08:40:12.958+08:00 DEBUG 138142 --- [http-nio-8000-exec-10] c.l1Akr.mapper.UserMapper.insertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T08:40:12.959+08:00 DEBUG 138142 --- [http-nio-8000-exec-10] c.l1Akr.mapper.UserMapper.insertByUser   : ==> Parameters: maziyangaasda(String), 307dc76cfd3b6c02470771f937d8b87d0e2aa10056fc5750d916ab321ffa3f4f(String), true(Boolean), 12345678901(String), 2025-03-16 08:40:12.957(Timestamp), 2025-03-16 08:40:12.957(Timestamp)
+2025-03-16T08:40:12.964+08:00  WARN 138142 --- [http-nio-8000-exec-10] com.l1Akr.config.GlobalExceptionAdvice   : doBusinessException has occurred: 用户已存在
+2025-03-16T08:40:13.108+08:00  INFO 138142 --- [http-nio-8000-exec-1] com.l1Akr.controller.UsersController     : Register User: UserRegisterDTO(username=maziyangaasda, password=123456aa, sex=true)
+2025-03-16T08:40:13.109+08:00 DEBUG 138142 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.insertByUser   : ==>  Preparing: INSERT INTO user (username, password, sex, telephone, create_time, update_time) VALUES (?, ?, ?, ?, ?, ?)
+2025-03-16T08:40:13.110+08:00 DEBUG 138142 --- [http-nio-8000-exec-1] c.l1Akr.mapper.UserMapper.insertByUser   : ==> Parameters: maziyangaasda(String), 307dc76cfd3b6c02470771f937d8b87d0e2aa10056fc5750d916ab321ffa3f4f(String), true(Boolean), 12345678901(String), 2025-03-16 08:40:13.109(Timestamp), 2025-03-16 08:40:13.109(Timestamp)
+2025-03-16T08:40:13.116+08:00  WARN 138142 --- [http-nio-8000-exec-1] com.l1Akr.config.GlobalExceptionAdvice   : doBusinessException has occurred: 用户已存在
+2025-03-16T08:41:01.006+08:00  INFO 138142 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-16T08:41:01.009+08:00  INFO 138142 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-16T08:41:01.012+08:00  INFO 138142 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-16T08:41:01.019+08:00  INFO 138142 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

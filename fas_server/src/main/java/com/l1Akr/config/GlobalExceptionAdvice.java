@@ -14,13 +14,13 @@ public class GlobalExceptionAdvice {
     @ExceptionHandler(BusinessException.class)
     public Result<String> doBusinessException(BusinessException e) {
         log.warn("doBusinessException has occurred: {}", e.getMessage());
-        return new Result<>(e.getCode(), e.getMessage());
+        return new Result<>(e.getCode());
     }
 
     @ExceptionHandler(SystemException.class)
     public Result<String> doSystemException(SystemException e) {
         log.warn("doSystemException has occurred: {}", e.getMessage());
-        return new Result<>(e.getCode(), e.getMessage());
+        return new Result<>(e.getCode());
     }
 
     @ExceptionHandler(Exception.class)
