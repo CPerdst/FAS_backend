@@ -23,7 +23,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 @Tag(name = "用户管理模块", description = "用户的CURD操作")
 public class UsersController {
 

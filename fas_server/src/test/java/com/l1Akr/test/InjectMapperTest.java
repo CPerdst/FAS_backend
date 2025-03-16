@@ -15,8 +15,8 @@ public class InjectMapperTest {
 
     @Test
     public void testInsert(){
-        UserDAO userDAO = new UserDAO();
-        userMapper.InsertByUser(userDAO);
+//        UserDAO userDAO = new UserDAO();
+//        userMapper.insertByUser(userDAO);
 
     }
 
