@@ -10,6 +10,9 @@ public enum ResultEnum {
     /* 错误状态码 */
     FAIL(400, "操作失败！"),
 
+    /* 内部错误状态码 */
+    ERROR(500, "服务器发生未知错误"),
+
     /* 参数错误：10001-19999 */
     PARAM_IS_INVALID(400, "参数无效"),
     PARAM_IS_BLANK(400, "参数为空"),
@@ -26,6 +29,7 @@ public enum ResultEnum {
     /* 系统错误：40001-49999 */
     FILE_MAX_SIZE_OVERFLOW(400, "上传尺寸过大"),
     FILE_ACCEPT_NOT_SUPPORT(400, "上传文件格式不支持"),
+    FILE_UPLOAD_FAILED(400, "上传文件失败"),
 
     /* 数据错误：50001-599999 */
     RESULT_DATA_NONE(400, "数据未找到"),

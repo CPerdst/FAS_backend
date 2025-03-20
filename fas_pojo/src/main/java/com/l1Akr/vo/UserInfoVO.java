@@ -12,6 +12,7 @@ import java.util.Date;
 public class UserInfoVO {
     public Integer id;
     public String username;
+    public String avatar;
     public Boolean sex;
     public String telephone;
     public Date createTime;

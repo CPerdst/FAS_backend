@@ -10,13 +10,8 @@ public class SystemException extends RuntimeException {
 
     private final ResultEnum code;
 
-    public SystemException(ResultEnum code, String message, Throwable cause) {
-        super(message, cause);
-        this.code = code;
-    }
-
-    public SystemException(ResultEnum code, String message) {
-        super(message);
+    public SystemException(ResultEnum code) {
+        super(code.message());
         this.code = code;
     }
 }

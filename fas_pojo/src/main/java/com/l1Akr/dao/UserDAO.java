@@ -12,6 +12,7 @@ public class UserDAO {
     public String username;
     public String password;
     public Boolean sex;
+    public String avatar;
     public String telephone;
     public Date createTime;
     public Date updateTime;

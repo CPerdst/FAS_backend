@@ -1,5 +1,6 @@
 package com.l1Akr.config;
 
+import com.l1Akr.common.enums.ResultEnum;
 import com.l1Akr.common.exceptionss.BusinessException;
 import com.l1Akr.common.exceptionss.SystemException;
 import com.l1Akr.common.result.Result;
@@ -26,6 +27,6 @@ public class GlobalExceptionAdvice {
     @ExceptionHandler(Exception.class)
     public Result<String> doException(Exception e) {
         log.warn("doException has occurred: {} {}", e.getClass().getSimpleName(), e.getMessage());
-        return Result.error(e.getMessage());
+        return Result.error(ResultEnum.ERROR);
     }
 }

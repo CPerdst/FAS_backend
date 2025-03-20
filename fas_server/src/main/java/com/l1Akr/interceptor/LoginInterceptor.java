@@ -2,6 +2,7 @@ package com.l1Akr.interceptor;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.l1Akr.common.utils.JwtUtils;
+import com.l1Akr.common.utils.UserThreadLocal;
 import com.l1Akr.dao.UserDAO;
 import com.l1Akr.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,6 +44,9 @@ public class LoginInterceptor implements HandlerInterceptor {
                 sendUnauthorized(response, "用户不存在或已被禁用");
                 return false;
             }
+
+            // 将用户存入ThreadLocal
+            UserThreadLocal.setCurrentUser(userById);
 
             // 否则将用户信息存入LocalStorage
             return true;

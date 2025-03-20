@@ -28,4 +28,10 @@ public interface UserService {
      * @return
      */
     public UserDAO getUserById(String userId);
+
+    /**
+     * 更新用户信息
+     * @param userDAO
+     */
+    public void updateUser(UserDAO userDAO);
 }

@@ -12,4 +12,5 @@ public interface UserMapper {
 
     UserDAO findByUser(UserDAO userDAO);
 
+    void updateByUser(UserDAO userDAO);
 }

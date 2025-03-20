@@ -99,4 +99,18 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.findByUser(userDAO);
     }
+
+    /**
+     * 更新用户信息
+     * @param userDAO
+     */
+    public void updateUser(UserDAO userDAO) {
+        if(userDAO.getId() == null){
+            return;
+        }
+        userMapper.updateByUser(userDAO);
+    }
+
+
+
 }

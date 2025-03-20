@@ -19,4 +19,33 @@
             <if test="updateTime != null">and update_time = #{updateTime}</if>
         </where>
     </select>
+
+    <update id="updateByUser" parameterType="com.l1Akr.dao.UserDAO">
+        UPDATE user
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar},
+            </if>
+            <if test="telephone != null">
+                telephone = #{telephone},
+            </if>
+            <!-- 自动更新时间字段（可选） -->
+            <if test="_parameter.createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="_parameter.updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
 </mapper>
