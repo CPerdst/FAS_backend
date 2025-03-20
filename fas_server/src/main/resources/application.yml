@@ -2,6 +2,9 @@ server:
   port: 8000  # 应用程序的端口号
 
 spring:
+  devtools:
+    restart:
+      enabled: true
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/FAS_database
     username: root

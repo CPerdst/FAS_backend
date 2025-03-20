@@ -40,3 +40,5 @@ build/
 */target
 .m2
 app.log
+
+*.gz

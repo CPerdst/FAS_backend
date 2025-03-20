@@ -21,4 +21,11 @@ public interface UserService {
      * @return
      */
     public UserDAO register(UserRegisterDTO userRegisterDTO);
+
+    /**
+     * 通过用户id获取用户
+     * @param userId
+     * @return
+     */
+    public UserDAO getUserById(String userId);
 }

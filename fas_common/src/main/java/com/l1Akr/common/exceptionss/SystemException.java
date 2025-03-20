@@ -1,4 +1,4 @@
-package com.l1Akr.common.exception;
+package com.l1Akr.common.exceptionss;
 
 import com.l1Akr.common.enums.ResultEnum;
 import lombok.Data;

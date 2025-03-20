@@ -10,6 +10,7 @@
     <select id="findByUser" parameterType="com.l1Akr.dao.UserDAO" resultType="com.l1Akr.dao.UserDAO">
         select * from user
         <where>
+            <if test="id != null">and id = #{id}</if>
             <if test="username != null">and username = #{username}</if>
             <if test="password != null">and password = #{password}</if>
             <if test="sex != null">and sex = #{sex}</if>
