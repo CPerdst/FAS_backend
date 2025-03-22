@@ -16,4 +16,9 @@ public class UserDAO {
     public String telephone;
     public Date createTime;
     public Date updateTime;
+
+    public void initTime() {
+        this.createTime = new Date();
+        this.updateTime = new Date();
+    }
 }

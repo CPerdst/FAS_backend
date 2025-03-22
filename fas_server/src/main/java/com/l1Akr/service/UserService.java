@@ -34,4 +34,11 @@ public interface UserService {
      * @param userDAO
      */
     public void updateUser(UserDAO userDAO);
+
+    /**
+     * 通过用户Id获取用户头像地址
+     * @param userId
+     * @return
+     */
+    public String getAvatarById(String userId);
 }

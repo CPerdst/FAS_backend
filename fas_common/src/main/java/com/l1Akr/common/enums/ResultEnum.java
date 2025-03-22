@@ -36,6 +36,7 @@ public enum ResultEnum {
     DATA_IS_WRONG(400, "数据有误"),
     DATA_ALREADY_EXISTED(400, "数据已存在"),
     AUTH_CODE_ERROR(400, "验证码错误"),
+    DATA_PASSWORD_ERROR(400, "两次输入密码一样"),
 
 
     /* 权限错误：70001-79999 */

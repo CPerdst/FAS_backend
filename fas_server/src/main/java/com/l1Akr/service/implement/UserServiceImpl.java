@@ -3,7 +3,6 @@ package com.l1Akr.service.implement;
 import com.l1Akr.common.enums.ResultEnum;
 import com.l1Akr.common.exceptionss.BusinessException;
 import com.l1Akr.common.exceptionss.UserHasExistedException;
-import com.l1Akr.common.exceptionss.UserNotFoundException;
 import com.l1Akr.common.exceptionss.UserOrPasswordErrorException;
 import com.l1Akr.common.utils.ShaUtils;
 import com.l1Akr.dto.UserLoginDTO;
@@ -109,6 +108,17 @@ public class UserServiceImpl implements UserService {
             return;
         }
         userMapper.updateByUser(userDAO);
+    }
+
+    /**
+     * 通过用户Id获取用户头像地址
+     * @param userId
+     * @return
+     */
+    public String getAvatarById(String userId) {
+        UserDAO userDAO = new UserDAO();
+        userDAO.setId(Integer.valueOf(userId));
+        return userMapper.findByUser(userDAO).getAvatar();
     }
 
 

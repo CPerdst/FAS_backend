@@ -6,14 +6,15 @@ spring:
     restart:
       enabled: true
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/FAS_database
+    url: jdbc:mysql://127.0.0.1:3306/FAS_database?useSSL=false&serverTimezone=UTC
     username: root
     password: secret_banser
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 jwt:
-  secret: 73mhhF1mbrRRYPgzCEGHu7JKGXBE8lVajWZ+8DBVHcs=
+  secret: "@jwt.secret@"
   expiration: 1200000
+  refreshTime: 300000
 
 logging:
   level:
@@ -30,10 +31,10 @@ mybatis:
 
 aliyun:
   oss:
-    endpoint: xxxxxxxxxxxxxxxxxxxxxxxx
-    access-key-id: xxxxxxxxxxxxxxxxxxxxxxxx
-    access-key-secret: xxxxxxxxxxxxxxxxxxxxxxxx
-    bucket-name: xxxxxxxxxxxxxxxxxxxxxxxx
+    endpoint: oss-cn-beijing.aliyuncs.com
+    access-key-id: "@alibaba.cloud.access.key.id@"
+    access-key-secret: "@alibaba.cloud.access.key.secret@"
+    bucket-name: "@alibaba.cloud.bucket@"
 
 springdoc:
   api-docs:

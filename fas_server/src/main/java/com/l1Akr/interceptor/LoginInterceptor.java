@@ -1,5 +1,6 @@
 package com.l1Akr.interceptor;
 
+import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.l1Akr.common.utils.JwtUtils;
 import com.l1Akr.common.utils.UserThreadLocal;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
@@ -35,18 +38,25 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         try {
             DecodedJWT decodedJWT = jwtUtils.validateAndParse(token);
+
             String userId = decodedJWT.getSubject();
 
-            // 查询用户是否存在，方式token有效但是用户被删除
+            // 查询用户是否存在，防止token有效但是用户被删除
             UserDAO userById = userService.getUserById(userId);
 
             if(userById == null) {
                 sendUnauthorized(response, "用户不存在或已被禁用");
                 return false;
             }
-
             // 将用户存入ThreadLocal
             UserThreadLocal.setCurrentUser(userById);
+
+            // 判断是否快要过期
+            if (jwtUtils.isTokenExpireSoon(token)){
+                Map<String, Object> map = new HashMap<>();
+                String newToken = jwtUtils.generateToken(userId, map);
+                response.setHeader("New-Token", newToken);
+            }
 
             // 否则将用户信息存入LocalStorage
             return true;

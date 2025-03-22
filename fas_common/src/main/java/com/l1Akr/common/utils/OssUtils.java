@@ -3,6 +3,7 @@ package com.l1Akr.common.utils;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.l1Akr.common.config.OssProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,12 +11,14 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @Component
+@Slf4j
 public class OssUtils {
 
     @Autowired
     private OssProperties ossProperties;
 
     public String uploadAvatar(MultipartFile file, String filename) throws IOException {
+        log.info("OssProperties: {}", ossProperties);
         // 初始化Oss客户端
         OSS ossClient = new OSSClientBuilder()
                 .build(

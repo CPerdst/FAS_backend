@@ -31,6 +31,12 @@ public class JwtUtils {
     @Value("${jwt.expiration:1200000}")
     private long expiredTime;
 
+    /**
+     * Token 刷新时间
+     */
+    @Value("${jwt.refreshTime:300000}")
+    private long refreshTime;
+
     private Algorithm getAlgorithm() {
         return Algorithm.HMAC256(secret);
     }
@@ -86,7 +92,21 @@ public class JwtUtils {
      */
     public Boolean isTokenExpireSoon(String token) throws JWTVerificationException {
         Date expiration = validateAndParse(token).getExpiresAt();
-        return expiration.getTime() - System.currentTimeMillis() < 5 * 60 * 1000;
+        return expiration.getTime() - System.currentTimeMillis() < 300000;
+    }
+
+    /**
+     * 获取Token中的负荷
+     * @param token
+     * @return
+     * @throws JWTVerificationException
+     */
+    public String getTokenPayload(String token) throws JWTVerificationException {
+        DecodedJWT decode = JWT.decode(token);
+
+        System.out.println(decode.getExpiresAt());
+
+        return "payload";
     }
 
 
