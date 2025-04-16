@@ -1,7 +1,13 @@
 package com.l1Akr.common.utils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class ShaUtils {
@@ -31,6 +37,42 @@ public class ShaUtils {
      */
     public String MD5(final String str) {
         return SHA(str, "MD5");
+    }
+
+    /**
+     * 文件哈希
+     * @param file
+     * @return
+     */
+    public String MD5(File file) throws IOException, NoSuchAlgorithmException {
+        return MD5(new FileInputStream(file.getAbsolutePath()));
+    }
+
+    /**
+     * 文件哈希
+     * @param fis
+     * @return
+     */
+    public String MD5(FileInputStream fis) throws IOException, NoSuchAlgorithmException {
+        // 每1MB分块进行一次HASH
+        byte[] buffer = new byte[1024 * 1024];
+        int read = 0;
+        List<String> digests = new ArrayList<>();
+        while((read = fis.read(buffer, 0, 1024*1024)) != -1) {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(buffer, 0, read);
+            byte[] digest = md.digest();
+            StringBuffer sb = new StringBuffer();
+            for (byte b : digest) {
+                sb.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
+            }
+            digests.add(sb.toString());
+        }
+
+        // 然后将每块文件的哈希再次进行哈希
+        StringBuilder slsb = new StringBuilder();
+        digests.forEach(slsb::append);
+        return MD5(slsb.toString());
     }
 
     /**

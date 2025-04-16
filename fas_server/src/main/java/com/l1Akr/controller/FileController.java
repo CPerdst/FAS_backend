@@ -7,6 +7,7 @@ import com.l1Akr.common.utils.JwtUtils;
 import com.l1Akr.common.utils.OssUtils;
 import com.l1Akr.common.utils.UserThreadLocal;
 import com.l1Akr.dao.UserDAO;
+import com.l1Akr.service.FileService;
 import com.l1Akr.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -34,6 +35,13 @@ public class FileController {
 
     @Autowired
     public OssUtils ossUtils;
+
+    @Autowired
+    public FileService fileService;
+
+    private int MAX_FILE_UPLOAD_SIZE = 50 * 1024 * 1024; // 50MB限制
+
+    private int MAX_AVATAR_UPLOAD_SIZE = 2 * 1024 * 1024; // 2MB限制
 
     @Operation(summary = "用户上传头像")
     @PostMapping("/avatar/upload")
@@ -73,6 +81,20 @@ public class FileController {
         return Result.success(s);
     }
 
+    @Operation(summary = "用户上传样本")
+    @PostMapping("/sample/upload")
+    public Result<String> sampleUpload(@RequestParam("file") MultipartFile file) {
+        // 如果上传的文件为空，则返回错误信息
+        if (file.isEmpty()) {
+            return Result.error("文件不能为空");
+        } else if(file.getSize() > MAX_FILE_UPLOAD_SIZE) {
+            return Result.error("文件大小超过限制50MB");
+        }
+        // 样本文件没有问题的话，上传样本文件
+        boolean success = fileService.uploadSample(file);
+        return (success ? Result.success("上传成功") : Result.error("上传失败"));
+    }
+
     @Operation(summary = "根据用户id获取用户头像地址")
     @GetMapping("/avatar")
     public Result<String> avatarGet() {
@@ -85,7 +107,7 @@ public class FileController {
         if (!"image/jpeg".equals(contentType) && !"image/png".equals(contentType)) {
             return false;
         }
-        return file.getSize() <= 2 * 1024 * 1024; // 2MB限制
+        return file.getSize() <= MAX_AVATAR_UPLOAD_SIZE; // 2MB限制
     }
 
 

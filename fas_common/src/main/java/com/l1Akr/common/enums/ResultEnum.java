@@ -2,6 +2,13 @@ package com.l1Akr.common.enums;
 
 import lombok.Getter;
 
+/**
+ * 参数错误：10001-19999
+ * 用户错误：20001-29999
+ * 系统错误：40001-49999
+ * 数据错误：50001-59999
+ * 权限错误：70001-79999
+ */
 @Getter
 public enum ResultEnum {
     /* 成功状态码 */
