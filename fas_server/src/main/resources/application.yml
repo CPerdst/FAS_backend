@@ -6,10 +6,19 @@ spring:
     restart:
       enabled: true
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/FAS_database?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://172.28.73.175:3306/FAS_database?useSSL=false&serverTimezone=UTC
     username: root
     password: secret_banser
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10 # 最大连接数
+      minimum-idle: 5 # 最小空闲连接数
+      idle-timeout: 30000 # 30秒
+      connection-timeout: 30000 # 30秒
+      max-lifetime: 1800000 # 30分钟
+      initialization-fail-timeout: 30000 # 启动时超时时间30秒
+      validation-timeout: 5000
+      connection-test-query: SELECT 1
 
 jwt:
   secret: "@jwt.secret@"
