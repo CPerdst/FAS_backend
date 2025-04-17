@@ -71,6 +71,7 @@ public class UsersController {
         if(!b) {
             throw new BusinessException(Result.ResultEnum.USER_UPDATE_FAILED);
         }
+        log.info("用户状态更新成功");
         return Result.success("用户更新成功");
     }
 
