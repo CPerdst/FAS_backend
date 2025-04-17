@@ -24,6 +24,7 @@ public class SampleBasePO {
     int downloadTimes; // 下载次数
     int permission; // 访问权限 默认0
 
+
     public void parseByFile(MultipartFile file) {
         this.filename = file.getOriginalFilename();
         if (this.filename != null) {
@@ -51,6 +52,20 @@ public class SampleBasePO {
             case ".xls" -> 7;
             case ".xlsx" -> 8;
             case ".jpg" -> 9;
+            case ".png" -> 10;
+            case ".mp4" -> 11;
+            case ".avi" -> 12;
+            case ".mp3" -> 13;
+            case ".zip" -> 14;
+            case ".rar" -> 15;
+            case ".7z" -> 16;
+            case ".gz" -> 17;
+            case ".tar" -> 18;
+            case ".iso" -> 19;
+            case ".exe" -> 20;
+            case ".apk" -> 21;
+            case ".jar" -> 22;
+            case ".deb" -> 23;
             default -> -1;
         };
     }

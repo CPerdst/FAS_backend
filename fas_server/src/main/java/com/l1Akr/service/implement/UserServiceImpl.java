@@ -104,9 +104,14 @@ public class UserServiceImpl implements UserService {
         userBasePO.initUpdateDate();
         userBasePO.setUsername(username);
         userBasePO.setSex(userUpdateDTO.getSex());
+        userBasePO.setId(Integer.valueOf(userId));
         // 判断是否要更新密码，并且判断旧密码是否正确
         if(!StringUtils.isBlank(oldPassword) && !StringUtils.isBlank(newPassword) && userById.getPassword().equals(shaUtils.SHA256(oldPassword))) {
             userBasePO.setPassword(shaUtils.SHA256(newPassword));
+        } else {
+            if(!StringUtils.isBlank(oldPassword) && !StringUtils.isBlank(newPassword)) {
+                throw new BusinessException(Result.ResultEnum.USER_PASSWORD_ERROR);
+            }
         }
 
         // 进行更新
