@@ -1,5 +1,6 @@
 package com.l1Akr.dao;
 
+import com.l1Akr.po.UserBasePO;
 import lombok.*;
 
 import java.util.Date;
@@ -12,7 +13,6 @@ public class UserDAO {
     public String username;
     public String password;
     public Boolean sex;
-    public String avatar;
     public String telephone;
     public Date createTime;
     public Date updateTime;

@@ -71,8 +71,46 @@ public class Result<T> {
         // 失败响应
         FAILED(1, "操作失败"),
 
-        // 参数错误
-        FILE_MAX_SIZE_OVERFLOW(400, "上传尺寸过大");
+        // 用户名或密码错误
+        USER_PASSWORD_ERROR(20001, "用户名或密码错误"),
+
+        // 上传尺寸过大
+        UPLOAD_SIZE_LIMIT_EXCEEDED(40001, "上传尺寸过大"),
+
+        // 用户名不能为空
+        USER_NAME_EMPTY(20002, "用户名不能为空"),
+
+        // 用户两次输入的密码一样
+        USER_PASSWORD_SAME(20003, "两次输入的密码一样"),
+
+        // 输入的密码不能为空
+        USER_PASSWORD_EMPTY(20004, "输入的密码不能为空"),
+
+        // 用户不存在
+        USER_NOT_EXIST(20005, "用户不存在"),
+
+        // 用户已存在
+        USER_EXIST(20007, "用户已存在"),
+
+        // 用户更新失败
+        USER_UPDATE_FAILED(20006, "用户更新失败"),
+
+        // 参数有问题
+        PARAM_ERROR(10001, "参数错误"),
+
+        // 文件上传失败
+        UPLOAD_FAILED(40002, "文件上传失败"),
+
+        // 仅支持JPG/PNG格式且不超过2MB
+        UPLOAD_FORMAT_LIMIT_EXCEEDED(40003, "仅支持JPG/PNG格式且不超过2MB"),
+
+        // 仅支持JPG/PNG格式且不超过50MB
+        UPLOAD_FORMAT_LIMIT_EXCEEDED_50MB(40003, "仅支持JPG/PNG格式且不超过50MB"),
+
+        // 文件MD5失败
+        FILE_MD5_ERROR(40004, "文件MD5失败");
+
+
 
         final int code;
         final String message;

@@ -1,6 +1,6 @@
 package com.l1Akr.mapper;
 
-import com.l1Akr.dao.UserDAO;
+import com.l1Akr.po.UserBasePO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -8,9 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserMapper {
 
-    void insertByUser(UserDAO userDAO);
+    void insertByUserBasePo(UserBasePO userBasePO);
 
-    UserDAO findByUser(UserDAO userDAO);
+    UserBasePO findByUserBasePo(UserBasePO userBasePO);
 
-    void updateByUser(UserDAO userDAO);
+    int updateByUserBasePo(UserBasePO userBasePO);
+
 }

@@ -2,13 +2,19 @@ package com.l1Akr.common.utils;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.model.PutObjectResult;
 import com.l1Akr.common.config.OssProperties;
+import com.l1Akr.po.SampleBasePO;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.time.LocalDate;
 
 @Component
 @Slf4j
@@ -17,34 +23,89 @@ public class OssUtils {
     @Autowired
     private OssProperties ossProperties;
 
-    public String uploadAvatar(MultipartFile file, String filename) throws IOException {
+    private OSS ossClient;
+
+    private static final String AVATAR_UPLOAD_PATH = "avatar/";
+
+    private static final String SAMPLE_UPLOAD_PATH = "sample/";
+
+    @PostConstruct
+    public void init() {
         log.info("OssProperties: {}", ossProperties);
-        // 初始化Oss客户端
-        OSS ossClient = new OSSClientBuilder()
+        ossClient = new OSSClientBuilder()
                 .build(
                         ossProperties.getEndpoint()
                         , ossProperties.getAccessKeyId()
                         , ossProperties.getAccessKeySecret()
                 );
-
-        try {
-            // 生成文件上传路径
-            String ossPath = "avatar/" + filename;
-
-            // 将文件上传到Oss
-            ossClient.putObject(ossProperties.getBucketName(), ossPath, file.getInputStream());
-
-            // 生成公开访问路径
-            return "https://" + ossProperties.getBucketName() + "." + ossProperties.getEndpoint() + "/" + ossPath;
-        } finally {
-            ossClient.shutdown();
-        }
-
     }
-    // 生成唯一文件名（用户ID+时间戳+扩展名）
-    public String generateUniqueFileName(String originalFilename, String userId) {
+
+    /**
+     * 上传头像
+     * @param file
+     * @param filename
+     * @return
+     * @throws IOException
+     */
+    public String uploadAvatar(MultipartFile file, String filename) {
+        String ossPath = AVATAR_UPLOAD_PATH + filename;
+        String ossUrlPath;
+        try {
+            ossUrlPath = uploadFile(file.getInputStream(), ossPath);
+        } catch (IOException e) {
+            log.error("upload avatar failed: {}", e.getMessage());
+            return "";
+        }
+        return StringUtils.isEmpty(ossUrlPath) ? "" : ossUrlPath;
+    }
+
+    /**
+     * 上传样本
+     * 将样本上传到 "/sample/{userId}/{date}/{filename}"
+     * @param file
+     * @param filename
+     * @return
+     * @throws IOException
+     */
+    public String uploadSample(MultipartFile file, String filename) throws IOException {
+        String ossPath = SAMPLE_UPLOAD_PATH + filename;
+        String ossUrlPath;
+        try {
+            ossUrlPath = uploadFile(file.getInputStream(), ossPath);
+        } catch (IOException e) {
+            log.error("upload sample failed: {}", e.getMessage());
+            return "";
+        }
+        return StringUtils.isEmpty(ossUrlPath) ? "" : ossUrlPath;
+    }
+
+    /**
+     * 上传文件
+     * @param is
+     * @param ossPath
+     * @return
+     */
+    private String uploadFile(InputStream is, String ossPath) {
+        PutObjectResult putObjectResult = ossClient.putObject(ossProperties.getBucketName(), ossPath, is);
+        return putObjectResult != null ? "https://" + ossProperties.getBucketName() + "." + ossProperties.getEndpoint() + "/" + ossPath : "";
+    }
+
+    /**
+     * 生成唯一文件名（用户ID+时间戳+扩展名）
+     * @param originalFilename
+     * @param userId
+     * @return
+     */
+    public String generateUniqueFileNameForAvatar(String originalFilename, String userId) {
         String fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
         return userId + "/" + System.currentTimeMillis() + "." + fileExtension;
+    }
+
+    public String generateUniqueFileNameForSample(SampleBasePO sampleBasePO, String userId) {
+        String fileExtension = sampleBasePO.getFileExt();
+        return userId
+                + "/" + sampleBasePO.getCreateTime()
+                + "/" + sampleBasePO.getFileMd5() + "-" + System.currentTimeMillis() + (StringUtils.isBlank(fileExtension) ? "" : "." + fileExtension);
     }
 
 

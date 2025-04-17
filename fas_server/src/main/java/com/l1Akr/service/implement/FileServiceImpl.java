@@ -1,25 +1,112 @@
 package com.l1Akr.service.implement;
 
+import com.l1Akr.common.exceptionss.BusinessException;
+import com.l1Akr.common.result.Result;
+import com.l1Akr.common.utils.OssUtils;
+import com.l1Akr.common.utils.ShaUtils;
+import com.l1Akr.common.utils.UserThreadLocal;
+import com.l1Akr.mapper.FileMapper;
+import com.l1Akr.mapper.UserSampleMappingMapper;
+import com.l1Akr.po.SampleBasePO;
+import com.l1Akr.po.UserBasePO;
+import com.l1Akr.po.UserSampleMappingPO;
 import com.l1Akr.service.FileService;
+import com.l1Akr.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
+
 @Service
+@Slf4j
 public class FileServiceImpl implements FileService {
 
+    private final ShaUtils shaUtils = new ShaUtils();
+    private final OssUtils ossUtils;
+    private final UserService userService;
+    private final FileMapper fileMapper;
+    private final UserSampleMappingMapper userSampleMappingMapper;
 
-    @Override
-    public boolean uploadAvatar(MultipartFile file) {
-        return false;
+    @Autowired
+    public FileServiceImpl(OssUtils ossUtils,
+                           UserService userService,
+                           FileMapper fileMapper,
+                           UserSampleMappingMapper userSampleMappingMapper) {
+        this.ossUtils = ossUtils;
+        this.userService = userService;
+        this.fileMapper = fileMapper;
+        this.userSampleMappingMapper = userSampleMappingMapper;
     }
 
     @Override
-    public boolean uploadSample(MultipartFile file) {
+    public String uploadAvatar(MultipartFile file) {
+        // 生成唯一文件名
+        UserBasePO user = UserThreadLocal.getCurrentUser();
+        String userId = user.getId().toString();
+        String fileName = ossUtils.generateUniqueFileNameForAvatar(Objects.requireNonNull(file.getOriginalFilename()), userId);
+
+        // 上传到Oss
+        String s = ossUtils.uploadAvatar(file, fileName);
+        if (StringUtils.isBlank(s)) {
+            log.error("avatar upload failed: {}", s);
+            throw new BusinessException(Result.ResultEnum.UPLOAD_FAILED);
+        }
+
+        // 更新数据库
+        UserBasePO newUser = new UserBasePO();
+        newUser.setId(user.getId());
+        newUser.setAvatar(s);
+        newUser.initUpdateDate();
+        int affectedRows = userService.updateUserByUserBasePo(newUser);
+        if(affectedRows <= 0) {
+            throw new BusinessException(Result.ResultEnum.USER_UPDATE_FAILED);
+        }
+
+        return s;
+    }
+
+    @Override
+    public boolean uploadSample(MultipartFile file, int userId) {
         // 获取该样本的元数据
         String filename = file.getOriginalFilename();
-        long filesize = file.getSize();
+        SampleBasePO sampleBasePO = new SampleBasePO();
+        sampleBasePO.parseByFile(file);
+        try {
+            // 手动设置MD5
+            String fileMD5 = shaUtils.MD5(file.getInputStream());
+            sampleBasePO.setFileMd5(fileMD5);
+        } catch (IOException e) {
+            log.info("File {} get MD5 failed as {}", filename, e.getMessage());
+            throw new BusinessException(Result.ResultEnum.FILE_MD5_ERROR);
+        }
 
-        return false;
+        String ossUrlPath;
+        try {
+            // 先生成一下文件在OSS中的文件名
+            String ossFilename = ossUtils.generateUniqueFileNameForSample(sampleBasePO, String.valueOf(userId));
+            // 将样本上传至OSS
+            ossUrlPath = ossUtils.uploadSample(file, ossFilename);
+            sampleBasePO.setFilePath(ossUrlPath);
+        } catch (IOException e) {
+            log.info("File {} upload to OSS failed as {}", filename, e.getMessage());
+            throw new BusinessException(Result.ResultEnum.UPLOAD_FAILED);
+        }
+
+        // 将样本添加至数据库
+        fileMapper.insertBySampleBasePo(sampleBasePO);
+
+        // 创建用户-样本映射
+        UserSampleMappingPO userSampleMappingPO = new UserSampleMappingPO();
+        userSampleMappingPO.setUserId(userId);
+        userSampleMappingPO.setSampleId(sampleBasePO.getId());
+        userSampleMappingMapper.insertByUserSampleMappingPo(userSampleMappingPO);
+
+        return true;
     }
 
     @Override

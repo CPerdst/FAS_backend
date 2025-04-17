@@ -1,9 +1,6 @@
 package com.l1Akr.common.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -11,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ShaUtils {
+
+    public ShaUtils() {}
 
     /**
      * SHA256加密
@@ -44,25 +43,30 @@ public class ShaUtils {
      * @param file
      * @return
      */
-    public String MD5(File file) throws IOException, NoSuchAlgorithmException {
+    public String MD5(File file) throws IOException {
         return MD5(new FileInputStream(file.getAbsolutePath()));
     }
 
     /**
      * 文件哈希
-     * @param fis
+     * @param stream
      * @return
      */
-    public String MD5(FileInputStream fis) throws IOException, NoSuchAlgorithmException {
+    public String MD5(InputStream stream) throws IOException {
         // 每1MB分块进行一次HASH
         byte[] buffer = new byte[1024 * 1024];
         int read = 0;
         List<String> digests = new ArrayList<>();
-        while((read = fis.read(buffer, 0, 1024*1024)) != -1) {
-            MessageDigest md = MessageDigest.getInstance("MD5");
+        while((read = stream.read(buffer, 0, 1024*1024)) != -1) {
+            MessageDigest md;
+            try {
+                md = MessageDigest.getInstance("MD5");
+            } catch (NoSuchAlgorithmException e) {
+                return "";
+            }
             md.update(buffer, 0, read);
             byte[] digest = md.digest();
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             for (byte b : digest) {
                 sb.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
             }

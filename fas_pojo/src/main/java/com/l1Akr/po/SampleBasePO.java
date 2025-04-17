@@ -1,12 +1,16 @@
 package com.l1Akr.po;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SampleBasePO {
-    int id; // 主键
+    Integer id; // 主键
     String filename; // 样本名
     String fileExt; // 文件后缀
     String filePath; // Oss路径
@@ -18,12 +22,17 @@ public class SampleBasePO {
     LocalDate updateTime; // 更新时间
     String expiredTime; // 样本过期时间
     int downloadTimes; // 下载次数
-    int permission; // 访问权限
+    int permission; // 访问权限 默认0
 
-    void parseByFile(MultipartFile file) {
+    public void parseByFile(MultipartFile file) {
         this.filename = file.getOriginalFilename();
         if (this.filename != null) {
-            this.fileExt = this.filename.substring(this.filename.lastIndexOf("."));
+            int idx = this.filename.lastIndexOf(".");
+            if (idx != -1) {
+                this.fileExt = this.filename.substring(this.filename.lastIndexOf(".") + 1);
+            } else {
+                this.fileExt = "";
+            }
         }
         this.fileSize = file.getSize();
         fileType = parseFileType(this.fileExt);
