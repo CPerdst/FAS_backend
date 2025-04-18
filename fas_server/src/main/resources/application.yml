@@ -6,9 +6,9 @@ spring:
     restart:
       enabled: true
   datasource:
-    url: jdbc:mysql://172.28.73.175:3306/FAS_database?useSSL=false&serverTimezone=UTC
-    username: root
-    password: secret_banser
+    url: "@datasource.mysql.url@"
+    username: "@datasource.mysql.username@"
+    password: "@datasource.mysql.password@"
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 10 # 最大连接数

@@ -106,10 +106,12 @@ public class UserServiceImpl implements UserService {
         userBasePO.setSex(userUpdateDTO.getSex());
         userBasePO.setId(Integer.valueOf(userId));
         // 判断是否要更新密码，并且判断旧密码是否正确
-        if(!StringUtils.isBlank(oldPassword) && !StringUtils.isBlank(newPassword) && userById.getPassword().equals(shaUtils.SHA256(oldPassword))) {
-            userBasePO.setPassword(shaUtils.SHA256(newPassword));
-        } else {
-            if(!StringUtils.isBlank(oldPassword) && !StringUtils.isBlank(newPassword)) {
+        if(!StringUtils.isBlank(oldPassword) && !StringUtils.isBlank(newPassword)) {
+            if(userById.getPassword().equals(shaUtils.SHA256(oldPassword))) {
+                // 如果密码验证成功，才可以更改密码
+                userBasePO.setPassword(shaUtils.SHA256(newPassword));
+            } else {
+                // 如果密码验证失败，返回认证失败的信息
                 throw new BusinessException(Result.ResultEnum.USER_PASSWORD_ERROR);
             }
         }

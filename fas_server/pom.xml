@@ -16,6 +16,9 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <datasource.mysql.url>@env.MYSQL_URL@</datasource.mysql.url>
+        <datasource.mysql.username>@env.MYSQL_USERNAME@</datasource.mysql.username>
+        <datasource.mysql.password>@env.MYSQL_PASSWORD@</datasource.mysql.password>
     </properties>
 
     <build>
