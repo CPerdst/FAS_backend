@@ -1,5 +1,7 @@
 package com.l1Akr.service.implement;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.l1Akr.common.exceptionss.BusinessException;
 import com.l1Akr.common.result.Result;
 import com.l1Akr.common.utils.OssUtils;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -112,6 +115,18 @@ public class FileServiceImpl implements FileService {
     @Override
     public boolean batchUploadSamples(MultipartFile file) {
         return false;
+    }
+
+    /**
+     * 根据用户id获取样本列表
+     * @param userId
+     * @return
+     */
+    @Override
+    public PageInfo<SampleBasePO> getSampleListByUserId(int userId, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<SampleBasePO> samples = fileMapper.selectSamplesByUserId(userId);
+        return new PageInfo<>(samples);
     }
 
 

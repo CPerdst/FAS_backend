@@ -1,10 +1,12 @@
 package com.l1Akr.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.l1Akr.common.exceptionss.BusinessException;
 import com.l1Akr.common.result.Result;
 import com.l1Akr.common.utils.JwtUtils;
 import com.l1Akr.common.utils.OssUtils;
 import com.l1Akr.common.utils.UserThreadLocal;
+import com.l1Akr.po.SampleBasePO;
 import com.l1Akr.po.UserBasePO;
 import com.l1Akr.service.FileService;
 import com.l1Akr.service.UserService;
@@ -58,6 +60,16 @@ public class FileController {
     }
 
     /**
+     * 根据用户id获取用户头像地址
+     * @return
+     */
+    @Operation(summary = "根据用户id获取用户头像地址")
+    @GetMapping("/avatar")
+    public Result<String> avatarGet() {
+        return Result.success(userService.getAvatarById(UserThreadLocal.getCurrentUser().getId().toString()));
+    }
+
+    /**
      * 用户上传样本
      * @param file
      * @return
@@ -74,14 +86,18 @@ public class FileController {
         return (success ? Result.success("上传成功") : Result.error("上传失败"));
     }
 
-    /**
-     * 根据用户id获取用户头像地址
-     * @return
-     */
-    @Operation(summary = "根据用户id获取用户头像地址")
-    @GetMapping("/avatar")
-    public Result<String> avatarGet() {
-        return Result.success(userService.getAvatarById(UserThreadLocal.getCurrentUser().getId().toString()));
+    @Operation(summary = "根据用户查询样本（分页）")
+    @GetMapping("/sample/list")
+    public Result<PageInfo<SampleBasePO>> sampleList(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "10") Integer pageSize) {
+
+        PageInfo<SampleBasePO> pageInfo = fileService.getSampleListByUserId(
+                UserThreadLocal.getCurrentUser().getId(),
+                pageNum,
+                pageSize
+        );
+        return Result.success(pageInfo);
     }
 
     /**

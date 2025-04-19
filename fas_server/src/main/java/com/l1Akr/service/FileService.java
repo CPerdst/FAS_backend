@@ -1,7 +1,11 @@
 package com.l1Akr.service;
 
+import com.github.pagehelper.PageInfo;
+import com.l1Akr.po.SampleBasePO;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Component
 public interface FileService {
@@ -19,6 +23,13 @@ public interface FileService {
      * @return
      */
     boolean uploadSample(MultipartFile file, int userId);
+
+    /**
+     * 根据用户id获取样本列表
+     * @param userId
+     * @return
+     */
+    PageInfo<SampleBasePO> getSampleListByUserId(int userId, int pageNum, int pageSize);
 
     /**
      * 批量上传样本

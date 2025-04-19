@@ -1,10 +1,7 @@
 package com.l1Akr.po;
 
 import lombok.*;
-import org.springframework.cglib.core.Local;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * 用户基本信息持久化对象
