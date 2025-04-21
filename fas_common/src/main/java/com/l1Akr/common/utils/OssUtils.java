@@ -2,6 +2,7 @@ package com.l1Akr.common.utils;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.model.OSSObject;
 import com.aliyun.oss.model.PutObjectResult;
 import com.l1Akr.common.config.OssProperties;
 import com.l1Akr.po.SampleBasePO;
@@ -38,6 +39,7 @@ public class OssUtils {
                         , ossProperties.getAccessKeyId()
                         , ossProperties.getAccessKeySecret()
                 );
+        log.info("OSSClient init success");
     }
 
     /**
@@ -108,5 +110,13 @@ public class OssUtils {
                 + "/" + sampleBasePO.getFileMd5() + "-" + System.currentTimeMillis() + (StringUtils.isBlank(fileExtension) ? "" : "." + fileExtension);
     }
 
+    public void deleteSample(String filePath) {
+        ossClient.deleteObject(ossProperties.getBucketName(), filePath);
+    }
+
+    public InputStream downloadFile(String filePath) {
+        OSSObject object = ossClient.getObject(ossProperties.getBucketName(), filePath);
+        return object.getObjectContent();
+    }
 
 }

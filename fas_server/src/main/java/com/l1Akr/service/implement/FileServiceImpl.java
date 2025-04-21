@@ -7,6 +7,7 @@ import com.l1Akr.common.result.Result;
 import com.l1Akr.common.utils.OssUtils;
 import com.l1Akr.common.utils.ShaUtils;
 import com.l1Akr.common.utils.UserThreadLocal;
+import com.l1Akr.manager.SampleCheckManager;
 import com.l1Akr.mapper.FileMapper;
 import com.l1Akr.mapper.UserSampleMappingMapper;
 import com.l1Akr.po.SampleBasePO;
@@ -34,16 +35,18 @@ public class FileServiceImpl implements FileService {
     private final UserService userService;
     private final FileMapper fileMapper;
     private final UserSampleMappingMapper userSampleMappingMapper;
+    private final SampleCheckManager sampleCheckManager;
 
     @Autowired
     public FileServiceImpl(OssUtils ossUtils,
                            UserService userService,
                            FileMapper fileMapper,
-                           UserSampleMappingMapper userSampleMappingMapper) {
+                           UserSampleMappingMapper userSampleMappingMapper, SampleCheckManager sampleCheckManager) {
         this.ossUtils = ossUtils;
         this.userService = userService;
         this.fileMapper = fileMapper;
         this.userSampleMappingMapper = userSampleMappingMapper;
+        this.sampleCheckManager = sampleCheckManager;
     }
 
     @Override
@@ -79,6 +82,7 @@ public class FileServiceImpl implements FileService {
         String filename = file.getOriginalFilename();
         SampleBasePO sampleBasePO = new SampleBasePO();
         sampleBasePO.parseByFile(file);
+        sampleBasePO.setDisposeStatus(0); // 默认为未开始处理的状态
         try {
             // 手动设置MD5
             String fileMD5 = shaUtils.MD5(file.getInputStream());
@@ -108,6 +112,11 @@ public class FileServiceImpl implements FileService {
         userSampleMappingPO.setUserId(userId);
         userSampleMappingPO.setSampleId(sampleBasePO.getId());
         userSampleMappingMapper.insertByUserSampleMappingPo(userSampleMappingPO);
+        log.info("File {} upload to OSS success, url: {}", filename, ossUrlPath);
+
+        // 将该样本提交检测
+        sampleCheckManager.addSampleToQueue(sampleBasePO);
+        log.info("sample {} was added to checkQueue", filename);
 
         return true;
     }

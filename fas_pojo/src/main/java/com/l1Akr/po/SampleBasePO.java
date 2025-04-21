@@ -23,7 +23,7 @@ public class SampleBasePO {
     String expiredTime; // 样本过期时间
     int downloadTimes; // 下载次数
     int permission; // 访问权限 默认0
-
+    int disposeStatus; // 处理状态 0-未处理 1-处理中 2-处理完成 3-处理失败 4-处理异常 5-样本异常 6-样本删除
 
     public void parseByFile(MultipartFile file) {
         this.filename = file.getOriginalFilename();

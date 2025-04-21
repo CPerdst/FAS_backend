@@ -19,6 +19,8 @@
         <datasource.mysql.url>@env.MYSQL_URL@</datasource.mysql.url>
         <datasource.mysql.username>@env.MYSQL_USERNAME@</datasource.mysql.username>
         <datasource.mysql.password>@env.MYSQL_PASSWORD@</datasource.mysql.password>
+        <clamav.host>172.28.73.175</clamav.host>
+        <clamav.port>3310</clamav.port>
     </properties>
 
     <build>

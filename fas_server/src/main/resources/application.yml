@@ -18,6 +18,10 @@ spring:
       max-lifetime: 1800000 # 30分钟
       connection-init-sql: "SELECT 1"
 
+clamav:
+  host: "@clamav.host@"
+  port: "@clamav.port@"
+
 jwt:
   secret: "@jwt.secret@"
   expiration: 1200000

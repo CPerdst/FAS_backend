@@ -4,8 +4,8 @@
 <mapper namespace="com.l1Akr.mapper.FileMapper">
 
     <insert id="insertBySampleBasePo" parameterType="com.l1Akr.po.SampleBasePO" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO sample_base (id, filename, file_ext, file_path, file_size, file_md5, file_type, file_desc, create_time, update_time, expired_time, download_times, permission)
-        VALUES (#{id}, #{filename}, #{fileExt}, #{filePath}, #{fileSize}, #{fileMd5}, #{fileType}, #{fileDesc}, #{createTime}, #{updateTime}, #{expiredTime}, #{downloadTimes}, #{permission})
+        INSERT INTO sample_base (id, filename, file_ext, file_path, file_size, file_md5, file_type, file_desc, create_time, update_time, expired_time, download_times, permission, dispose_status)
+        VALUES (#{id}, #{filename}, #{fileExt}, #{filePath}, #{fileSize}, #{fileMd5}, #{fileType}, #{fileDesc}, #{createTime}, #{updateTime}, #{expiredTime}, #{downloadTimes}, #{permission}, #{disposeStatus})
     </insert>
     <update id="updateSampleBySampleBasePo">
         UPDATE sample_base
@@ -46,8 +46,11 @@
             <if test="permission != null">
                 permission = #{permission},
             </if>
-            where id = #{id}
+            <if test="disposeStatus != null">
+                dispose_status = #{disposeStatus}
+            </if>
         </set>
+        where id = #{id}
     </update>
     <select id="getSampleByMd5" resultType="com.l1Akr.po.SampleBasePO">
         select * from sample_base where file_md5 = #{md5}
