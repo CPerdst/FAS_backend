@@ -24,10 +24,13 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Slf4j
 public class SampleCheckManager {
 
+    private final Integer EXECUTOR_THREAD_POOL_SIZE = 4;
+
     // 待查杀样本队列
     private final BlockingQueue<SampleBasePO>sampleQueue = new LinkedBlockingQueue<>(1000);
 
-    private final ExecutorService executorService = Executors.newFixedThreadPool(4);
+    // 线程池
+    private final ExecutorService executorService = Executors.newFixedThreadPool(EXECUTOR_THREAD_POOL_SIZE);
 
     private final OssUtils ossUtils;
 
@@ -52,6 +55,9 @@ public class SampleCheckManager {
                 log.info("SampleQueue was full, sample {} waiting to check", sampleBasePO.getFilename());
                 return;
             }
+            // 更新到处理中的状态
+            SampleBasePO.getToUpdateDisposeStatus(sampleBasePO.getId(), 2);
+            fileMapper.updateSampleBySampleBasePo(sampleBasePO);
         } catch (Exception e) {
             log.error("Error occurred while adding sample to queue: {}", e.getMessage());
         }
@@ -59,13 +65,13 @@ public class SampleCheckManager {
 
     // 异步查杀样本（多线程）
     public void startAsyncProcess() {
-        for(int i = 0; i < 4; i++) {
+        for(int i = 0; i < EXECUTOR_THREAD_POOL_SIZE; i++) {
             executorService.submit(() -> {
                while(!Thread.currentThread().isInterrupted()) {
                    try {
                        SampleBasePO sampleBasePO = sampleQueue.take();
                        log.info("Sample {} is checking", sampleBasePO.getFilename());
-                       boolean disposeResult =  processSample(sampleBasePO);
+                       processSample(sampleBasePO);
                    } catch (InterruptedException e) {
                        Thread.currentThread().interrupt();
                        log.info("Thread was interrupt");
@@ -77,16 +83,15 @@ public class SampleCheckManager {
         }
     }
 
-    public boolean processSample(SampleBasePO sampleBasePO) {
-        // TODO: 查杀样本
+    public void processSample(SampleBasePO sampleBasePO) {
         if(ObjectUtils.isEmpty(sampleBasePO)) {
             log.info("sample was null");
-            return false;
+            return;
         }
         String ossPath = sampleBasePO.getFilePath();
         if(StringUtils.isBlank(ossPath)) {
             log.info("sample's oss path was blank");
-            return false;
+            return;
         }
         String relevantPath = ossPath.split("/", 4)[3];
         // 尝试下载样本
@@ -103,13 +108,14 @@ public class SampleCheckManager {
                         sampleBasePO.getFilename(),
                         sampleBasePO.getFileSize(),
                         sampleBasePO.getFileMd5());
-                return false;
+                return;
             }
             // 否则根据结果生成pdf
 
 
             // 更新样本查杀结果
-
+            SampleBasePO toUpdateSample = SampleBasePO.getToUpdateDisposeStatus(sampleBasePO.getId(), scan.isInfected() ? 4 : 3);
+            fileMapper.updateSampleBySampleBasePo(toUpdateSample);
         } catch (Exception e) {
             log.info("sample {}:{}:{} dispose failed as {}",
                     sampleBasePO.getFilename(),
@@ -117,10 +123,9 @@ public class SampleCheckManager {
                     sampleBasePO.getFileMd5(),
                     e.getMessage());
             // 更新样本处理失败信息
-            sampleBasePO.setDisposeStatus(3);
-            fileMapper.updateSampleBySampleBasePo(sampleBasePO);
+            SampleBasePO toUpdateSample = SampleBasePO.getToUpdateDisposeStatus(sampleBasePO.getId(), 4);
+            fileMapper.updateSampleBySampleBasePo(toUpdateSample);
         }
-        return false;
     }
 
 }

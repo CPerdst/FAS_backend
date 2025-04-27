@@ -59,6 +59,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 Map<String, Object> map = new HashMap<>();
                 String newToken = jwtUtils.generateToken(userId, map);
                 response.setHeader("New-Token", newToken);
+                log.info("Token即将过期，刷新用户{}的Token: {}", userId, newToken);
             }
 
             // 否则将用户信息存入LocalStorage

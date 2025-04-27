@@ -82,7 +82,7 @@ public class FileServiceImpl implements FileService {
         String filename = file.getOriginalFilename();
         SampleBasePO sampleBasePO = new SampleBasePO();
         sampleBasePO.parseByFile(file);
-        sampleBasePO.setDisposeStatus(0); // 默认为未开始处理的状态
+        sampleBasePO.setDisposeStatus(1); // 默认为未开始处理的状态
         try {
             // 手动设置MD5
             String fileMD5 = shaUtils.MD5(file.getInputStream());

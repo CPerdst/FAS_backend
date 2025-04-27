@@ -19,13 +19,13 @@
             <if test="filePath != null">
                 file_path = #{filePath},
             </if>
-            <if test="fileSize != null">
+            <if test="fileSize != null and fileSize != 0">
                 file_size = #{fileSize},
             </if>
             <if test="fileMd5 !=null">
                 file_md5 = #{fileMd5},
             </if>
-            <if test="fileType != null">
+            <if test="fileType != null and fileType != 0">
                 file_type = #{fileType},
             </if>
             <if test="fileDesc != null">
@@ -40,13 +40,13 @@
             <if test="expiredTime != null">
                 expired_time = #{expiredTime},
             </if>
-            <if test="downloadTimes != null">
+            <if test="downloadTimes != null and downloadTimes != 0">
                 download_times = #{downloadTimes},
             </if>
-            <if test="permission != null">
+            <if test="permission != null and permission != 0">
                 permission = #{permission},
             </if>
-            <if test="disposeStatus != null">
+            <if test="disposeStatus != null and disposeStatus != 0">
                 dispose_status = #{disposeStatus}
             </if>
         </set>

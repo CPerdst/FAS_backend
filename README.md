@@ -1,4 +1,4 @@
-# FAS_backend
+# FAS_backend 环境变量
 
 ## ALIBABA_CLOUD_ACCESS_KEY_ID
 阿里云 Access Key Id
@@ -22,3 +22,9 @@ jdbc:mysql://127.0.0.1:3306/fas_backend?useUnicode=true&characterEncoding=utf-8&
 
 ## MYSQL_PASSWORD
 数据库密码: root
+
+## CLAMAV_HOST
+Clamav Host
+
+## CLAMAV_PORT
+Clamav Port

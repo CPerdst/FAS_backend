@@ -22,8 +22,8 @@ public class SampleBasePO {
     LocalDate updateTime; // 更新时间
     String expiredTime; // 样本过期时间
     int downloadTimes; // 下载次数
-    int permission; // 访问权限 默认0
-    int disposeStatus; // 处理状态 0-未处理 1-处理中 2-处理完成 3-处理失败 4-处理异常 5-样本异常 6-样本删除
+    int permission; // 访问权限 默认1-私有 2-公开
+    int disposeStatus; // 样本处理状态 1-未处理 2-处理中 3-未发现病毒 4-发现病毒 5-处理失败
 
     public void parseByFile(MultipartFile file) {
         this.filename = file.getOriginalFilename();
@@ -39,6 +39,14 @@ public class SampleBasePO {
         fileType = parseFileType(this.fileExt);
         createTime = LocalDate.now();
         updateTime = LocalDate.now();
+    }
+
+    public static SampleBasePO getToUpdateDisposeStatus(int id, int disposeStatus) {
+        SampleBasePO sampleBasePO = new SampleBasePO();
+        sampleBasePO.setId(id);
+        sampleBasePO.setDisposeStatus(disposeStatus);
+        sampleBasePO.setUpdateTime(LocalDate.now());
+        return sampleBasePO;
     }
 
     private int parseFileType(String fileExt) {
