@@ -1,5 +1,7 @@
 server:
   port: 8000  # 应用程序的端口号
+  tomcat:
+    max-swallow-size: 20MB
 
 spring:
   devtools:
@@ -19,6 +21,10 @@ spring:
       connection-init-sql: "SELECT 1"
   main:
     lazy-initialization: false
+  servlet:
+    multipart:
+      max-request-size: 50MB
+      max-file-size: 20MB
 
 clamav:
   host: "@clamav.host@"
