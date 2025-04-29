@@ -7,6 +7,7 @@ import com.l1Akr.common.result.Result;
 import com.l1Akr.common.utils.OssUtils;
 import com.l1Akr.common.utils.ShaUtils;
 import com.l1Akr.common.utils.UserThreadLocal;
+import com.l1Akr.dto.SampleBaseLightDTO;
 import com.l1Akr.manager.SampleCheckManager;
 import com.l1Akr.mapper.FileMapper;
 import com.l1Akr.mapper.UserSampleMappingMapper;
@@ -129,11 +130,18 @@ public class FileServiceImpl implements FileService {
      * @return
      */
     @Override
-    public PageInfo<SampleBasePO> getSampleListByUserId(int userId, int pageNum, int pageSize) {
+    public PageInfo<SampleBaseLightDTO> getSampleListByUserId(int userId, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<SampleBasePO> samples = fileMapper.selectSamplesByUserId(userId);
-        return new PageInfo<>(samples);
+        List<SampleBaseLightDTO> sampleBaseLightList = fileMapper.selectSamplesByUserId(userId).stream().map(sampleBasePO -> {
+                    SampleBaseLightDTO sampleBaseLightDTO = new SampleBaseLightDTO();
+                    sampleBaseLightDTO.setId(sampleBasePO.getId());
+                    sampleBaseLightDTO.setFilename(sampleBasePO.getFilename());
+                    sampleBaseLightDTO.setFileSize(sampleBasePO.getFileSize());
+                    sampleBaseLightDTO.setFileMd5(sampleBasePO.getFileMd5());
+                    sampleBaseLightDTO.setCreateTime(sampleBasePO.getCreateTime());
+                    sampleBaseLightDTO.setDisposeStatus(sampleBasePO.getDisposeStatus());
+                    return sampleBaseLightDTO;
+                }).toList();
+        return new PageInfo<>(sampleBaseLightList);
     }
-
-
 }

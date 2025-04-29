@@ -108,7 +108,10 @@ public class Result<T> {
         UPLOAD_FORMAT_LIMIT_EXCEEDED_50MB(40003, "仅支持JPG/PNG格式且不超过50MB"),
 
         // 文件MD5失败
-        FILE_MD5_ERROR(40004, "文件MD5失败");
+        FILE_MD5_ERROR(40004, "文件MD5失败"),
+
+        // 页码或页数错误
+        PAGE_NUM_OR_SIZE_ERROR(10002, "页码或页数错误");
 
 
 

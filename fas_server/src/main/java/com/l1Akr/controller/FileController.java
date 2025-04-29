@@ -4,10 +4,11 @@ import com.github.pagehelper.PageInfo;
 import com.l1Akr.common.exceptionss.BusinessException;
 import com.l1Akr.common.result.Result;
 import com.l1Akr.common.utils.UserThreadLocal;
-import com.l1Akr.po.SampleBasePO;
+import com.l1Akr.dto.SampleBaseLightDTO;
 import com.l1Akr.service.FileService;
 import com.l1Akr.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -45,7 +46,7 @@ public class FileController {
      */
     @Operation(summary = "用户上传头像")
     @PostMapping("/avatar/upload")
-    public Result<String> uploadAvatar(@RequestParam("file") MultipartFile file) {
+    public Result<String> uploadAvatar(@RequestParam("file") @Parameter(name = "file", description = "头像文件") MultipartFile file) {
         // 校验文件
         if(isUnValidFile(file, avatarEnabledTypeArray, MAX_AVATAR_UPLOAD_SIZE)) {
             throw new BusinessException(Result.ResultEnum.UPLOAD_FORMAT_LIMIT_EXCEEDED);
@@ -82,13 +83,28 @@ public class FileController {
         return (success ? Result.success("上传成功") : Result.error("上传失败"));
     }
 
+    /**
+     * 根据用户id查询样本列表，最小化查询条件，最少化字段返回
+     * 只返回样本id、样本名称、样本大小、上传时间、样本哈希
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @Operation(summary = "根据用户查询样本（分页）")
     @GetMapping("/sample/list")
-    public Result<PageInfo<SampleBasePO>> sampleList(
-            @RequestParam(defaultValue = "1") Integer pageNum,
-            @RequestParam(defaultValue = "10") Integer pageSize) {
-
-        PageInfo<SampleBasePO> pageInfo = fileService.getSampleListByUserId(
+    public Result<PageInfo<SampleBaseLightDTO>> sampleList(
+            @RequestParam(defaultValue = "1") @Parameter(name = "pageNum", description = "页码") Integer pageNum,
+            @RequestParam(defaultValue = "10") @Parameter(name = "pageSize", description = "页长") Integer pageSize) {
+        log.info("pageNum: {}, pageSize: {}", pageNum, pageSize);
+        // 如果页码小于1，则返回错误信息
+        if(pageNum < 1 || pageSize < 1) {
+            return new Result<>(Result.ResultEnum.PAGE_NUM_OR_SIZE_ERROR);
+        }
+        // 如果页码大于100，则返回错误信息
+        if(pageNum > 100 || pageSize > 100) {
+            return new Result<>(Result.ResultEnum.PAGE_NUM_OR_SIZE_ERROR);
+        }
+        PageInfo<SampleBaseLightDTO> pageInfo = fileService.getSampleListByUserId(
                 UserThreadLocal.getCurrentUser().getId(),
                 pageNum,
                 pageSize

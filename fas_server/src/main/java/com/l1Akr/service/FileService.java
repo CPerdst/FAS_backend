@@ -1,7 +1,7 @@
 package com.l1Akr.service;
 
 import com.github.pagehelper.PageInfo;
-import com.l1Akr.po.SampleBasePO;
+import com.l1Akr.dto.SampleBaseLightDTO;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,7 +27,7 @@ public interface FileService {
      * @param userId
      * @return
      */
-    PageInfo<SampleBasePO> getSampleListByUserId(int userId, int pageNum, int pageSize);
+    PageInfo<SampleBaseLightDTO> getSampleListByUserId(int userId, int pageNum, int pageSize);
 
     /**
      * 批量上传样本
