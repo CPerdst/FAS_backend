@@ -12,4 +12,6 @@ public interface UserSampleMappingMapper {
 
     UserSampleMappingPO getUserSampleMappingByUserIdAndSampleId(Integer userId, Integer sampleId, Integer limit);
 
+    Integer getUserIdBySampleId(Integer sampleId);
+
 }

@@ -3,11 +3,8 @@ package com.l1Akr.controller;
 import com.github.pagehelper.PageInfo;
 import com.l1Akr.common.exceptionss.BusinessException;
 import com.l1Akr.common.result.Result;
-import com.l1Akr.common.utils.JwtUtils;
-import com.l1Akr.common.utils.OssUtils;
 import com.l1Akr.common.utils.UserThreadLocal;
 import com.l1Akr.po.SampleBasePO;
-import com.l1Akr.po.UserBasePO;
 import com.l1Akr.service.FileService;
 import com.l1Akr.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @Slf4j
@@ -113,7 +109,7 @@ public class FileController {
         if(ObjectUtils.isEmpty(file) || file.isEmpty()) {
             return true;
         }
-        if(!CollectionUtils.isEmpty(typeArray) && !StringUtils.isEmpty(contentType)) {
+        if(!CollectionUtils.isEmpty(typeArray) && !StringUtils.isBlank(contentType)) {
             flag = false;
             for(String type : typeArray) {
                 if(contentType.contains(type)) {

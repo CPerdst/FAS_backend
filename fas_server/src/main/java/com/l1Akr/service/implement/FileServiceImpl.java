@@ -17,12 +17,10 @@ import com.l1Akr.service.FileService;
 import com.l1Akr.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,7 +35,6 @@ public class FileServiceImpl implements FileService {
     private final UserSampleMappingMapper userSampleMappingMapper;
     private final SampleCheckManager sampleCheckManager;
 
-    @Autowired
     public FileServiceImpl(OssUtils ossUtils,
                            UserService userService,
                            FileMapper fileMapper,

@@ -1,6 +1,5 @@
 package com.l1Akr.interceptor;
 
-import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.l1Akr.common.utils.JwtUtils;
 import com.l1Akr.common.utils.UserThreadLocal;
@@ -28,7 +27,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Autowired
     private UserService userService;
 
-    public boolean preHandle(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) throws Exception {
+    public boolean preHandle(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) throws Exception {
         log.debug("Interceptor:  {}", request.getRequestURI());
 
         // 1. 从 Header 中获取 Token

@@ -19,13 +19,13 @@
             <if test="filePath != null">
                 file_path = #{filePath},
             </if>
-            <if test="fileSize != null and fileSize != 0">
+            <if test="fileSize != null">
                 file_size = #{fileSize},
             </if>
             <if test="fileMd5 !=null">
                 file_md5 = #{fileMd5},
             </if>
-            <if test="fileType != null and fileType != 0">
+            <if test="fileType != null">
                 file_type = #{fileType},
             </if>
             <if test="fileDesc != null">
@@ -40,14 +40,29 @@
             <if test="expiredTime != null">
                 expired_time = #{expiredTime},
             </if>
-            <if test="downloadTimes != null and downloadTimes != 0">
+            <if test="downloadTimes != null">
                 download_times = #{downloadTimes},
             </if>
-            <if test="permission != null and permission != 0">
+            <if test="permission != null">
                 permission = #{permission},
             </if>
-            <if test="disposeStatus != null and disposeStatus != 0">
-                dispose_status = #{disposeStatus}
+            <if test="disposeStatus != null">
+                dispose_status = #{disposeStatus},
+            </if>
+            <if test="pdfPath != null">
+                pdf_path = #{pdfPath},
+            </if>
+            <if test="pdfSize != null">
+                pdf_size = #{pdfSize},
+            </if>
+            <if test="pdfMd5 != null">
+                pdf_md5 = #{pdfMd5},
+            </if>
+            <if test="pdfCreateTime != null">
+                pdf_create_time = #{pdfCreateTime},
+            </if>
+            <if test="pdfDownloadTimes != null">
+                pdf_download_times = #{pdfDownloadTimes},
             </if>
         </set>
         where id = #{id}
