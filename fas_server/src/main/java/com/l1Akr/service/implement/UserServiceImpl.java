@@ -1,20 +1,20 @@
 package com.l1Akr.service.implement;
 
-import com.l1Akr.common.enums.ResultEnum;
 import com.l1Akr.common.exceptionss.BusinessException;
-import com.l1Akr.common.exceptionss.UserHasExistedException;
-import com.l1Akr.common.exceptionss.UserOrPasswordErrorException;
+import com.l1Akr.common.result.Result;
 import com.l1Akr.common.utils.ShaUtils;
 import com.l1Akr.dto.UserLoginDTO;
 import com.l1Akr.dto.UserRegisterDTO;
-import com.l1Akr.dao.UserDAO;
+import com.l1Akr.dto.UserUpdateDTO;
 import com.l1Akr.mapper.UserMapper;
+import com.l1Akr.po.UserBasePO;
 import com.l1Akr.service.UserService;
+import com.l1Akr.vo.UserInfoVO;
+import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
+import org.springframework.util.ObjectUtils;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,40 +22,28 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    private final ShaUtils shaUtils = new ShaUtils();
+
     /**
      * 用户登录
-     * @param UserLoginDTO 用户传递对象
+     * @param userLoginDTO 用户登录传递对象
      * @return Boolean
      */
     @Override
-    public UserDAO login(UserLoginDTO userLoginDTO){
-        // 哈希工具
-        ShaUtils shaUtils = new ShaUtils();
-
+    public UserInfoVO login(UserLoginDTO userLoginDTO) {
         // 创建用户的数据库映射模型
-        UserDAO userDAO = new UserDAO();
-        BeanUtils.copyProperties(userLoginDTO, userDAO);
-        userDAO.setPassword(null);
+        UserBasePO userBasePO = new UserBasePO();
+        BeanUtils.copyProperties(userLoginDTO, userBasePO);
+        userBasePO.setPassword(shaUtils.SHA256(userLoginDTO.getPassword()));
 
         // 单独通过username查询用户
-        UserDAO byUser = userMapper.findByUser(userDAO);
-
-        // 如果查询为空，表示用户不存在
-//        if(byUser == null){
-//            throw new BusinessException(ResultEnum.USER_NOT_EXIST);
-//        }
-
-        // 验证密码，不正确则抛出用户登陆错误异常
-//        if(!byUser.password.equals(shaUtils.SHA256(userLoginDTO.getPassword()))){
-//            throw new BusinessException(ResultEnum.USER_LOGIN_ERROR);
-//        }
-
-        // 将两个逻辑合在一起并返回用户或密码错误
-        if(byUser == null || !byUser.password.equals(shaUtils.SHA256(userLoginDTO.getPassword()))){
-            throw new UserOrPasswordErrorException();
+        UserBasePO byUser = userMapper.findByUserBasePo(userBasePO);
+        if(ObjectUtils.isEmpty(byUser)) {
+            return null;
         }
-
-        return byUser;
+        UserInfoVO userInfoVO = new UserInfoVO();
+        BeanUtils.copyProperties(byUser, userInfoVO);
+        return userInfoVO;
     }
 
     /**
@@ -64,27 +52,87 @@ public class UserServiceImpl implements UserService {
      * @return Boolean
      */
     @Override
-    public UserDAO register(UserRegisterDTO userRegisterDTO){
+    public void register(UserRegisterDTO userRegisterDTO){
         // 哈希工具
         ShaUtils shaUtils = new ShaUtils();
 
         // 创建用户的数据库映射模型
-        UserDAO userDAO = new UserDAO();
-        BeanUtils.copyProperties(userRegisterDTO, userDAO);
+        UserBasePO userBasePO = new UserBasePO();
+        BeanUtils.copyProperties(userRegisterDTO, userBasePO);
 
-        userDAO.setPassword(shaUtils.SHA256(userDAO.getPassword()));
-        userDAO.setCreateTime(new Date());
-        userDAO.setUpdateTime(new Date());
+        userBasePO.setPassword(shaUtils.SHA256(userBasePO.getPassword()));
+        userBasePO.initTime();
         // 由于前端暂时没有设置telephone，这里直接手动设置
-        userDAO.setTelephone("12345678901");
+        userBasePO.setTelephone("12345678901");
 
-        try {
-            userMapper.insertByUser(userDAO);
-        }catch (Exception e){
-            throw new UserHasExistedException();
+        // 首先检测一下注册的用户是否存在
+        UserBasePO tempUser = new UserBasePO();
+        tempUser.setUsername(userBasePO.getUsername());
+        UserBasePO byUserBasePo = userMapper.findByUserBasePo(tempUser);
+        if(!ObjectUtils.isEmpty(byUserBasePo)) {
+            throw new BusinessException(Result.ResultEnum.USER_EXIST);
         }
 
-        return userDAO;
+        // 如果不存在，再继续插入
+        userMapper.insertByUserBasePo(userBasePO);
+    }
+
+    /**
+     * 用户更新
+     * @param userUpdateDTO
+     * @return
+     */
+    @Override
+    public boolean updateUser(String userId, UserUpdateDTO userUpdateDTO) {
+        String username = userUpdateDTO.getUsername();
+        String oldPassword = userUpdateDTO.getOldPassword();
+        String newPassword = userUpdateDTO.getNewPassword();
+
+        if(StringUtils.isBlank(username)) {
+            throw new BusinessException(Result.ResultEnum.USER_NAME_EMPTY);
+        }
+        if(!StringUtils.isBlank(oldPassword) && !StringUtils.isBlank(newPassword) && oldPassword.equals(newPassword)) {
+            throw new BusinessException(Result.ResultEnum.USER_PASSWORD_SAME);
+        }
+        // 首先通过用户ID查找该用户
+        UserBasePO userById = getUserById(userId);
+        if(ObjectUtils.isEmpty(userById)) {
+            throw new BusinessException(Result.ResultEnum.USER_NOT_EXIST);
+        }
+
+        UserBasePO userBasePO = new UserBasePO();
+        userBasePO.initUpdateDate();
+        userBasePO.setUsername(username);
+        userBasePO.setSex(userUpdateDTO.getSex());
+        userBasePO.setId(Integer.valueOf(userId));
+        // 判断是否要更新密码，并且判断旧密码是否正确
+        if(!StringUtils.isBlank(oldPassword) && !StringUtils.isBlank(newPassword)) {
+            if(userById.getPassword().equals(shaUtils.SHA256(oldPassword))) {
+                // 如果密码验证成功，才可以更改密码
+                userBasePO.setPassword(shaUtils.SHA256(newPassword));
+            } else {
+                // 如果密码验证失败，返回认证失败的信息
+                throw new BusinessException(Result.ResultEnum.USER_PASSWORD_ERROR);
+            }
+        }
+
+        // 进行更新
+        int affectedRows = updateUserByUserBasePo(userBasePO);
+        if(affectedRows <= 0) {
+            throw new BusinessException(Result.ResultEnum.USER_UPDATE_FAILED);
+        }
+
+        return true;
+    }
+
+    /**
+     * 更新用户
+     * @param userBasePO
+     * @return
+     */
+    @Override
+    public int updateUserByUserBasePo(UserBasePO userBasePO) {
+        return userMapper.updateByUserBasePo(userBasePO);
     }
 
     /**
@@ -92,22 +140,11 @@ public class UserServiceImpl implements UserService {
      * @param userId
      * @return
      */
-    public UserDAO getUserById(String userId) {
-        UserDAO userDAO = new UserDAO();
-        userDAO.setId(Integer.valueOf(userId));
+    public UserBasePO getUserById(String userId) {
+        UserBasePO userBasePO = new UserBasePO();
+        userBasePO.setId(Integer.valueOf(userId));
 
-        return userMapper.findByUser(userDAO);
-    }
-
-    /**
-     * 更新用户信息
-     * @param userDAO
-     */
-    public void updateUser(UserDAO userDAO) {
-        if(userDAO.getId() == null){
-            return;
-        }
-        userMapper.updateByUser(userDAO);
+        return userMapper.findByUserBasePo(userBasePO);
     }
 
     /**
@@ -116,11 +153,9 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public String getAvatarById(String userId) {
-        UserDAO userDAO = new UserDAO();
-        userDAO.setId(Integer.valueOf(userId));
-        return userMapper.findByUser(userDAO).getAvatar();
+        UserBasePO userBasePO = new UserBasePO();
+        userBasePO.setId(Integer.valueOf(userId));
+        return userMapper.findByUserBasePo(userBasePO).getAvatar();
     }
-
-
 
 }

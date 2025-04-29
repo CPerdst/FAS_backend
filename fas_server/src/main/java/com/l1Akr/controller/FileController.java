@@ -1,25 +1,25 @@
 package com.l1Akr.controller;
 
-import com.l1Akr.common.exceptionss.FileUploadFailedException;
-import com.l1Akr.common.exceptionss.MyBatisException;
+import com.github.pagehelper.PageInfo;
+import com.l1Akr.common.exceptionss.BusinessException;
 import com.l1Akr.common.result.Result;
-import com.l1Akr.common.utils.JwtUtils;
-import com.l1Akr.common.utils.OssUtils;
 import com.l1Akr.common.utils.UserThreadLocal;
-import com.l1Akr.dao.UserDAO;
+import com.l1Akr.dto.SampleBaseLightDTO;
 import com.l1Akr.service.FileService;
 import com.l1Akr.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.mybatis.spring.MyBatisSystemException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.Objects;
+import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -31,84 +31,112 @@ public class FileController {
     public UserService userService;
 
     @Autowired
-    public JwtUtils jwtUtils;
-
-    @Autowired
-    public OssUtils ossUtils;
-
-    @Autowired
     public FileService fileService;
 
-    private int MAX_FILE_UPLOAD_SIZE = 50 * 1024 * 1024; // 50MB限制
+    private final long MAX_FILE_UPLOAD_SIZE = 50 * 1024 * 1024; // 50MB限制
 
-    private int MAX_AVATAR_UPLOAD_SIZE = 2 * 1024 * 1024; // 2MB限制
+    private final long MAX_AVATAR_UPLOAD_SIZE = 2 * 1024 * 1024; // 2MB限制
 
+    private final List<String> avatarEnabledTypeArray = Arrays.asList("image/jpeg", "image/png");
+
+    /**
+     * 用户上传头像
+     * @param file
+     * @return
+     */
     @Operation(summary = "用户上传头像")
     @PostMapping("/avatar/upload")
-    public Result<String> uploadAvatar(@RequestParam("file") MultipartFile file) {
-        String s;
-        try {
-            // 校验文件
-            if(!isValidFile(file)) {
-                return Result.error("仅支持JPG/PNG格式且不超过2MB");
-            }
-
-            // 生成唯一文件名
-            UserDAO user = UserThreadLocal.getCurrentUser();
-            String userId = user.getId().toString();
-            String fileName = ossUtils.generateUniqueFileName(Objects.requireNonNull(file.getOriginalFilename()), userId);
-
-            // 上传到Oss
-            s = ossUtils.uploadAvatar(file, fileName);
-            if (s == null) {
-                return Result.error("上传失败，请重试");
-            }
-
-            // 更新数据库
-            UserDAO newUser = new UserDAO();
-            newUser.setId(user.getId());
-            newUser.setAvatar(s);
-            newUser.setUpdateTime(new Date());
-            userService.updateUser(newUser);
-        } catch (IOException e) {
-            log.error("文件上传失败", e); // 记录日志
-            throw new FileUploadFailedException();
-        } catch (MyBatisSystemException e) {
-            log.error("MyBatis异常", e);
-            throw new MyBatisException();
+    public Result<String> uploadAvatar(@RequestParam("file") @Parameter(name = "file", description = "头像文件") MultipartFile file) {
+        // 校验文件
+        if(isUnValidFile(file, avatarEnabledTypeArray, MAX_AVATAR_UPLOAD_SIZE)) {
+            throw new BusinessException(Result.ResultEnum.UPLOAD_FORMAT_LIMIT_EXCEEDED);
         }
-
+        // 上传头像并获取头像地址
+        String s = fileService.uploadAvatar(file);
         return Result.success(s);
     }
 
-    @Operation(summary = "用户上传样本")
-    @PostMapping("/sample/upload")
-    public Result<String> sampleUpload(@RequestParam("file") MultipartFile file) {
-        // 如果上传的文件为空，则返回错误信息
-        if (file.isEmpty()) {
-            return Result.error("文件不能为空");
-        } else if(file.getSize() > MAX_FILE_UPLOAD_SIZE) {
-            return Result.error("文件大小超过限制50MB");
-        }
-        // 样本文件没有问题的话，上传样本文件
-        boolean success = fileService.uploadSample(file);
-        return (success ? Result.success("上传成功") : Result.error("上传失败"));
-    }
-
+    /**
+     * 根据用户id获取用户头像地址
+     * @return
+     */
     @Operation(summary = "根据用户id获取用户头像地址")
     @GetMapping("/avatar")
     public Result<String> avatarGet() {
         return Result.success(userService.getAvatarById(UserThreadLocal.getCurrentUser().getId().toString()));
     }
 
-    // 文件校验方法
-    private boolean isValidFile(MultipartFile file) {
-        String contentType = file.getContentType();
-        if (!"image/jpeg".equals(contentType) && !"image/png".equals(contentType)) {
-            return false;
+    /**
+     * 用户上传样本
+     * @param file
+     * @return
+     */
+    @Operation(summary = "用户上传样本")
+    @PostMapping("/sample/upload")
+    public Result<String> sampleUpload(@RequestParam("file") MultipartFile file) {
+        // 如果上传的文件为空，则返回错误信息
+        if(isUnValidFile(file, null, MAX_FILE_UPLOAD_SIZE)) {
+            throw new BusinessException(Result.ResultEnum.UPLOAD_FORMAT_LIMIT_EXCEEDED_50MB);
         }
-        return file.getSize() <= MAX_AVATAR_UPLOAD_SIZE; // 2MB限制
+        // 样本文件没有问题的话，上传样本文件
+        boolean success = fileService.uploadSample(file, UserThreadLocal.getCurrentUser().getId());
+        return (success ? Result.success("上传成功") : Result.error("上传失败"));
     }
 
+    /**
+     * 根据用户id查询样本列表，最小化查询条件，最少化字段返回
+     * 只返回样本id、样本名称、样本大小、上传时间、样本哈希
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Operation(summary = "根据用户查询样本（分页）")
+    @GetMapping("/sample/list")
+    public Result<PageInfo<SampleBaseLightDTO>> sampleList(
+            @RequestParam(defaultValue = "1") @Parameter(name = "pageNum", description = "页码") Integer pageNum,
+            @RequestParam(defaultValue = "10") @Parameter(name = "pageSize", description = "页长") Integer pageSize) {
+        log.info("pageNum: {}, pageSize: {}", pageNum, pageSize);
+        // 如果页码小于1，则返回错误信息
+        if(pageNum < 1 || pageSize < 1) {
+            return new Result<>(Result.ResultEnum.PAGE_NUM_OR_SIZE_ERROR);
+        }
+        // 如果页码大于100，则返回错误信息
+        if(pageNum > 100 || pageSize > 100) {
+            return new Result<>(Result.ResultEnum.PAGE_NUM_OR_SIZE_ERROR);
+        }
+        PageInfo<SampleBaseLightDTO> pageInfo = fileService.getSampleListByUserId(
+                UserThreadLocal.getCurrentUser().getId(),
+                pageNum,
+                pageSize
+        );
+        return Result.success(pageInfo);
+    }
+
+    /**
+     * 文件校验方法
+     * @param file
+     * @param typeArray
+     * @param maxFileSize
+     * @return
+     */
+    private boolean isUnValidFile(MultipartFile file, List<String> typeArray, long maxFileSize) {
+        String contentType = file.getContentType();
+        boolean flag = true;
+        if(ObjectUtils.isEmpty(file) || file.isEmpty()) {
+            return true;
+        }
+        if(!CollectionUtils.isEmpty(typeArray) && !StringUtils.isBlank(contentType)) {
+            flag = false;
+            for(String type : typeArray) {
+                if(contentType.contains(type)) {
+                    flag = true;
+                }
+            }
+        }
+        if(!flag) {
+            return true;
+        }
+        return file.getSize() > maxFileSize; // 2MB限制
+    }
 
 }

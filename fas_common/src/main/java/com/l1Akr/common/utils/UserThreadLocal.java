@@ -1,15 +1,15 @@
 package com.l1Akr.common.utils;
 
-import com.l1Akr.dao.UserDAO;
+import com.l1Akr.po.UserBasePO;
 
 public class UserThreadLocal {
-    private static final ThreadLocal<UserDAO> user = new ThreadLocal<>();
+    private static final ThreadLocal<UserBasePO> user = new ThreadLocal<>();
 
-    public static void setCurrentUser(UserDAO user) {
+    public static void setCurrentUser(UserBasePO user) {
         UserThreadLocal.user.set(user);
     }
 
-    public static UserDAO getCurrentUser() {
+    public static UserBasePO getCurrentUser() {
         return user.get();
     }
 

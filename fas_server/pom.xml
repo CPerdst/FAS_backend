@@ -16,6 +16,11 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <datasource.mysql.url>@env.MYSQL_URL@</datasource.mysql.url>
+        <datasource.mysql.username>@env.MYSQL_USERNAME@</datasource.mysql.username>
+        <datasource.mysql.password>@env.MYSQL_PASSWORD@</datasource.mysql.password>
+        <clamav.host>@env.CLAMAV_HOST@</clamav.host>
+        <clamav.port>@env.CLAMAV_PORT@</clamav.port>
     </properties>
 
     <build>
@@ -35,6 +40,27 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <!-- 第一组资源：处理需要过滤的文件 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.yml</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering> <!-- 开启过滤替换环境变量 -->
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.otf</include>
+                    <include>**/*.ttf</include>
+                    <include>static/**</include> <!-- 保留静态资源 -->
+                    <include>templates/**</include>
+                </includes>
+                <filtering>false</filtering> <!-- 关闭过滤防止二进制损坏 -->
+            </resource>
+        </resources>
     </build>
 
     <dependencies>
@@ -71,6 +97,18 @@
             <groupId>com.l1Akr</groupId>
             <artifactId>ClamAV-Client</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.4.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>3.0.4</version>
         </dependency>
 
     </dependencies>

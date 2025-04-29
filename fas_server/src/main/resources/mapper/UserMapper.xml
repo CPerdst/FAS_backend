@@ -2,26 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.l1Akr.mapper.UserMapper">
-    <insert id="insertByUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.l1Akr.dao.UserDAO">
-        INSERT INTO user (username, password, sex, telephone, create_time, update_time)
-        VALUES (#{username}, #{password}, #{sex}, #{telephone}, #{createTime}, #{updateTime})
+    <insert id="insertByUserBasePo" useGeneratedKeys="true" keyProperty="id" parameterType="com.l1Akr.po.UserBasePO">
+        INSERT INTO user_base (id, username, password, sex, avatar, telephone, create_time, update_time)
+        VALUES (#{id}, #{username}, #{password}, #{sex}, #{avatar}, #{telephone}, #{createTime}, #{updateTime})
     </insert>
-    
-    <select id="findByUser" parameterType="com.l1Akr.dao.UserDAO" resultType="com.l1Akr.dao.UserDAO">
-        select * from user
+
+    <select id="findByUserBasePo" resultType="com.l1Akr.po.UserBasePO">
+        select * from user_base
         <where>
             <if test="id != null">and id = #{id}</if>
             <if test="username != null">and username = #{username}</if>
             <if test="password != null">and password = #{password}</if>
             <if test="sex != null">and sex = #{sex}</if>
             <if test="telephone != null">and telephone = #{telephone}</if>
-            <if test="createTime != null">and create_time = #{createTime}</if>
-            <if test="updateTime != null">and update_time = #{updateTime}</if>
+            <if test="createTime != null">and create_time =#{createTime}</if>
         </where>
     </select>
 
-    <update id="updateByUser" parameterType="com.l1Akr.dao.UserDAO">
-        UPDATE user
+    <update id="updateByUserBasePo">
+        UPDATE user_base
         <set>
             <if test="username != null">
                 username = #{username},
@@ -37,13 +36,6 @@
             </if>
             <if test="telephone != null">
                 telephone = #{telephone},
-            </if>
-            <!-- 自动更新时间字段（可选） -->
-            <if test="_parameter.createTime != null">
-                create_time = #{createTime},
-            </if>
-            <if test="_parameter.updateTime != null">
-                update_time = #{updateTime},
             </if>
         </set>
         WHERE id = #{id}

@@ -1,13 +1,14 @@
 package com.l1Akr.interceptor;
 
-import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.l1Akr.common.utils.JwtUtils;
 import com.l1Akr.common.utils.UserThreadLocal;
-import com.l1Akr.dao.UserDAO;
+import com.l1Akr.po.UserBasePO;
 import com.l1Akr.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@Slf4j
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Autowired
@@ -25,8 +27,8 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Autowired
     private UserService userService;
 
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("[DEBUG] 拦截路径: " + request.getRequestURI());
+    public boolean preHandle(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) throws Exception {
+        log.debug("Interceptor:  {}", request.getRequestURI());
 
         // 1. 从 Header 中获取 Token
         String token = request.getHeader("Authorization");
@@ -42,7 +44,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             String userId = decodedJWT.getSubject();
 
             // 查询用户是否存在，防止token有效但是用户被删除
-            UserDAO userById = userService.getUserById(userId);
+            UserBasePO userById = userService.getUserById(userId);
 
             if(userById == null) {
                 sendUnauthorized(response, "用户不存在或已被禁用");
@@ -56,6 +58,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 Map<String, Object> map = new HashMap<>();
                 String newToken = jwtUtils.generateToken(userId, map);
                 response.setHeader("New-Token", newToken);
+                log.info("Token即将过期，刷新用户{}的Token: {}", userId, newToken);
             }
 
             // 否则将用户信息存入LocalStorage
