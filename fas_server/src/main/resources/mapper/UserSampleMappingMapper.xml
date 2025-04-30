@@ -3,11 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.l1Akr.mapper.UserSampleMappingMapper">
 
-    <insert id="insertByUserSampleMappingPo" parameterType="com.l1Akr.po.UserSampleMappingPO" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertByUserSampleMappingPo" parameterType="com.l1Akr.pojo.po.UserSampleMappingPO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user_sample_mapping (user_id, sample_id)
         VALUES (#{userId}, #{sampleId})
     </insert>
-    <select id="getUserSampleMappingByUserIdAndSampleId" resultType="com.l1Akr.po.UserSampleMappingPO">
+    <select id="getUserSampleMappingByUserIdAndSampleId" resultType="com.l1Akr.pojo.po.UserSampleMappingPO">
         select * from user_sample_mapping
         <where>
             <if test="userId != null">

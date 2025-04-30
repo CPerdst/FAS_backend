@@ -1,6 +1,6 @@
 package com.l1Akr.mapper;
 
-import com.l1Akr.po.SampleBasePO;
+import com.l1Akr.pojo.po.SampleBasePO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
