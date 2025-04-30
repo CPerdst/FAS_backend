@@ -1,8 +1,7 @@
 package com.l1Akr.config;
 
-import com.l1Akr.common.enums.ResultEnum;
-import com.l1Akr.common.exceptionss.BusinessException;
-import com.l1Akr.common.exceptionss.SystemException;
+import com.l1Akr.common.excption.BusinessException;
+import com.l1Akr.common.excption.SystemException;
 import com.l1Akr.common.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;

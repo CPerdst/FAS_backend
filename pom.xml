@@ -30,9 +30,9 @@
     <description>Graduation project of file analysis system</description>
 
     <modules>
-        <module>fas_pojo</module>
+<!--        <module>fas_pojo</module>-->
         <module>fas_server</module>
-        <module>fas_common</module>
+<!--        <module>fas_common</module>-->
     </modules>
 
     <build>

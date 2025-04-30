@@ -1,10 +1,10 @@
 package com.l1Akr.service;
 
-import com.l1Akr.dto.UserLoginDTO;
-import com.l1Akr.dto.UserRegisterDTO;
-import com.l1Akr.dto.UserUpdateDTO;
-import com.l1Akr.po.UserBasePO;
-import com.l1Akr.vo.UserInfoVO;
+import com.l1Akr.pojo.dto.UserLoginDTO;
+import com.l1Akr.pojo.dto.UserRegisterDTO;
+import com.l1Akr.pojo.dto.UserUpdateDTO;
+import com.l1Akr.pojo.po.UserBasePO;
+import com.l1Akr.pojo.vo.UserInfoVO;
 import org.springframework.stereotype.Component;
 
 @Component

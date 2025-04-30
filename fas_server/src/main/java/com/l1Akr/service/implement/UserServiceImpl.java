@@ -1,15 +1,15 @@
 package com.l1Akr.service.implement;
 
-import com.l1Akr.common.exceptionss.BusinessException;
+import com.l1Akr.common.excption.BusinessException;
 import com.l1Akr.common.result.Result;
-import com.l1Akr.common.utils.ShaUtils;
-import com.l1Akr.dto.UserLoginDTO;
-import com.l1Akr.dto.UserRegisterDTO;
-import com.l1Akr.dto.UserUpdateDTO;
+import com.l1Akr.common.util.ShaUtils;
+import com.l1Akr.pojo.dto.UserLoginDTO;
+import com.l1Akr.pojo.dto.UserRegisterDTO;
+import com.l1Akr.pojo.dto.UserUpdateDTO;
 import com.l1Akr.mapper.UserMapper;
-import com.l1Akr.po.UserBasePO;
+import com.l1Akr.pojo.po.UserBasePO;
 import com.l1Akr.service.UserService;
-import com.l1Akr.vo.UserInfoVO;
+import com.l1Akr.pojo.vo.UserInfoVO;
 import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import com.l1Akr.po.SampleBasePO;
+import com.l1Akr.pojo.po.SampleBasePO;
 
 @Mapper
 public interface SampleMapper {

@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.l1Akr.common.result.Result;
-import com.l1Akr.common.utils.UserThreadLocal;
-import com.l1Akr.dto.SampleBaseLightDTO;
+import com.l1Akr.common.util.UserThreadLocal;
+import com.l1Akr.pojo.dto.SampleBaseLightDTO;
 import com.l1Akr.service.FileService;
 
 import io.swagger.v3.oas.annotations.Operation;

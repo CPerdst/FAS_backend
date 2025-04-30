@@ -2,13 +2,12 @@ package com.l1Akr.manager;
 
 
 import com.l1Akr.common.util.PDFReportGenerator;
-import com.l1Akr.common.utils.OssUtils;
-import com.l1Akr.common.utils.ShaUtils;
-import com.l1Akr.common.utils.UserThreadLocal;
+import com.l1Akr.common.util.OssUtils;
+import com.l1Akr.common.util.ShaUtils;
 import com.l1Akr.mapper.FileMapper;
 import com.l1Akr.mapper.UserSampleMappingMapper;
-import com.l1Akr.po.SampleBasePO;
-import com.l1Akr.po.UserSampleMappingPO;
+import com.l1Akr.pojo.po.SampleBasePO;
+import com.l1Akr.pojo.po.UserSampleMappingPO;
 import com.l1Akr.utils.ClamAVClient;
 import com.l1Akr.utils.ClamAVScanner;
 import io.micrometer.common.util.StringUtils;

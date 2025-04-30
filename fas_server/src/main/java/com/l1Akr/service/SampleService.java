@@ -3,7 +3,7 @@ package com.l1Akr.service;
 import org.springframework.stereotype.Component;
 
 import com.github.pagehelper.PageInfo;
-import com.l1Akr.dto.SampleBaseLightDTO;
+import com.l1Akr.pojo.dto.SampleBaseLightDTO;
 
 @Component
 public interface SampleService {
