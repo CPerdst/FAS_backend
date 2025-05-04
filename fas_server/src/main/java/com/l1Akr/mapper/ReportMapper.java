@@ -1,17 +1,15 @@
 package com.l1Akr.mapper;
 
-import java.util.List;
-
 import com.github.pagehelper.Page;
+import com.l1Akr.pojo.dto.SampleReportDTO;
+import com.l1Akr.pojo.po.SampleBasePO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-
-import com.l1Akr.pojo.po.SampleBasePO;
 import org.springframework.stereotype.Component;
 
 @Mapper
 @Component
-public interface SampleMapper {
+public interface ReportMapper {
 
     /**
      * 根据用户id获取样本列表
@@ -22,6 +20,6 @@ public interface SampleMapper {
             "JOIN user_sample_mapping m ON s.id = m.sample_id " +
             "WHERE m.user_id = #{userId} " +
             "ORDER BY s.create_time DESC")
-    Page<SampleBasePO> selectSamplesByUserId(int userId);
+    Page<SampleBasePO> getSampleReport(int userId);
 
 }

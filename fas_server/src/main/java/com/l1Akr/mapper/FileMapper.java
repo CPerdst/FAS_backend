@@ -19,10 +19,4 @@ public interface FileMapper {
 
     int updateSampleBySampleBasePo(SampleBasePO sampleBasePO);
 
-    @Select("SELECT s.* FROM sample_base s " +
-            "JOIN user_sample_mapping m ON s.id = m.sample_id " +
-            "WHERE m.user_id = #{userId} " +
-            "ORDER BY s.create_time DESC")
-    List<SampleBasePO> selectSamplesByUserId(int userId);
-
 }

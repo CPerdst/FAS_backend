@@ -38,7 +38,7 @@ jwt:
 logging:
   level:
     root: INFO  # 根日志级别
-    com.l1Akr.mapper: INFO
+    com.l1Akr.mapper: DEBUG
 
 mybatis:
   configuration:

@@ -23,13 +23,6 @@ public interface FileService {
     boolean uploadSample(MultipartFile file, int userId);
 
     /**
-     * 根据用户id获取样本列表
-     * @param userId
-     * @return
-     */
-    PageInfo<SampleBaseLightDTO> getSampleListByUserId(int userId, int pageNum, int pageSize);
-
-    /**
      * 批量上传样本
      * @param file
      * @return

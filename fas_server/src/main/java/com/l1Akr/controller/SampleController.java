@@ -1,5 +1,7 @@
 package com.l1Akr.controller;
 
+import com.github.pagehelper.Page;
+import com.l1Akr.service.SampleService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,10 +24,10 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/sample")
 public class SampleController {
 
-    private final FileService fileService;
+    private final SampleService sampleService;
 
-    public SampleController(FileService fileService) {
-        this.fileService = fileService;
+    public SampleController(SampleService sampleService) {
+        this.sampleService = sampleService;
     }
 
     /**
@@ -49,7 +51,7 @@ public class SampleController {
         if(pageNum > 100 || pageSize > 100) {
             return new Result<>(Result.ResultEnum.PAGE_NUM_OR_SIZE_ERROR);
         }
-        PageInfo<SampleBaseLightDTO> pageInfo = fileService.getSampleListByUserId(
+        PageInfo<SampleBaseLightDTO> pageInfo = sampleService.getSampleListByUserId(
                 UserThreadLocal.getCurrentUser().getId(),
                 pageNum,
                 pageSize

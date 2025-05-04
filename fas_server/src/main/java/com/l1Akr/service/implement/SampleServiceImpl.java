@@ -1,19 +1,27 @@
 package com.l1Akr.service.implement;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.l1Akr.mapper.SampleMapper;
 import com.l1Akr.pojo.dto.SampleBaseLightDTO;
 import com.l1Akr.mapper.FileMapper;
+import com.l1Akr.pojo.po.SampleBasePO;
 import com.l1Akr.service.SampleService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
+@Service
+@Slf4j
 public class SampleServiceImpl implements SampleService {
 
-    private final FileMapper fileMapper;
+    private final SampleMapper sampleMapper;
 
-    SampleServiceImpl(FileMapper fileMapper) {
-        this.fileMapper = fileMapper;
+    SampleServiceImpl(SampleMapper sampleMapper) {
+        this.sampleMapper = sampleMapper;
     }
 
     /**
@@ -24,17 +32,30 @@ public class SampleServiceImpl implements SampleService {
     @Override
     public PageInfo<SampleBaseLightDTO> getSampleListByUserId(int userId, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<SampleBaseLightDTO> sampleBaseLightList = fileMapper.selectSamplesByUserId(userId).stream().map(sampleBasePO -> {
-                    SampleBaseLightDTO sampleBaseLightDTO = new SampleBaseLightDTO();
-                    sampleBaseLightDTO.setId(sampleBasePO.getId());
-                    sampleBaseLightDTO.setFilename(sampleBasePO.getFilename());
-                    sampleBaseLightDTO.setFileSize(sampleBasePO.getFileSize());
-                    sampleBaseLightDTO.setFileMd5(sampleBasePO.getFileMd5());
-                    sampleBaseLightDTO.setCreateTime(sampleBasePO.getCreateTime());
-                    sampleBaseLightDTO.setDisposeStatus(sampleBasePO.getDisposeStatus());
-                    return sampleBaseLightDTO;
-                }).toList();
-        return new PageInfo<>(sampleBaseLightList);
+        try {
+            Page<SampleBasePO> sampleBasePOPage = sampleMapper.selectSamplesByUserId(userId);
+            List<SampleBaseLightDTO> sampleBaseLightDTOList = sampleBasePOPage.stream().map(this::convertToDTO)
+                    .toList();
+            PageInfo<SampleBaseLightDTO> sampleBaseLightDTOPageInfo = new PageInfo<>(sampleBaseLightDTOList);
+            sampleBaseLightDTOPageInfo.setTotal(sampleBasePOPage.getTotal());
+            sampleBaseLightDTOPageInfo.setPageNum(sampleBasePOPage.getPageNum());
+            sampleBaseLightDTOPageInfo.setPageSize(sampleBasePOPage.getPageSize());
+            sampleBaseLightDTOPageInfo.setPages(sampleBasePOPage.getPages());
+            return sampleBaseLightDTOPageInfo;
+        } finally {
+            PageHelper.clearPage();
+        }
+    }
+
+    private SampleBaseLightDTO convertToDTO(SampleBasePO sampleBasePO) {
+        SampleBaseLightDTO sampleBaseLightDTO = new SampleBaseLightDTO();
+        sampleBaseLightDTO.setId(sampleBasePO.getId());
+        sampleBaseLightDTO.setFilename(sampleBasePO.getFilename());
+        sampleBaseLightDTO.setFileSize(sampleBasePO.getFileSize());
+        sampleBaseLightDTO.setFileMd5(sampleBasePO.getFileMd5());
+        sampleBaseLightDTO.setCreateTime(sampleBasePO.getCreateTime());
+        sampleBaseLightDTO.setDisposeStatus(sampleBasePO.getDisposeStatus());
+        return sampleBaseLightDTO;
     }
 
 }
