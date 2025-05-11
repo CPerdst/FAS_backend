@@ -112,8 +112,6 @@ public class Result<T> {
         // 页码或页数错误
         PAGE_NUM_OR_SIZE_ERROR(10002, "页码或页数错误");
 
-
-
         final int code;
         final String message;
 

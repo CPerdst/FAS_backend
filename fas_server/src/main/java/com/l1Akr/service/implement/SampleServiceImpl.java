@@ -8,6 +8,7 @@ import com.github.pagehelper.PageInfo;
 import com.l1Akr.pojo.dao.mapper.SampleMapper;
 import com.l1Akr.pojo.dto.SampleBaseLightDTO;
 import com.l1Akr.pojo.dto.SampleHistoryDTO;
+import com.l1Akr.pojo.dto.SampleLineHistoryDTO;
 import com.l1Akr.pojo.po.SampleBasePO;
 import com.l1Akr.service.SampleService;
 import lombok.extern.slf4j.Slf4j;
@@ -50,8 +51,16 @@ public class SampleServiceImpl implements SampleService {
      * 根据用户id查询用户历史样本记录
      */
     @Override
-    public SampleHistoryDTO getSampleHistoryByUserId(int userId) {
-        return sampleMapper.selectSampleHistoryByUserId(userId);
+    public SampleHistoryDTO getAllSampleHistoryByUserId(int userId) {
+        return sampleMapper.selectAllSampleHistoryByUserId(userId);
+    }
+
+    /**
+     * 查询用户近期样本提交历史数据
+     */
+    @Override
+    public List<SampleLineHistoryDTO> getLineSampleHistoryByUserId(int userId, int days) {
+        return sampleMapper.selectLineSampleHistoryByUserId(userId, days - 1);
     }
 
     private SampleBaseLightDTO convertToDTO(SampleBasePO sampleBasePO) {

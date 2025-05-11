@@ -2,10 +2,13 @@ package com.l1Akr.service;
 
 import com.github.pagehelper.Page;
 import com.l1Akr.pojo.dto.SampleHistoryDTO;
+import com.l1Akr.pojo.dto.SampleLineHistoryDTO;
 import org.springframework.stereotype.Component;
 
 import com.github.pagehelper.PageInfo;
 import com.l1Akr.pojo.dto.SampleBaseLightDTO;
+
+import java.util.List;
 
 @Component
 public interface SampleService {
@@ -20,6 +23,11 @@ public interface SampleService {
     /**
      * 根据用户id查询用户历史样本记录
      */
-    SampleHistoryDTO getSampleHistoryByUserId(int userId);
+    SampleHistoryDTO getAllSampleHistoryByUserId(int userId);
+
+    /**
+     * 查询用户近期样本提交历史数据
+     */
+    List<SampleLineHistoryDTO> getLineSampleHistoryByUserId(int userId, int days);
 
 }
