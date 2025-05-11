@@ -1,14 +1,13 @@
 package com.l1Akr.service.implement;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.l1Akr.mapper.SampleMapper;
+import com.l1Akr.pojo.dao.mapper.SampleMapper;
 import com.l1Akr.pojo.dto.SampleBaseLightDTO;
-import com.l1Akr.mapper.FileMapper;
+import com.l1Akr.pojo.dto.SampleHistoryDTO;
 import com.l1Akr.pojo.po.SampleBasePO;
 import com.l1Akr.service.SampleService;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +44,14 @@ public class SampleServiceImpl implements SampleService {
         } finally {
             PageHelper.clearPage();
         }
+    }
+
+    /**
+     * 根据用户id查询用户历史样本记录
+     */
+    @Override
+    public SampleHistoryDTO getSampleHistoryByUserId(int userId) {
+        return sampleMapper.selectSampleHistoryByUserId(userId);
     }
 
     private SampleBaseLightDTO convertToDTO(SampleBasePO sampleBasePO) {

@@ -6,7 +6,7 @@ import com.l1Akr.common.util.ShaUtils;
 import com.l1Akr.pojo.dto.UserLoginDTO;
 import com.l1Akr.pojo.dto.UserRegisterDTO;
 import com.l1Akr.pojo.dto.UserUpdateDTO;
-import com.l1Akr.mapper.UserMapper;
+import com.l1Akr.pojo.dao.mapper.UserMapper;
 import com.l1Akr.pojo.po.UserBasePO;
 import com.l1Akr.service.UserService;
 import com.l1Akr.pojo.vo.UserInfoVO;

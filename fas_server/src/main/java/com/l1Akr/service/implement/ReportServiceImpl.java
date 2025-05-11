@@ -3,14 +3,13 @@ package com.l1Akr.service.implement;
 import java.util.List;
 
 import com.github.pagehelper.Page;
-import com.l1Akr.mapper.ReportMapper;
+import com.l1Akr.pojo.dao.mapper.ReportMapper;
 import com.l1Akr.pojo.po.SampleBasePO;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.l1Akr.pojo.dto.SampleReportDTO;
-import com.l1Akr.mapper.SampleMapper;
 import com.l1Akr.service.ReportService;
 
 import lombok.extern.slf4j.Slf4j;

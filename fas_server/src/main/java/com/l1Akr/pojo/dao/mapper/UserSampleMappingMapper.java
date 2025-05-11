@@ -1,4 +1,4 @@
-package com.l1Akr.mapper;
+package com.l1Akr.pojo.dao.mapper;
 
 import com.l1Akr.pojo.po.UserSampleMappingPO;
 import org.apache.ibatis.annotations.Mapper;

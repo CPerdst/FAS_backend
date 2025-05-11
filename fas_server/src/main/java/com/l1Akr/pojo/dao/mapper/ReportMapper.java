@@ -1,4 +1,4 @@
-package com.l1Akr.mapper;
+package com.l1Akr.pojo.dao.mapper;
 
 import com.github.pagehelper.Page;
 import com.l1Akr.pojo.dto.SampleReportDTO;

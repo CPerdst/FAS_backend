@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @Slf4j
-@MapperScan("com.l1Akr.mapper")
+@MapperScan("com.l1Akr.pojo.dao.mapper")
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

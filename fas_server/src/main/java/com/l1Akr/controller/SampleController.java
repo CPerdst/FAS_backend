@@ -1,11 +1,9 @@
 package com.l1Akr.controller;
 
 import com.github.pagehelper.Page;
+import com.l1Akr.pojo.dto.SampleHistoryDTO;
 import com.l1Akr.service.SampleService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.github.pagehelper.PageInfo;
 import com.l1Akr.common.result.Result;
@@ -57,6 +55,16 @@ public class SampleController {
                 pageSize
         );
         return Result.success(pageInfo);
+    }
+
+    @Operation(summary = "查询用户样本历史记录")
+    @GetMapping("/history")
+    public Result<SampleHistoryDTO> getHistory() {
+        log.info("user {} get sample history",UserThreadLocal.getCurrentUser().getId());
+        SampleHistoryDTO sampleHistoryByUserId = sampleService.getSampleHistoryByUserId(
+                UserThreadLocal.getCurrentUser().getId()
+        );
+        return Result.success(sampleHistoryByUserId);
     }
 
 }
