@@ -11,5 +11,6 @@ public class UserUpdateDTO {
     String username;
     String oldPassword;
     String newPassword;
+    String telephone;
     Boolean sex;
 }

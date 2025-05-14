@@ -29,4 +29,24 @@
         JOIN user_role ur ON r.id = ur.role_id 
         WHERE ur.user_id = #{userId}
     </select>
+    
+    <select id="findAllRoles" resultType="com.l1Akr.pojo.po.RolePO">
+        SELECT * FROM role
+    </select>
+    
+    <select id="findByRolePO" resultType="com.l1Akr.pojo.po.RolePO" parameterType="com.l1Akr.pojo.po.RolePO">
+        SELECT * FROM role
+        <where>
+            <if test="name != null">
+                AND name = #{name}
+            </if>
+            <if test="description != null">
+                AND description = #{description}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM role WHERE id = #{id}
+    </delete>
 </mapper>

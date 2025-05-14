@@ -1,7 +1,5 @@
 package com.l1Akr.controller;
 
-import com.l1Akr.common.util.UserThreadLocal;
-import com.l1Akr.pojo.po.UserBasePO;
 import com.l1Akr.service.FileService;
 import com.l1Akr.service.UserService;
 import org.junit.jupiter.api.BeforeEach;

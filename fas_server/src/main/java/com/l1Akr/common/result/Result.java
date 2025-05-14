@@ -116,7 +116,16 @@ public class Result<T> {
         USER_NOT_LOGIN(20008, "用户没有登录"),
 
         // 用户无权限
-        USER_NO_PERMISSION(70001, "用户无权限");
+        USER_NO_PERMISSION(70001, "用户无权限"),
+
+        // 角色已存在
+        ROLE_EXIST(50001, "角色已存在"),
+
+        // 角色不存在
+        ROLE_NOT_EXIST(50002, "角色不存在"),
+
+        // 角色更新失败
+        ROLE_UPDATE_FAILED(50003, "角色更新失败");
 
         final int code;
         final String message;

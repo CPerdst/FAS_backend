@@ -78,5 +78,5 @@ public interface UserService {
 
     public void deleteUser(Integer id);
 
-    public void updateUserInfo(UserUpdateDTO userUpdateDTO);
+    public void updateUserInfo(UserUpdateDTO userUpdateDTO, Integer id);
 }

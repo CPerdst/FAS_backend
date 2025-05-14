@@ -283,7 +283,7 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    public void updateUserInfo(UserUpdateDTO userUpdateDTO) {
+    public void updateUserInfo(UserUpdateDTO userUpdateDTO, Integer id) {
         UserBasePO userBasePO = new UserBasePO();
         BeanUtils.copyProperties(userUpdateDTO, userBasePO);
         userBasePO.initUpdateDate();

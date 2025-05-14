@@ -21,7 +21,6 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import com.l1Akr.common.result.Result;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.l1Akr.common.result.Result.ResultEnum.USER_PASSWORD_ERROR;
@@ -135,10 +134,10 @@ public class UsersController {
     }
     
     @Operation(summary = "更新用户信息")
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     @RequiredPermission(roles = {"ADMIN"})
-    public Result<String> updateUserInfo(@RequestBody UserUpdateDTO userUpdateDTO) {
-        userService.updateUserInfo(userUpdateDTO);
+    public Result<String> updateUserInfo(@RequestBody UserUpdateDTO userUpdateDTO, @PathVariable Integer id) {
+        userService.updateUser(id.toString(), userUpdateDTO);
         return Result.success("用户信息更新成功");
     }
 
