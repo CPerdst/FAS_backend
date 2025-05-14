@@ -50,7 +50,7 @@ public class ReportController {
             return new Result<>(Result.ResultEnum.PAGE_NUM_OR_SIZE_ERROR);
         }
         PageInfo<SampleReportDTO> pageInfo = reportService.getReportListByUserId(
-                UserThreadLocal.getCurrentUser().getId(),
+                UserThreadLocal.getCurrentUser().getUserBase().getId(),
                 pageNum,
                 pageSize
         );

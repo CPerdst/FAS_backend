@@ -3,19 +3,29 @@ package com.l1Akr.common.util;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
+import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Component
 @Data
+@Slf4j
 public class JwtUtils {
 
     /**
@@ -35,6 +45,10 @@ public class JwtUtils {
      */
     @Value("${jwt.refreshTime:300000}")
     private long refreshTime;
+
+    private final ObjectMapper objectMapper = new ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .registerModule(new JavaTimeModule());
 
     private Algorithm getAlgorithm() {
         return Algorithm.HMAC256(secret);
@@ -67,10 +81,30 @@ public class JwtUtils {
                 jwtCreator.withClaim(key, (Boolean) value);
             } else if (value instanceof Date) {
                 jwtCreator.withClaim(key, (Date) value);
+            } else if (value instanceof List) {
+                try {
+                    jwtCreator.withClaim(key, objectMapper.writeValueAsString(value));
+                } catch (JsonProcessingException e) {
+                    log.error("Failed to serialize claim: {}", key, e);
+                }
             }
         });
 
         return jwtCreator.sign(getAlgorithm());
+    }
+
+    /**
+     * 从claims中解析出自定义对象列表
+     */
+    public <T> List<T> parseListClaim(Claim claim, Class<T> elementType) {
+        try {
+            JavaType type = objectMapper.getTypeFactory()
+                    .constructCollectionType(List.class, elementType);
+            return objectMapper.readValue(claim.asString(), type);
+        } catch (IOException e) {
+            log.error("Failed to parse list claim", e);
+            return List.of();
+        }
     }
 
     /**

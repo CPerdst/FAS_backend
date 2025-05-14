@@ -26,9 +26,9 @@ public class FileControllerTest {
     public void setUp() {
         // Mock any necessary setup
         MockitoAnnotations.openMocks(this);
-        UserBasePO user = new UserBasePO();
-        user.setId(1);
-        UserThreadLocal.setCurrentUser(user);
+//        UserBasePO user = new UserBasePO();
+//        user.setId(1);
+//        UserThreadLocal.setCurrentUser(user);
     }
 
 //    @Test

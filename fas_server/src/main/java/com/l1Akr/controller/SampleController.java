@@ -52,7 +52,7 @@ public class SampleController {
             return new Result<>(Result.ResultEnum.PAGE_NUM_OR_SIZE_ERROR);
         }
         PageInfo<SampleBaseLightDTO> pageInfo = sampleService.getSampleListByUserId(
-                UserThreadLocal.getCurrentUser().getId(),
+                UserThreadLocal.getCurrentUser().getUserBase().getId(),
                 pageNum,
                 pageSize
         );
@@ -66,9 +66,9 @@ public class SampleController {
     @Operation(summary = "查询用户样本历史记录")
     @GetMapping("/allHistory")
     public Result<SampleHistoryDTO> getAllHistory() {
-        log.info("user {} get allHistory",UserThreadLocal.getCurrentUser().getId());
+        log.info("user {} get allHistory",UserThreadLocal.getCurrentUser().getUserBase().getId());
         SampleHistoryDTO sampleHistoryByUserId = sampleService.getAllSampleHistoryByUserId(
-                UserThreadLocal.getCurrentUser().getId()
+                UserThreadLocal.getCurrentUser().getUserBase().getId()
         );
         return Result.success(sampleHistoryByUserId);
     }
@@ -81,13 +81,13 @@ public class SampleController {
     public Result<List<SampleLineHistoryDTO>> getLineHistory(
             @RequestParam(defaultValue = "30") @Parameter(name = "days", description = "天数") Integer days
     ) {
-        log.info("user {} get lineHistory {}",UserThreadLocal.getCurrentUser().getId(), days);
+        log.info("user {} get lineHistory {}",UserThreadLocal.getCurrentUser().getUserBase().getId(), days);
         List<Integer> daysList = Arrays.asList(7, 30, 90);
         if(!daysList.contains(days)) {
             return new Result<>(Result.ResultEnum.PARAM_ERROR);
         }
         return Result.success(sampleService.getLineSampleHistoryByUserId(
-                UserThreadLocal.getCurrentUser().getId(),
+                UserThreadLocal.getCurrentUser().getUserBase().getId(),
                 days
         ));
     }

@@ -61,7 +61,7 @@ public class FileController {
     @Operation(summary = "根据用户id获取用户头像地址")
     @GetMapping("/avatar")
     public Result<String> avatarGet() {
-        return Result.success(userService.getAvatarById(UserThreadLocal.getCurrentUser().getId().toString()));
+        return Result.success(userService.getAvatarById(UserThreadLocal.getCurrentUser().getUserBase().getId().toString()));
     }
 
     /**
@@ -77,7 +77,7 @@ public class FileController {
             throw new BusinessException(Result.ResultEnum.UPLOAD_FORMAT_LIMIT_EXCEEDED_50MB);
         }
         // 样本文件没有问题的话，上传样本文件
-        boolean success = fileService.uploadSample(file, UserThreadLocal.getCurrentUser().getId());
+        boolean success = fileService.uploadSample(file, UserThreadLocal.getCurrentUser().getUserBase().getId());
         return (success ? Result.success("上传成功") : Result.error("上传失败"));
     }
 

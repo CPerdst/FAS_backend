@@ -27,6 +27,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
     
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        log.debug("PermissionInterceptor");
         // 1. 从请求头中获取token
         String token = request.getHeader("Authorization");
         if (token == null || !token.startsWith("Bearer ")) {
@@ -46,7 +47,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
                 sendUnauthorized(response, "用户不存在或已被禁用");
                 return false;
             }
-            UserThreadLocal.setCurrentUser(user);
+            // UserThreadLocal.setCurrentUser(user);
 
             // 4. 获取请求URI和权限标识
             String requestURI = request.getRequestURI();

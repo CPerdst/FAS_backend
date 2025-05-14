@@ -44,6 +44,8 @@ public class UsersController {
 
         // 为用户生成token
         Map<String, Object> map = new HashMap<>();
+        map.put("roles", userInfoVO.getRoles());
+        map.put("permissions", userInfoVO.getPermissions());
         String token = jwtUtils.generateToken(userInfoVO.getId().toString(), map);
 
         UserVO userVO = new UserVO();
@@ -67,7 +69,7 @@ public class UsersController {
         if(ObjectUtils.isEmpty(userUpdateDTO)) {
             throw new BusinessException(Result.ResultEnum.PARAM_ERROR);
         }
-        boolean b = userService.updateUser(UserThreadLocal.getCurrentUser().getId().toString(), userUpdateDTO);
+        boolean b = userService.updateUser(UserThreadLocal.getCurrentUser().getUserBase().getId().toString(), userUpdateDTO);
         if(!b) {
             throw new BusinessException(Result.ResultEnum.USER_UPDATE_FAILED);
         }
@@ -78,7 +80,7 @@ public class UsersController {
     @Operation(summary = "用户查询")
     @PostMapping("/info")
     public Result<String> userInfo() {
-        log.info("用户 {} 查询成功", UserThreadLocal.getCurrentUser().getId());
+        log.info("用户 {} 查询成功", UserThreadLocal.getCurrentUser().getUserBase().getId());
         return Result.success(null);
     }
 

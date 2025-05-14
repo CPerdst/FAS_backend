@@ -46,7 +46,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public String uploadAvatar(MultipartFile file) {
         // 生成唯一文件名
-        UserBasePO user = UserThreadLocal.getCurrentUser();
+        UserBasePO user = UserThreadLocal.getCurrentUser().getUserBase();
         String userId = user.getId().toString();
         String fileName = ossUtils.generateUniqueFileNameForAvatar(Objects.requireNonNull(file.getOriginalFilename()), userId);
 

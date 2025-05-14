@@ -1,8 +1,12 @@
 package com.l1Akr.interceptor;
 
+import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.l1Akr.common.util.JwtUtils;
 import com.l1Akr.common.util.UserThreadLocal;
+import com.l1Akr.pojo.dto.InnerUserInfo;
+import com.l1Akr.pojo.po.PermissionPO;
+import com.l1Akr.pojo.po.RolePO;
 import com.l1Akr.pojo.po.UserBasePO;
 import com.l1Akr.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +19,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -42,6 +47,10 @@ public class LoginInterceptor implements HandlerInterceptor {
             DecodedJWT decodedJWT = jwtUtils.validateAndParse(token);
 
             String userId = decodedJWT.getSubject();
+            Map<String, Claim> claims = decodedJWT.getClaims();
+            List<RolePO> roles = jwtUtils.parseListClaim(claims.get("roles"), RolePO.class);
+            List<PermissionPO> permissions = jwtUtils.parseListClaim(claims.get("permissions"), PermissionPO.class);
+
 
             // 查询用户是否存在，防止token有效但是用户被删除
             UserBasePO userById = userService.getUserById(userId);
@@ -51,7 +60,12 @@ public class LoginInterceptor implements HandlerInterceptor {
                 return false;
             }
             // 将用户存入ThreadLocal
-            UserThreadLocal.setCurrentUser(userById);
+
+            InnerUserInfo innerUserInfo = new InnerUserInfo();
+            innerUserInfo.setUserBase(userById);
+            innerUserInfo.setRoles(roles);
+            innerUserInfo.setPermissions(permissions);
+            UserThreadLocal.setCurrentUser(innerUserInfo);
 
             // 判断是否快要过期
             if (jwtUtils.isTokenExpireSoon(token)){

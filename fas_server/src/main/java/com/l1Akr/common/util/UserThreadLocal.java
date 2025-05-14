@@ -1,15 +1,18 @@
 package com.l1Akr.common.util;
 
-import com.l1Akr.pojo.po.UserBasePO;
+import java.util.List;
+
+import com.l1Akr.pojo.dto.InnerUserInfo;
 
 public class UserThreadLocal {
-    private static final ThreadLocal<UserBasePO> user = new ThreadLocal<>();
 
-    public static void setCurrentUser(UserBasePO user) {
+    private static final ThreadLocal<InnerUserInfo> user = new ThreadLocal<>();
+
+    public static void setCurrentUser(InnerUserInfo user) {
         UserThreadLocal.user.set(user);
     }
 
-    public static UserBasePO getCurrentUser() {
+    public static InnerUserInfo getCurrentUser() {
         return user.get();
     }
 
