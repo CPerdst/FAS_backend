@@ -3,14 +3,25 @@ package com.l1Akr.service.implement;
 import com.l1Akr.common.excption.BusinessException;
 import com.l1Akr.common.result.Result;
 import com.l1Akr.common.util.ShaUtils;
+import com.l1Akr.common.util.UserThreadLocal;
 import com.l1Akr.pojo.dto.UserLoginDTO;
 import com.l1Akr.pojo.dto.UserRegisterDTO;
 import com.l1Akr.pojo.dto.UserUpdateDTO;
+import com.l1Akr.pojo.dao.mapper.PermissionMapper;
+import com.l1Akr.pojo.dao.mapper.RoleMapper;
 import com.l1Akr.pojo.dao.mapper.UserMapper;
+import com.l1Akr.pojo.dao.mapper.UserRoleMapper;
+import com.l1Akr.pojo.po.PermissionPO;
+import com.l1Akr.pojo.po.RolePO;
 import com.l1Akr.pojo.po.UserBasePO;
+import com.l1Akr.pojo.po.UserRolePO;
 import com.l1Akr.service.UserService;
 import com.l1Akr.pojo.vo.UserInfoVO;
 import io.micrometer.common.util.StringUtils;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +32,15 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+    
+    @Autowired
+    private RoleMapper roleMapper;
+    
+    @Autowired
+    private PermissionMapper permissionMapper;
+    
+    @Autowired
+    private UserRoleMapper userRoleMapper;
 
     private final ShaUtils shaUtils = new ShaUtils();
 
@@ -31,6 +51,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserInfoVO login(UserLoginDTO userLoginDTO) {
+//        String userId = UserThreadLocal.getCurrentUser().getId().toString();
+//        // 获取用户角色信息
+//        List<RolePO> roles = getRolesByUserId(userId);
+//        // 获取用户权限信息
+//        List<PermissionPO> permissions = getPermissionsByUserId(userId);
         // 创建用户的数据库映射模型
         UserBasePO userBasePO = new UserBasePO();
         BeanUtils.copyProperties(userLoginDTO, userBasePO);
@@ -41,8 +66,13 @@ public class UserServiceImpl implements UserService {
         if(ObjectUtils.isEmpty(byUser)) {
             return null;
         }
+        String userId = byUser.getId().toString();
+        List<RolePO> roles = getRolesByUserId(userId);
+        List<PermissionPO> permissions = getPermissionsByUserId(userId);
         UserInfoVO userInfoVO = new UserInfoVO();
         BeanUtils.copyProperties(byUser, userInfoVO);
+        userInfoVO.setRoles(roles);
+        userInfoVO.setPermissions(permissions);
         return userInfoVO;
     }
 
@@ -145,6 +175,37 @@ public class UserServiceImpl implements UserService {
         userBasePO.setId(Integer.valueOf(userId));
 
         return userMapper.findByUserBasePo(userBasePO);
+    }
+    
+    public List<RolePO> getRolesByUserId(String userId) {
+        return roleMapper.findByUserId(Integer.valueOf(userId));
+    }
+    
+    public List<PermissionPO> getPermissionsByUserId(String userId) {
+        return permissionMapper.findByUserId(Integer.valueOf(userId));
+    }
+    
+    public boolean hasPermission(String userId, String permission) {
+        List<PermissionPO> permissions = getPermissionsByUserId(userId);
+        return permissions.stream().anyMatch(p -> p.getPermissionName().equals(permission));
+    }
+    
+    public boolean hasRole(String userId, String roleName) {
+        List<RolePO> roles = getRolesByUserId(userId);
+        return roles.stream().anyMatch(r -> r.getName().equals(roleName));
+    }
+    
+    public void assignRoleToUser(String userId, Integer roleId) {
+        UserRolePO userRolePO = new UserRolePO();
+        userRolePO.setUserId(Integer.valueOf(userId));
+        userRolePO.setRoleId(roleId);
+        userRolePO.setCreateTime(LocalDateTime.now());
+        userRolePO.setUpdateTime(LocalDateTime.now());
+        userRoleMapper.insert(userRolePO);
+    }
+    
+    public void removeRoleFromUser(String userId, Integer roleId) {
+        userRoleMapper.deleteByUserIdAndRoleId(Integer.valueOf(userId), roleId);
     }
 
     /**

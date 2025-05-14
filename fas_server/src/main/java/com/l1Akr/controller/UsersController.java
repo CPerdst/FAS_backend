@@ -75,4 +75,11 @@ public class UsersController {
         return Result.success("用户更新成功");
     }
 
+    @Operation(summary = "用户查询")
+    @PostMapping("/info")
+    public Result<String> userInfo() {
+        log.info("用户 {} 查询成功", UserThreadLocal.getCurrentUser().getId());
+        return Result.success(null);
+    }
+
 }

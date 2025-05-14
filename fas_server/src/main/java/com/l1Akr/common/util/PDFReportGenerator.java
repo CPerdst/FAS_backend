@@ -27,8 +27,6 @@ public class PDFReportGenerator {
     // 添加中文字体配置
     private static PDType0Font chineseFontBold;
     private static PDType0Font chineseFontRegular;
-    private static boolean fontsInitialized = false;
-
     public static byte[] generateReport(SampleBasePO sample, ScanResult result) throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try (PDDocument document = new PDDocument()) {

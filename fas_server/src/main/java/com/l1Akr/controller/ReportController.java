@@ -36,7 +36,7 @@ public class ReportController {
      */
     @Operation(summary = "根据用户查询报告（分页）")
     @GetMapping("/list")
-    public Result<PageInfo<SampleReportDTO>> reportList(            
+    public Result<PageInfo<SampleReportDTO>> reportList(
         @RequestParam(defaultValue = "1") @Parameter(name = "pageNum", description = "页码") Integer pageNum,
         @RequestParam(defaultValue = "10") @Parameter(name = "pageSize", description = "页长") Integer pageSize
     ) {

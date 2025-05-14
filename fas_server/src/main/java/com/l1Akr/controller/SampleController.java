@@ -1,6 +1,5 @@
 package com.l1Akr.controller;
 
-import com.github.pagehelper.Page;
 import com.l1Akr.pojo.dto.SampleHistoryDTO;
 import com.l1Akr.pojo.dto.SampleLineHistoryDTO;
 import com.l1Akr.service.SampleService;
@@ -10,7 +9,6 @@ import com.github.pagehelper.PageInfo;
 import com.l1Akr.common.result.Result;
 import com.l1Akr.common.util.UserThreadLocal;
 import com.l1Akr.pojo.dto.SampleBaseLightDTO;
-import com.l1Akr.service.FileService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -83,8 +81,8 @@ public class SampleController {
     public Result<List<SampleLineHistoryDTO>> getLineHistory(
             @RequestParam(defaultValue = "30") @Parameter(name = "days", description = "天数") Integer days
     ) {
-        log.info("user {} get lineHistory",UserThreadLocal.getCurrentUser().getId());
-        List<Integer> daysList = Arrays.asList(10, 30, 90);
+        log.info("user {} get lineHistory {}",UserThreadLocal.getCurrentUser().getId(), days);
+        List<Integer> daysList = Arrays.asList(7, 30, 90);
         if(!daysList.contains(days)) {
             return new Result<>(Result.ResultEnum.PARAM_ERROR);
         }

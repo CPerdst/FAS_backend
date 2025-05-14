@@ -110,7 +110,13 @@ public class Result<T> {
         FILE_MD5_ERROR(40004, "文件MD5失败"),
 
         // 页码或页数错误
-        PAGE_NUM_OR_SIZE_ERROR(10002, "页码或页数错误");
+        PAGE_NUM_OR_SIZE_ERROR(10002, "页码或页数错误"),
+
+        // 用户没有登录
+        USER_NOT_LOGIN(20008, "用户没有登录"),
+
+        // 用户无权限
+        USER_NO_PERMISSION(70001, "用户无权限");
 
         final int code;
         final String message;

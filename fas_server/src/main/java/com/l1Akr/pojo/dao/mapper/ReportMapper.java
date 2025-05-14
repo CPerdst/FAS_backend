@@ -1,7 +1,6 @@
 package com.l1Akr.pojo.dao.mapper;
 
 import com.github.pagehelper.Page;
-import com.l1Akr.pojo.dto.SampleReportDTO;
 import com.l1Akr.pojo.po.SampleBasePO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

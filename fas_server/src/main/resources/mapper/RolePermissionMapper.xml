@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.l1Akr.pojo.dao.mapper.RolePermissionMapper">
+    <select id="findById" resultType="com.l1Akr.pojo.po.RolePermissionPO">
+        SELECT * FROM role_permission WHERE id = #{id}
+    </select>
+    
+    <select id="findByRoleId" resultType="com.l1Akr.pojo.po.RolePermissionPO">
+        SELECT * FROM role_permission WHERE role_id = #{roleId}
+    </select>
+    
+    <select id="findByPermissionId" resultType="com.l1Akr.pojo.po.RolePermissionPO">
+        SELECT * FROM role_permission WHERE permission_id = #{permissionId}
+    </select>
+    
+    <insert id="insert" parameterType="com.l1Akr.pojo.po.RolePermissionPO">
+        INSERT INTO role_permission(role_id, permission_id) 
+        VALUES(#{roleId}, #{permissionId})
+    </insert>
+    
+    <update id="update" parameterType="com.l1Akr.pojo.po.RolePermissionPO">
+        UPDATE role_permission 
+        SET role_id = #{roleId}, permission_id = #{permissionId}
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="delete">
+        DELETE FROM role_permission WHERE id = #{id}
+    </delete>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.l1Akr.pojo.dao.mapper.RoleMapper">
+    <select id="findById" resultType="com.l1Akr.pojo.po.RolePO">
+        SELECT * FROM role WHERE id = #{id}
+    </select>
+    
+    <select id="findAll" resultType="com.l1Akr.pojo.po.RolePO">
+        SELECT * FROM role
+    </select>
+    
+    <insert id="insert" parameterType="com.l1Akr.pojo.po.RolePO">
+        INSERT INTO role(name, description) 
+        VALUES(#{name}, #{description})
+    </insert>
+    
+    <update id="update" parameterType="com.l1Akr.pojo.po.RolePO">
+        UPDATE role 
+        SET name = #{name}, description = #{description}
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="delete">
+        DELETE FROM role WHERE id = #{id}
+    </delete>
+    
+    <select id="findByUserId" resultType="com.l1Akr.pojo.po.RolePO">
+        SELECT r.* FROM role r 
+        JOIN user_role ur ON r.id = ur.role_id 
+        WHERE ur.user_id = #{userId}
+    </select>
+</mapper>

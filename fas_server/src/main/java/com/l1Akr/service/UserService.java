@@ -51,4 +51,13 @@ public interface UserService {
      * @return
      */
     String getAvatarById(String userId);
+
+
+    /**
+     * 检查用户是否有指定的权限
+     * @param userId
+     * @param permission
+     * @return
+     */
+    boolean hasPermission(String userId, String permission);
 }

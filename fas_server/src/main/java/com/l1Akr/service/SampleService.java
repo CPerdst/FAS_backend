@@ -1,6 +1,5 @@
 package com.l1Akr.service;
 
-import com.github.pagehelper.Page;
 import com.l1Akr.pojo.dto.SampleHistoryDTO;
 import com.l1Akr.pojo.dto.SampleLineHistoryDTO;
 import org.springframework.stereotype.Component;

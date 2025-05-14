@@ -1,7 +1,5 @@
 package com.l1Akr.service;
 
-import com.github.pagehelper.PageInfo;
-import com.l1Akr.pojo.dto.SampleBaseLightDTO;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
