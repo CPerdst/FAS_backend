@@ -1,9 +1,11 @@
 package com.l1Akr.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.l1Akr.annotation.RequiredPermission;
 import com.l1Akr.common.excption.BusinessException;
 import com.l1Akr.common.util.JwtUtils;
 import com.l1Akr.common.util.UserThreadLocal;
+import com.l1Akr.pojo.dto.UserAddDTO;
 import com.l1Akr.pojo.dto.UserLoginDTO;
 import com.l1Akr.pojo.dto.UserRegisterDTO;
 import com.l1Akr.pojo.dto.UserUpdateDTO;
@@ -11,6 +13,7 @@ import com.l1Akr.service.UserService;
 import com.l1Akr.pojo.vo.UserInfoVO;
 import com.l1Akr.pojo.vo.UserVO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import com.l1Akr.common.result.Result;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.l1Akr.common.result.Result.ResultEnum.USER_PASSWORD_ERROR;
@@ -93,6 +97,49 @@ public class UsersController {
     public Result<Integer> getUserCount() {
         int count = userService.getUserCount();
         return Result.success(count);
+    }
+    
+    @Operation(summary = "查询所有用户信息（分页）")
+    @GetMapping("/list")
+    @RequiredPermission(roles = {"ADMIN"})
+    public Result<PageInfo<UserInfoVO>> getAllUsers(
+            @RequestParam(defaultValue = "1") @Parameter(name = "pageNum", description = "页码") Integer pageNum,
+            @RequestParam(defaultValue = "10") @Parameter(name = "pageSize", description = "页长") Integer pageSize) {
+        log.info("pageNum: {}, pageSize: {}", pageNum, pageSize);
+        // 如果页码小于1，则返回错误信息
+        if(pageNum < 1 || pageSize < 1) {
+            return new Result<>(Result.ResultEnum.PAGE_NUM_OR_SIZE_ERROR);
+        }
+        // 如果页码大于100，则返回错误信息
+        if(pageNum > 100 || pageSize > 100) {
+            return new Result<>(Result.ResultEnum.PAGE_NUM_OR_SIZE_ERROR);
+        }
+        PageInfo<UserInfoVO> pageInfo = userService.getAllUsers(pageNum, pageSize);
+        return Result.success(pageInfo);
+    }
+    
+    @Operation(summary = "添加用户")
+    @PostMapping("/add")
+    @RequiredPermission(roles = {"ADMIN"})
+    public Result<String> addUser(@RequestBody UserAddDTO userAddDTO) {
+        userService.addUser(userAddDTO);
+        return Result.success("用户添加成功");
+    }
+    
+    @Operation(summary = "删除用户")
+    @DeleteMapping("/delete/{id}")
+    @RequiredPermission(roles = {"ADMIN"})
+    public Result<String> deleteUser(@PathVariable Integer id) {
+        userService.deleteUser(id);
+        return Result.success("用户删除成功");
+    }
+    
+    @Operation(summary = "更新用户信息")
+    @PutMapping("/update")
+    @RequiredPermission(roles = {"ADMIN"})
+    public Result<String> updateUserInfo(@RequestBody UserUpdateDTO userUpdateDTO) {
+        userService.updateUserInfo(userUpdateDTO);
+        return Result.success("用户信息更新成功");
     }
 
 }

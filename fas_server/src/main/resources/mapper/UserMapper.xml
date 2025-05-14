@@ -43,4 +43,12 @@
 <select id="getUserCount" resultType="int">
         SELECT COUNT(*) FROM user_base
     </select>
+    
+    <select id="findAllUsers" resultType="com.l1Akr.pojo.po.UserBasePO">
+        SELECT * FROM user_base
+    </select>
+    
+    <delete id="deleteByUserId" parameterType="java.lang.Integer">
+        DELETE FROM user_base WHERE id = #{id}
+    </delete>
 </mapper>

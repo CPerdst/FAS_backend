@@ -1,10 +1,15 @@
 package com.l1Akr.service;
 
+import com.github.pagehelper.PageInfo;
+import com.l1Akr.pojo.dto.UserAddDTO;
 import com.l1Akr.pojo.dto.UserLoginDTO;
 import com.l1Akr.pojo.dto.UserRegisterDTO;
 import com.l1Akr.pojo.dto.UserUpdateDTO;
 import com.l1Akr.pojo.po.UserBasePO;
 import com.l1Akr.pojo.vo.UserInfoVO;
+
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -66,4 +71,12 @@ public interface UserService {
      * @return
      */
     boolean hasPermission(String userId, String permission);
+
+    public PageInfo<UserInfoVO> getAllUsers(int pageNum, int pageSize);
+
+    public void addUser(UserAddDTO userAddDTO);
+
+    public void deleteUser(Integer id);
+
+    public void updateUserInfo(UserUpdateDTO userUpdateDTO);
 }

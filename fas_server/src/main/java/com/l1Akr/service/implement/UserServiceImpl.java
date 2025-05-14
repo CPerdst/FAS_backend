@@ -1,8 +1,12 @@
 package com.l1Akr.service.implement;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.l1Akr.common.excption.BusinessException;
 import com.l1Akr.common.result.Result;
 import com.l1Akr.common.util.ShaUtils;
+import com.l1Akr.pojo.dto.UserAddDTO;
 import com.l1Akr.pojo.dto.UserLoginDTO;
 import com.l1Akr.pojo.dto.UserRegisterDTO;
 import com.l1Akr.pojo.dto.UserUpdateDTO;
@@ -20,6 +24,7 @@ import io.micrometer.common.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -225,6 +230,67 @@ public class UserServiceImpl implements UserService {
     @Override
     public int getUserCount() {
         return userMapper.getUserCount();
+    }
+    
+    @Override
+    public PageInfo<UserInfoVO> getAllUsers(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        try {
+            Page<UserBasePO> userPage = userMapper.findAllUsers();
+            List<UserInfoVO> userInfoVOList = userPage.stream().map(user -> {
+                UserInfoVO userInfoVO = new UserInfoVO();
+                BeanUtils.copyProperties(user, userInfoVO);
+                String userId = user.getId().toString();
+                userInfoVO.setRoles(getRolesByUserId(userId));
+                userInfoVO.setPermissions(getPermissionsByUserId(userId));
+                return userInfoVO;
+            }).collect(Collectors.toList());
+            
+            PageInfo<UserInfoVO> pageInfo = new PageInfo<>(userInfoVOList);
+            pageInfo.setTotal(userPage.getTotal());
+            pageInfo.setPageNum(userPage.getPageNum());
+            pageInfo.setPageSize(userPage.getPageSize());
+            pageInfo.setPages(userPage.getPages());
+            return pageInfo;
+        } finally {
+            PageHelper.clearPage();
+        }
+    }
+    
+    @Override
+    public void addUser(UserAddDTO userAddDTO) {
+        UserBasePO userBasePO = new UserBasePO();
+        BeanUtils.copyProperties(userAddDTO, userBasePO);
+        userBasePO.setPassword(shaUtils.SHA256(userAddDTO.getPassword()));
+        userBasePO.initTime();
+        
+        UserBasePO tempUser = new UserBasePO();
+        tempUser.setUsername(userBasePO.getUsername());
+        if(!ObjectUtils.isEmpty(userMapper.findByUserBasePo(tempUser))) {
+            throw new BusinessException(Result.ResultEnum.USER_EXIST);
+        }
+        
+        userMapper.insertByUserBasePo(userBasePO);
+        // 为用户添加默认USER角色
+        assignRoleToUser(userBasePO.getId().toString(), USER_ROLE_ID);
+    }
+    
+    @Override
+    public void deleteUser(Integer id) {
+        if(userMapper.deleteByUserId(id) <= 0) {
+            throw new BusinessException(Result.ResultEnum.USER_NOT_EXIST);
+        }
+    }
+    
+    @Override
+    public void updateUserInfo(UserUpdateDTO userUpdateDTO) {
+        UserBasePO userBasePO = new UserBasePO();
+        BeanUtils.copyProperties(userUpdateDTO, userBasePO);
+        userBasePO.initUpdateDate();
+        
+        if(userMapper.updateByUserBasePo(userBasePO) <= 0) {
+            throw new BusinessException(Result.ResultEnum.USER_UPDATE_FAILED);
+        }
     }
 
 }
