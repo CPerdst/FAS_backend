@@ -63,6 +63,16 @@ public class SampleServiceImpl implements SampleService {
         return sampleMapper.selectLineSampleHistoryByUserId(userId, days - 1);
     }
 
+    @Override
+    public int getSampleTotalCount() {
+        return sampleMapper.selectSampleTotalCount();
+    }
+
+    @Override
+    public int getReportTotalCount() {
+        return sampleMapper.selectReportTotalCount();
+    }
+
     private SampleBaseLightDTO convertToDTO(SampleBasePO sampleBasePO) {
         SampleBaseLightDTO sampleBaseLightDTO = new SampleBaseLightDTO();
         sampleBaseLightDTO.setId(sampleBasePO.getId());

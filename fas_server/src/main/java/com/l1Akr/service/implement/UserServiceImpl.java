@@ -3,7 +3,6 @@ package com.l1Akr.service.implement;
 import com.l1Akr.common.excption.BusinessException;
 import com.l1Akr.common.result.Result;
 import com.l1Akr.common.util.ShaUtils;
-import com.l1Akr.common.util.UserThreadLocal;
 import com.l1Akr.pojo.dto.UserLoginDTO;
 import com.l1Akr.pojo.dto.UserRegisterDTO;
 import com.l1Akr.pojo.dto.UserUpdateDTO;
@@ -43,6 +42,8 @@ public class UserServiceImpl implements UserService {
     private UserRoleMapper userRoleMapper;
 
     private final ShaUtils shaUtils = new ShaUtils();
+
+    private final Integer USER_ROLE_ID = 2;
 
     /**
      * 用户登录
@@ -105,6 +106,8 @@ public class UserServiceImpl implements UserService {
 
         // 如果不存在，再继续插入
         userMapper.insertByUserBasePo(userBasePO);
+        // 同时为该用户添加默认USER角色
+        assignRoleToUser(userBasePO.getId().toString(), USER_ROLE_ID);
     }
 
     /**
@@ -217,6 +220,11 @@ public class UserServiceImpl implements UserService {
         UserBasePO userBasePO = new UserBasePO();
         userBasePO.setId(Integer.valueOf(userId));
         return userMapper.findByUserBasePo(userBasePO).getAvatar();
+    }
+    
+    @Override
+    public int getUserCount() {
+        return userMapper.getUserCount();
     }
 
 }

@@ -1,7 +1,5 @@
 package com.l1Akr.common.util;
 
-import java.util.List;
-
 import com.l1Akr.pojo.dto.InnerUserInfo;
 
 public class UserThreadLocal {

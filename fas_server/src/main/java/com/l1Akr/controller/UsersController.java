@@ -1,5 +1,6 @@
 package com.l1Akr.controller;
 
+import com.l1Akr.annotation.RequiredPermission;
 import com.l1Akr.common.excption.BusinessException;
 import com.l1Akr.common.util.JwtUtils;
 import com.l1Akr.common.util.UserThreadLocal;
@@ -65,6 +66,7 @@ public class UsersController {
 
     @Operation(summary = "用户更新")
     @PostMapping("/update")
+    @RequiredPermission(permissions = "user:update", roles = {"ADMIN", "USER"})
     public Result<String> userUpdate(@RequestBody UserUpdateDTO userUpdateDTO) {
         if(ObjectUtils.isEmpty(userUpdateDTO)) {
             throw new BusinessException(Result.ResultEnum.PARAM_ERROR);
@@ -79,9 +81,18 @@ public class UsersController {
 
     @Operation(summary = "用户查询")
     @PostMapping("/info")
+    @RequiredPermission(permissions = "user:select")
     public Result<String> userInfo() {
         log.info("用户 {} 查询成功", UserThreadLocal.getCurrentUser().getUserBase().getId());
         return Result.success(null);
+    }
+    
+    @Operation(summary = "获取用户总数")
+    @GetMapping("/count")
+    @RequiredPermission(roles = {"ADMIN"})
+    public Result<Integer> getUserCount() {
+        int count = userService.getUserCount();
+        return Result.success(count);
     }
 
 }

@@ -10,8 +10,8 @@
     </select>
     
     <insert id="insert" parameterType="com.l1Akr.pojo.po.UserRolePO">
-        INSERT INTO user_role(user_id, role_id) 
-        VALUES(#{userId}, #{roleId})
+        INSERT INTO user_role(user_id, role_id, create_time, update_time)
+        VALUES(#{userId}, #{roleId}, #{createTime}, #{updateTime})
     </insert>
     
     <update id="update" parameterType="com.l1Akr.pojo.po.UserRolePO">

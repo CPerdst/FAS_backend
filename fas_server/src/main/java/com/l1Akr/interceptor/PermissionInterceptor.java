@@ -2,7 +2,6 @@ package com.l1Akr.interceptor;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.l1Akr.common.util.JwtUtils;
-import com.l1Akr.common.util.UserThreadLocal;
 import com.l1Akr.pojo.po.UserBasePO;
 import com.l1Akr.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;

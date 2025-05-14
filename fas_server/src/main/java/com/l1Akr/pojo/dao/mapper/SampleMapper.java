@@ -53,5 +53,17 @@ public interface SampleMapper {
             "GROUP BY ds.date\n" +
             "ORDER BY ds.date;")
     List<SampleLineHistoryDTO> selectLineSampleHistoryByUserId(int userId, int days);
+    
+    /**
+     * 获取样本总数
+     * @return 样本总数
+     */
+    int selectSampleTotalCount();
+    
+    /**
+     * 获取报告总数
+     * @return 报告总数
+     */
+    int selectReportTotalCount();
 
 }

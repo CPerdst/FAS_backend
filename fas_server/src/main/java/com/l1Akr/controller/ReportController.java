@@ -1,5 +1,6 @@
 package com.l1Akr.controller;
 
+import com.l1Akr.annotation.RequiredPermission;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,11 +32,13 @@ public class ReportController {
 
     /**
      * 根据用户id获取样本报告列表
-     * @param userId
+     * @param pageNum
+     * @param pageSize
      * @return
      */
     @Operation(summary = "根据用户查询报告（分页）")
     @GetMapping("/list")
+    @RequiredPermission(permissions = "report:select", roles = {"ADMIN", "USER"})
     public Result<PageInfo<SampleReportDTO>> reportList(
         @RequestParam(defaultValue = "1") @Parameter(name = "pageNum", description = "页码") Integer pageNum,
         @RequestParam(defaultValue = "10") @Parameter(name = "pageSize", description = "页长") Integer pageSize

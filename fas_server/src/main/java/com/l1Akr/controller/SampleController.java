@@ -1,5 +1,6 @@
 package com.l1Akr.controller;
 
+import com.l1Akr.annotation.RequiredPermission;
 import com.l1Akr.pojo.dto.SampleHistoryDTO;
 import com.l1Akr.pojo.dto.SampleLineHistoryDTO;
 import com.l1Akr.service.SampleService;
@@ -39,6 +40,7 @@ public class SampleController {
      */
     @Operation(summary = "根据用户查询样本（分页）")
     @GetMapping("/list")
+    @RequiredPermission(permissions = "sample:select", roles = {"ADMIN", "USER"})
     public Result<PageInfo<SampleBaseLightDTO>> sampleList(
             @RequestParam(defaultValue = "1") @Parameter(name = "pageNum", description = "页码") Integer pageNum,
             @RequestParam(defaultValue = "10") @Parameter(name = "pageSize", description = "页长") Integer pageSize) {
@@ -65,6 +67,7 @@ public class SampleController {
      */
     @Operation(summary = "查询用户样本历史记录")
     @GetMapping("/allHistory")
+    @RequiredPermission(permissions = "sample:select", roles = {"ADMIN", "USER"})
     public Result<SampleHistoryDTO> getAllHistory() {
         log.info("user {} get allHistory",UserThreadLocal.getCurrentUser().getUserBase().getId());
         SampleHistoryDTO sampleHistoryByUserId = sampleService.getAllSampleHistoryByUserId(
@@ -78,6 +81,7 @@ public class SampleController {
      */
     @Operation(summary = "查询用户近期N天内样本提交历史数据")
     @GetMapping("/lineHistory")
+    @RequiredPermission(permissions = "sample:select", roles = {"ADMIN", "USER"})
     public Result<List<SampleLineHistoryDTO>> getLineHistory(
             @RequestParam(defaultValue = "30") @Parameter(name = "days", description = "天数") Integer days
     ) {
@@ -90,6 +94,20 @@ public class SampleController {
                 UserThreadLocal.getCurrentUser().getUserBase().getId(),
                 days
         ));
+    }
+    
+    @Operation(summary = "获取样本总数")
+    @GetMapping("/totalCount")
+    @RequiredPermission(roles = {"ADMIN"})
+    public Result<Integer> getSampleTotalCount() {
+        return Result.success(sampleService.getSampleTotalCount());
+    }
+    
+    @Operation(summary = "获取报告总数")
+    @GetMapping("/reportCount")
+    @RequiredPermission(roles = {"ADMIN"})
+    public Result<Integer> getReportTotalCount() {
+        return Result.success(sampleService.getReportTotalCount());
     }
 
 }

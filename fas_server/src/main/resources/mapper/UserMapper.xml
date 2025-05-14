@@ -40,4 +40,7 @@
         </set>
         WHERE id = #{id}
     </update>
+<select id="getUserCount" resultType="int">
+        SELECT COUNT(*) FROM user_base
+    </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.l1Akr.controller;
 
+import com.l1Akr.annotation.RequiredPermission;
 import com.l1Akr.common.excption.BusinessException;
 import com.l1Akr.common.result.Result;
 import com.l1Akr.common.util.UserThreadLocal;
@@ -44,6 +45,7 @@ public class FileController {
      */
     @Operation(summary = "用户上传头像")
     @PostMapping("/avatar/upload")
+    @RequiredPermission(permissions = {"user:update"}, roles = {"ADMIN", "USER"})
     public Result<String> uploadAvatar(@RequestParam("file") @Parameter(name = "file", description = "头像文件") MultipartFile file) {
         // 校验文件
         if(isUnValidFile(file, avatarEnabledTypeArray, MAX_AVATAR_UPLOAD_SIZE)) {
@@ -60,6 +62,7 @@ public class FileController {
      */
     @Operation(summary = "根据用户id获取用户头像地址")
     @GetMapping("/avatar")
+    @RequiredPermission(permissions = "user:select", roles = {"ADMIN", "USER"})
     public Result<String> avatarGet() {
         return Result.success(userService.getAvatarById(UserThreadLocal.getCurrentUser().getUserBase().getId().toString()));
     }
@@ -71,6 +74,7 @@ public class FileController {
      */
     @Operation(summary = "用户上传样本")
     @PostMapping("/sample/upload")
+    @RequiredPermission(permissions = "sample:upload", roles = {"ADMIN", "USER"})
     public Result<String> sampleUpload(@RequestParam("file") MultipartFile file) {
         // 如果上传的文件为空，则返回错误信息
         if(isUnValidFile(file, null, MAX_FILE_UPLOAD_SIZE)) {

@@ -51,6 +51,12 @@ public interface UserService {
      * @return
      */
     String getAvatarById(String userId);
+    
+    /**
+     * 获取用户总数
+     * @return 用户总数
+     */
+    int getUserCount();
 
 
     /**
