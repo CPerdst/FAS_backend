@@ -47,6 +47,36 @@
         </set>
         WHERE id = #{id} AND deletable = true
     </update>
+
+    <update id="updateByUserBasePoForAdmin">
+        UPDATE user_base
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar},
+            </if>
+            <if test="telephone != null">
+                telephone = #{telephone},
+            </if>
+            <if test="deletable != null">
+                deletable = #{deletable},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
 <select id="getUserCount" resultType="int">
         SELECT COUNT(*) FROM user_base
     </select>

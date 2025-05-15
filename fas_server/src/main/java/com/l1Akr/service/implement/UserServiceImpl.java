@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.l1Akr.common.excption.BusinessException;
 import com.l1Akr.common.result.Result;
 import com.l1Akr.common.util.ShaUtils;
+import com.l1Akr.common.util.UserThreadLocal;
 import com.l1Akr.pojo.dto.UserAddDTO;
 import com.l1Akr.pojo.dto.UserLoginDTO;
 import com.l1Akr.pojo.dto.UserRegisterDTO;
@@ -170,6 +171,10 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public int updateUserByUserBasePo(UserBasePO userBasePO) {
+        List<RolePO> roles = UserThreadLocal.getCurrentUser().getRoles();
+        if(roles.stream().anyMatch(r -> r.getName().equalsIgnoreCase("ADMIN"))) {
+            return userMapper.updateByUserBasePoForAdmin(userBasePO);
+        }
         return userMapper.updateByUserBasePo(userBasePO);
     }
 

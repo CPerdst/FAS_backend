@@ -14,6 +14,8 @@ public interface UserMapper {
     UserBasePO findByUserBasePo(UserBasePO userBasePO);
 
     int updateByUserBasePo(UserBasePO userBasePO);
+
+    int updateByUserBasePoForAdmin(UserBasePO userBasePO);
     
     /**
      * 获取用户总数
