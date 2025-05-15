@@ -2,6 +2,7 @@ package com.l1Akr.service;
 
 import com.l1Akr.pojo.dto.SampleHistoryDTO;
 import com.l1Akr.pojo.dto.SampleLineHistoryDTO;
+import com.l1Akr.pojo.dto.SampleUserDTO;
 import org.springframework.stereotype.Component;
 
 import com.github.pagehelper.PageInfo;
@@ -40,5 +41,25 @@ public interface SampleService {
      * @return 报告总数
      */
     int getReportTotalCount();
-
+    
+    /**
+     * 分页查询所有样本列表，包含上传用户信息
+     * @param pageNum 页码
+     * @param pageSize 每页大小
+     * @return 样本用户分页信息
+     */
+    PageInfo<SampleUserDTO> getAllSamples(int pageNum, int pageSize);
+    
+    /**
+     * 删除样本
+     * @param id 样本ID
+     */
+    void deleteSample(Integer id);
+    
+    /**
+     * 获取样本详情
+     * @param id 样本ID
+     * @return 样本详情
+     */
+    SampleUserDTO getSampleDetail(Integer id);
 }

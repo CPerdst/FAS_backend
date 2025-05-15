@@ -3,6 +3,7 @@ package com.l1Akr.controller;
 import com.l1Akr.annotation.RequiredPermission;
 import com.l1Akr.pojo.dto.SampleHistoryDTO;
 import com.l1Akr.pojo.dto.SampleLineHistoryDTO;
+import com.l1Akr.pojo.dto.SampleUserDTO;
 import com.l1Akr.service.SampleService;
 import org.springframework.web.bind.annotation.*;
 
@@ -110,4 +111,66 @@ public class SampleController {
         return Result.success(sampleService.getReportTotalCount());
     }
 
+    /**
+     * 管理员查询所有样本列表（分页）
+     * @param pageNum 页码
+     * @param pageSize 每页大小
+     * @return 样本列表，包含上传用户基本信息
+     */
+    @Operation(summary = "管理员查询所有样本列表（分页）")
+    @GetMapping("/admin/list")
+    @RequiredPermission(permissions = "sample:manage", roles = {"ADMIN"})
+    public Result<PageInfo<SampleUserDTO>> getAllSamples(
+            @RequestParam(defaultValue = "1") @Parameter(name = "pageNum", description = "页码") Integer pageNum,
+            @RequestParam(defaultValue = "10") @Parameter(name = "pageSize", description = "页长") Integer pageSize) {
+        log.info("管理员查询所有样本列表 pageNum: {}, pageSize: {}", pageNum, pageSize);
+        
+        // 参数检查
+        if(pageNum < 1 || pageSize < 1 || pageNum > 100 || pageSize > 100) {
+            return new Result<>(Result.ResultEnum.PAGE_NUM_OR_SIZE_ERROR);
+        }
+        
+        PageInfo<SampleUserDTO> pageInfo = sampleService.getAllSamples(pageNum, pageSize);
+        return Result.success(pageInfo);
+    }
+    
+    /**
+     * 删除样本
+     * @param id 样本ID
+     * @return 操作结果
+     */
+    @Operation(summary = "删除样本")
+    @DeleteMapping("/delete/{id}")
+    @RequiredPermission(permissions = "sample:delete", roles = {"ADMIN"})
+    public Result<String> deleteSample(
+            @PathVariable @Parameter(name = "id", description = "样本ID") Integer id) {
+        log.info("删除样本 id: {}", id);
+        
+        if (id == null || id <= 0) {
+            return new Result<>(Result.ResultEnum.PARAM_ERROR);
+        }
+        
+        sampleService.deleteSample(id);
+        return Result.success("删除成功");
+    }
+    
+    /**
+     * 获取样本详情
+     * @param id 样本ID
+     * @return 样本详情，包含上传用户基本信息
+     */
+    @Operation(summary = "获取样本详情")
+    @GetMapping("/{id}")
+    @RequiredPermission(permissions = "sample:select", roles = {"ADMIN"})
+    public Result<SampleUserDTO> getSampleDetail(
+            @PathVariable @Parameter(name = "id", description = "样本ID") Integer id) {
+        log.info("获取样本详情 id: {}", id);
+        
+        if (id == null || id <= 0) {
+            return new Result<>(Result.ResultEnum.PARAM_ERROR);
+        }
+        
+        SampleUserDTO sample = sampleService.getSampleDetail(id);
+        return Result.success(sample);
+    }
 }

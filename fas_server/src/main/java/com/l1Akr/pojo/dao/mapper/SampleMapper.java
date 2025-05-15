@@ -5,7 +5,9 @@ import java.util.List;
 import com.github.pagehelper.Page;
 import com.l1Akr.pojo.dto.SampleHistoryDTO;
 import com.l1Akr.pojo.dto.SampleLineHistoryDTO;
+import com.l1Akr.pojo.dto.SampleUserDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.l1Akr.pojo.po.SampleBasePO;
@@ -65,5 +67,31 @@ public interface SampleMapper {
      * @return 报告总数
      */
     int selectReportTotalCount();
-
+    
+    /**
+     * 分页查询所有样本列表，包含上传用户信息
+     * @return 样本用户分页列表
+     */
+    Page<SampleUserDTO> selectAllSamplesWithUserInfo();
+    
+    /**
+     * 通过样本ID删除样本
+     * @param id 样本ID
+     * @return 影响的行数
+     */
+    int deleteSampleById(@Param("id") Integer id);
+    
+    /**
+     * 通过样本ID获取样本信息
+     * @param id 样本ID
+     * @return 样本信息
+     */
+    SampleBasePO selectSampleById(@Param("id") Integer id);
+    
+    /**
+     * 通过样本ID获取样本详情信息，包含上传用户基本信息
+     * @param id 样本ID
+     * @return 样本详情和用户信息
+     */
+    List<SampleUserDTO> selectSampleDetailById(@Param("id") Integer id);
 }

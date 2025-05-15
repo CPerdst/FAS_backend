@@ -21,4 +21,12 @@
             limit #{limit}
         </if>
     </select>
+    
+    <select id="getUserIdBySampleId" resultType="java.lang.Integer">
+        SELECT user_id FROM user_sample_mapping WHERE sample_id = #{sampleId} LIMIT 1
+    </select>
+    
+    <delete id="deleteBySampleId">
+        DELETE FROM user_sample_mapping WHERE sample_id = #{sampleId}
+    </delete>
 </mapper>
