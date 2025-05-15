@@ -13,6 +13,7 @@ public class RolePO {
     public Integer id;
     public String name;
     public String description;
+    public Boolean deletable;
     public LocalDateTime createTime;
     public LocalDateTime updateTime;
 }

@@ -14,6 +14,7 @@ public interface RoleMapper {
     RolePO findById(@Param("id") Integer id);
     List<RolePO> findAll();
     int insert(RolePO rolePO);
+    int insertByRolePO(RolePO rolePO);
     int update(RolePO rolePO);
     int delete(@Param("id") Integer id);
     List<RolePO> findByUserId(@Param("userId") Integer userId);

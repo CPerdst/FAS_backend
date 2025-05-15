@@ -277,15 +277,36 @@ public class UserServiceImpl implements UserService {
     
     @Override
     public void deleteUser(Integer id) {
-        if(userMapper.deleteByUserId(id) <= 0) {
+        // 先检查用户是否存在且可删除
+        UserBasePO user = getUserById(id.toString());
+        if (user == null) {
             throw new BusinessException(Result.ResultEnum.USER_NOT_EXIST);
+        }
+        
+        if (!user.getDeletable()) {
+            throw new BusinessException(Result.ResultEnum.USER_NOT_DELETABLE);
+        }
+        
+        if(userMapper.deleteByUserId(id) <= 0) {
+            throw new BusinessException(Result.ResultEnum.USER_DELETE_FAILED);
         }
     }
     
     @Override
     public void updateUserInfo(UserUpdateDTO userUpdateDTO, Integer id) {
+        // 先检查用户是否存在且可修改
+        UserBasePO existingUser = getUserById(id.toString());
+        if (existingUser == null) {
+            throw new BusinessException(Result.ResultEnum.USER_NOT_EXIST);
+        }
+        
+        if (!existingUser.getDeletable()) {
+            throw new BusinessException(Result.ResultEnum.USER_NOT_UPDATABLE);
+        }
+        
         UserBasePO userBasePO = new UserBasePO();
         BeanUtils.copyProperties(userUpdateDTO, userBasePO);
+        userBasePO.setId(id);
         userBasePO.initUpdateDate();
         
         if(userMapper.updateByUserBasePo(userBasePO) <= 0) {

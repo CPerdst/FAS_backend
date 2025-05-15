@@ -8,6 +8,7 @@ public class PermissionPO {
     public Integer id;
     public String permissionName;
     public String permissionDesc;
+    public Boolean deletable;
     public LocalDateTime createTime;
     public LocalDateTime updateTime;
 }

@@ -8,4 +8,5 @@ public class UserAddDTO {
     private String password;
     private Boolean sex;
     private String telephone;
+    private Boolean deletable = true;
 }

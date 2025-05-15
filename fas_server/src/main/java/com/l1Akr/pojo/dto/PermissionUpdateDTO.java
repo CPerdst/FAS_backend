@@ -7,11 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoleAddDTO {
+public class PermissionUpdateDTO {
 
-    private String name;
+    private Integer id;
     
-    private String description;
+    private String permissionName;
+
+    private String permissionDesc;
     
     private Boolean deletable = true;
-}
+} 

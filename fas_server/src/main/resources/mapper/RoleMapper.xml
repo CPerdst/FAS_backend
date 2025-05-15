@@ -10,18 +10,61 @@
     </select>
     
     <insert id="insert" parameterType="com.l1Akr.pojo.po.RolePO">
-        INSERT INTO role(name, description) 
-        VALUES(#{name}, #{description})
+        INSERT INTO role(name, description, deletable) 
+        VALUES(#{name}, #{description}, #{deletable})
+    </insert>
+
+    <insert id="insertByRolePO" parameterType="com.l1Akr.pojo.po.RolePO">
+        INSERT INTO role(name, description, deletable, create_time, update_time)
+        VALUES(#{name}, #{description}, #{deletable}, #{createTime}, #{updateTime})
     </insert>
     
     <update id="update" parameterType="com.l1Akr.pojo.po.RolePO">
         UPDATE role 
-        SET name = #{name}, description = #{description}
-        WHERE id = #{id}
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="deletable != null">
+                deletable = #{deletable},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </set>
+        WHERE id = #{id} AND deletable = true
+    </update>
+
+    <update id="updateByRolePO" parameterType="com.l1Akr.pojo.po.RolePO">
+        UPDATE role 
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="deletable != null">
+                deletable = #{deletable},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </set>
+        WHERE id = #{id} AND deletable = true
     </update>
     
     <delete id="delete">
-        DELETE FROM role WHERE id = #{id}
+        DELETE FROM role WHERE id = #{id} AND deletable = true
     </delete>
     
     <select id="findByUserId" resultType="com.l1Akr.pojo.po.RolePO">
@@ -43,10 +86,13 @@
             <if test="description != null">
                 AND description = #{description}
             </if>
+            <if test="deletable != null">
+                AND deletable = #{deletable}
+            </if>
         </where>
     </select>
 
     <delete id="deleteById" parameterType="java.lang.Integer">
-        DELETE FROM role WHERE id = #{id}
+        DELETE FROM role WHERE id = #{id} AND deletable = true
     </delete>
 </mapper>

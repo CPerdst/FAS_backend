@@ -11,21 +11,34 @@
     </select>
 
     <insert id="insert" parameterType="com.l1Akr.pojo.po.PermissionPO" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO permission (name, description, url, create_time, update_time)
-        VALUES (#{name}, #{description}, #{url}, #{createTime}, #{updateTime})
+        INSERT INTO permission (permission_name, permission_desc, deletable, create_time, update_time)
+        VALUES (#{permissionName}, #{permissionDesc}, #{deletable}, #{createTime}, #{updateTime})
     </insert>
 
     <update id="update" parameterType="com.l1Akr.pojo.po.PermissionPO">
         UPDATE permission
-        SET name = #{name},
-            description = #{description},
-            url = #{url},
-            update_time = #{updateTime}
-        WHERE id = #{id}
+        <set>
+            <if test="permissionName != null">
+                permission_name = #{permissionName},
+            </if>
+            <if test="permissionDesc != null">
+                permission_desc = #{permissionDesc},
+            </if>
+            <if test="deletable != null">
+                deletable = #{deletable},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </set>
+        WHERE id = #{id} AND deletable = true
     </update>
 
     <delete id="delete">
-        DELETE FROM permission WHERE id = #{id}
+        DELETE FROM permission WHERE id = #{id} AND deletable = true
     </delete>
 
     <select id="findByUserId" resultType="com.l1Akr.pojo.po.PermissionPO">
@@ -33,5 +46,24 @@
         JOIN role_permission rp ON p.id = rp.permission_id
         JOIN user_role ur ON rp.role_id = ur.role_id
         WHERE ur.user_id = #{userId}
+    </select>
+    
+    <select id="findAllPermissions" resultType="com.l1Akr.pojo.po.PermissionPO">
+        SELECT * FROM permission
+    </select>
+    
+    <select id="findByPermissionPO" resultType="com.l1Akr.pojo.po.PermissionPO" parameterType="com.l1Akr.pojo.po.PermissionPO">
+        SELECT * FROM permission
+        <where>
+            <if test="permissionName != null">
+                AND permission_name = #{permissionName}
+            </if>
+            <if test="permissionDesc != null">
+                AND permission_desc = #{permissionDesc}
+            </if>
+            <if test="deletable != null">
+                AND deletable = #{deletable}
+            </if>
+        </where>
     </select>
 </mapper>

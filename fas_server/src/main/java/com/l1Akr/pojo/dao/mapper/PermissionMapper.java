@@ -1,5 +1,6 @@
 package com.l1Akr.pojo.dao.mapper;
 
+import com.github.pagehelper.Page;
 import com.l1Akr.pojo.po.PermissionPO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,4 +17,8 @@ public interface PermissionMapper {
     int update(PermissionPO permissionPO);
     int delete(@Param("id") Integer id);
     List<PermissionPO> findByUserId(@Param("userId") Integer userId);
+    
+    Page<PermissionPO> findAllPermissions();
+    
+    PermissionPO findByPermissionPO(PermissionPO permissionPO);
 }

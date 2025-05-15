@@ -19,6 +19,7 @@ public class UserInfoVO {
     public String telephone;
     public Date createTime;
     public Date updateTime;
+    public Boolean deletable;
     public List<RolePO> roles;
     public List<PermissionPO> permissions;
 }

@@ -13,4 +13,5 @@ public class UserUpdateDTO {
     String newPassword;
     String telephone;
     Boolean sex;
+    Boolean deletable = true;
 }

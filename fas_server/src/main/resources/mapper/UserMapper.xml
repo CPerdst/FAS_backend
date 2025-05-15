@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.l1Akr.pojo.dao.mapper.UserMapper">
     <insert id="insertByUserBasePo" useGeneratedKeys="true" keyProperty="id" parameterType="com.l1Akr.pojo.po.UserBasePO">
-        INSERT INTO user_base (id, username, password, sex, avatar, telephone, create_time, update_time)
-        VALUES (#{id}, #{username}, #{password}, #{sex}, #{avatar}, #{telephone}, #{createTime}, #{updateTime})
+        INSERT INTO user_base (id, username, password, sex, avatar, telephone, deletable, create_time, update_time)
+        VALUES (#{id}, #{username}, #{password}, #{sex}, #{avatar}, #{telephone}, #{deletable}, #{createTime}, #{updateTime})
     </insert>
 
     <select id="findByUserBasePo" resultType="com.l1Akr.pojo.po.UserBasePO">
@@ -15,6 +15,7 @@
             <if test="password != null">and password = #{password}</if>
             <if test="sex != null">and sex = #{sex}</if>
             <if test="telephone != null">and telephone = #{telephone}</if>
+            <if test="deletable != null">and deletable = #{deletable}</if>
             <if test="createTime != null">and create_time =#{createTime}</if>
         </where>
     </select>
@@ -37,8 +38,14 @@
             <if test="telephone != null">
                 telephone = #{telephone},
             </if>
+            <if test="deletable != null">
+                deletable = #{deletable},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
         </set>
-        WHERE id = #{id}
+        WHERE id = #{id} AND deletable = true
     </update>
 <select id="getUserCount" resultType="int">
         SELECT COUNT(*) FROM user_base
@@ -49,6 +56,6 @@
     </select>
     
     <delete id="deleteByUserId" parameterType="java.lang.Integer">
-        DELETE FROM user_base WHERE id = #{id}
+        DELETE FROM user_base WHERE id = #{id} AND deletable = true
     </delete>
 </mapper>

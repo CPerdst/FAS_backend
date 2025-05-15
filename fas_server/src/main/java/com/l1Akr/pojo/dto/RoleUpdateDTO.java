@@ -8,11 +8,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoleUpdateDTO {
-    
+
     private Integer id;
     
-    private String roleName;
+    private String name;
 
     private String description;
-
+    
+    private Boolean deletable = true;
 }
