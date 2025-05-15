@@ -8,6 +8,7 @@ import com.l1Akr.common.result.Result;
 import com.l1Akr.common.util.ShaUtils;
 import com.l1Akr.common.util.UserThreadLocal;
 import com.l1Akr.pojo.dto.UserAddDTO;
+import com.l1Akr.pojo.dto.UserLineHistoryDTO;
 import com.l1Akr.pojo.dto.UserLoginDTO;
 import com.l1Akr.pojo.dto.UserRegisterDTO;
 import com.l1Akr.pojo.dto.UserUpdateDTO;
@@ -317,6 +318,11 @@ public class UserServiceImpl implements UserService {
         if(userMapper.updateByUserBasePo(userBasePO) <= 0) {
             throw new BusinessException(Result.ResultEnum.USER_UPDATE_FAILED);
         }
+    }
+    
+    @Override
+    public List<UserLineHistoryDTO> getLineUserHistory(int days) {
+        return userMapper.selectLineUserHistory(days);
     }
 
 }

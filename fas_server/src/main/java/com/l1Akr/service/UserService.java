@@ -2,6 +2,7 @@ package com.l1Akr.service;
 
 import com.github.pagehelper.PageInfo;
 import com.l1Akr.pojo.dto.UserAddDTO;
+import com.l1Akr.pojo.dto.UserLineHistoryDTO;
 import com.l1Akr.pojo.dto.UserLoginDTO;
 import com.l1Akr.pojo.dto.UserRegisterDTO;
 import com.l1Akr.pojo.dto.UserUpdateDTO;
@@ -79,4 +80,11 @@ public interface UserService {
     public void deleteUser(Integer id);
 
     public void updateUserInfo(UserUpdateDTO userUpdateDTO, Integer id);
+    
+    /**
+     * 查询用户近期创建和更新历史数据
+     * @param days 天数
+     * @return 用户历史数据列表
+     */
+    List<UserLineHistoryDTO> getLineUserHistory(int days);
 }

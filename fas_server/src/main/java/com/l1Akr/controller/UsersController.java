@@ -6,6 +6,7 @@ import com.l1Akr.common.excption.BusinessException;
 import com.l1Akr.common.util.JwtUtils;
 import com.l1Akr.common.util.UserThreadLocal;
 import com.l1Akr.pojo.dto.UserAddDTO;
+import com.l1Akr.pojo.dto.UserLineHistoryDTO;
 import com.l1Akr.pojo.dto.UserLoginDTO;
 import com.l1Akr.pojo.dto.UserRegisterDTO;
 import com.l1Akr.pojo.dto.UserUpdateDTO;
@@ -20,7 +21,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import com.l1Akr.common.result.Result;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.l1Akr.common.result.Result.ResultEnum.USER_PASSWORD_ERROR;
@@ -139,6 +142,23 @@ public class UsersController {
     public Result<String> updateUserInfo(@RequestBody UserUpdateDTO userUpdateDTO, @PathVariable Integer id) {
         userService.updateUser(id.toString(), userUpdateDTO);
         return Result.success("用户信息更新成功");
+    }
+    
+    /**
+     * 查询用户近期创建和更新历史数据
+     */
+    @Operation(summary = "查询用户近期N天内创建和更新历史数据")
+    @GetMapping("/lineHistory")
+    @RequiredPermission(roles = {"ADMIN"})
+    public Result<List<UserLineHistoryDTO>> getLineHistory(
+            @RequestParam(defaultValue = "30") @Parameter(name = "days", description = "天数") Integer days
+    ) {
+        log.info("查询用户近期{}天内创建和更新历史数据", days);
+        List<Integer> daysList = Arrays.asList(7, 30, 90);
+        if(!daysList.contains(days)) {
+            return new Result<>(Result.ResultEnum.PARAM_ERROR);
+        }
+        return Result.success(userService.getLineUserHistory(days));
     }
 
 }
