@@ -93,6 +93,15 @@ public class Result<T> {
 
         // 用户更新失败
         USER_UPDATE_FAILED(20006, "用户更新失败"),
+        
+        // 用户不可删除
+        USER_NOT_DELETABLE(20009, "该用户不可删除"),
+        
+        // 用户删除失败
+        USER_DELETE_FAILED(20010, "用户删除失败"),
+        
+        // 用户不可更新
+        USER_NOT_UPDATABLE(20011, "该用户不可更新"),
 
         // 参数有问题
         PARAM_ERROR(10001, "参数错误"),
@@ -110,9 +119,52 @@ public class Result<T> {
         FILE_MD5_ERROR(40004, "文件MD5失败"),
 
         // 页码或页数错误
-        PAGE_NUM_OR_SIZE_ERROR(10002, "页码或页数错误");
+        PAGE_NUM_OR_SIZE_ERROR(10002, "页码或页数错误"),
 
+        // 用户没有登录
+        USER_NOT_LOGIN(20008, "用户没有登录"),
 
+        // 用户无权限
+        USER_NO_PERMISSION(70001, "用户无权限"),
+
+        // 角色已存在
+        ROLE_EXIST(50001, "角色已存在"),
+
+        // 角色不存在
+        ROLE_NOT_EXIST(50002, "角色不存在"),
+
+        // 角色更新失败
+        ROLE_UPDATE_FAILED(50003, "角色更新失败"),
+        
+        // 角色不可删除
+        ROLE_NOT_DELETABLE(50004, "该角色不可删除"),
+        
+        // 角色删除失败
+        ROLE_DELETE_FAILED(50005, "角色删除失败"),
+        
+        // 角色不可更新
+        ROLE_NOT_UPDATABLE(50006, "该角色不可更新"),
+        
+        // 权限已存在
+        PERMISSION_EXIST(70002, "权限已存在"),
+        
+        // 权限不存在
+        PERMISSION_NOT_EXIST(70003, "权限不存在"),
+        
+        // 权限添加失败
+        PERMISSION_ADD_FAILED(70004, "权限添加失败"),
+        
+        // 权限更新失败
+        PERMISSION_UPDATE_FAILED(70005, "权限更新失败"),
+        
+        // 权限不可删除
+        PERMISSION_NOT_DELETABLE(70006, "该权限不可删除"),
+        
+        // 权限删除失败
+        PERMISSION_DELETE_FAILED(70007, "权限删除失败"),
+        
+        // 权限不可更新
+        PERMISSION_NOT_UPDATABLE(70008, "该权限不可更新");
 
         final int code;
         final String message;

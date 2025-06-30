@@ -1,8 +1,5 @@
 package com.l1Akr.config;
 
-import jakarta.activation.DataSource;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.l1Akr.mapper.UserSampleMappingMapper">
+<mapper namespace="com.l1Akr.pojo.dao.mapper.UserSampleMappingMapper">
 
     <insert id="insertByUserSampleMappingPo" parameterType="com.l1Akr.pojo.po.UserSampleMappingPO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user_sample_mapping (user_id, sample_id)
@@ -21,4 +21,12 @@
             limit #{limit}
         </if>
     </select>
+    
+    <select id="getUserIdBySampleId" resultType="java.lang.Integer">
+        SELECT user_id FROM user_sample_mapping WHERE sample_id = #{sampleId} LIMIT 1
+    </select>
+    
+    <delete id="deleteBySampleId">
+        DELETE FROM user_sample_mapping WHERE sample_id = #{sampleId}
+    </delete>
 </mapper>

@@ -1,16 +1,13 @@
 package com.l1Akr.service.implement;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.l1Akr.common.excption.BusinessException;
 import com.l1Akr.common.result.Result;
 import com.l1Akr.common.util.OssUtils;
 import com.l1Akr.common.util.ShaUtils;
 import com.l1Akr.common.util.UserThreadLocal;
-import com.l1Akr.pojo.dto.SampleBaseLightDTO;
 import com.l1Akr.manager.SampleCheckManager;
-import com.l1Akr.mapper.FileMapper;
-import com.l1Akr.mapper.UserSampleMappingMapper;
+import com.l1Akr.pojo.dao.mapper.FileMapper;
+import com.l1Akr.pojo.dao.mapper.UserSampleMappingMapper;
 import com.l1Akr.pojo.po.SampleBasePO;
 import com.l1Akr.pojo.po.UserBasePO;
 import com.l1Akr.pojo.po.UserSampleMappingPO;
@@ -22,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -50,7 +46,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public String uploadAvatar(MultipartFile file) {
         // 生成唯一文件名
-        UserBasePO user = UserThreadLocal.getCurrentUser();
+        UserBasePO user = UserThreadLocal.getCurrentUser().getUserBase();
         String userId = user.getId().toString();
         String fileName = ossUtils.generateUniqueFileNameForAvatar(Objects.requireNonNull(file.getOriginalFilename()), userId);
 
@@ -122,26 +118,5 @@ public class FileServiceImpl implements FileService {
     @Override
     public boolean batchUploadSamples(MultipartFile file) {
         return false;
-    }
-
-    /**
-     * 根据用户id获取样本列表
-     * @param userId
-     * @return
-     */
-    @Override
-    public PageInfo<SampleBaseLightDTO> getSampleListByUserId(int userId, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<SampleBaseLightDTO> sampleBaseLightList = fileMapper.selectSamplesByUserId(userId).stream().map(sampleBasePO -> {
-                    SampleBaseLightDTO sampleBaseLightDTO = new SampleBaseLightDTO();
-                    sampleBaseLightDTO.setId(sampleBasePO.getId());
-                    sampleBaseLightDTO.setFilename(sampleBasePO.getFilename());
-                    sampleBaseLightDTO.setFileSize(sampleBasePO.getFileSize());
-                    sampleBaseLightDTO.setFileMd5(sampleBasePO.getFileMd5());
-                    sampleBaseLightDTO.setCreateTime(sampleBasePO.getCreateTime());
-                    sampleBaseLightDTO.setDisposeStatus(sampleBasePO.getDisposeStatus());
-                    return sampleBaseLightDTO;
-                }).toList();
-        return new PageInfo<>(sampleBaseLightList);
     }
 }

@@ -2,12 +2,14 @@ package com.l1Akr.service.implement;
 
 import java.util.List;
 
+import com.github.pagehelper.Page;
+import com.l1Akr.pojo.dao.mapper.ReportMapper;
+import com.l1Akr.pojo.po.SampleBasePO;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.l1Akr.pojo.dto.SampleReportDTO;
-import com.l1Akr.mapper.SampleMapper;
 import com.l1Akr.service.ReportService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,10 +18,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ReportServiceImpl implements ReportService {
 
-    private final SampleMapper sampleMapper;
+    private final ReportMapper reportMapper;
 
-    public ReportServiceImpl(SampleMapper sampleMapper) {
-        this.sampleMapper = sampleMapper;
+    public ReportServiceImpl(ReportMapper reportMapper) {
+        this.reportMapper = reportMapper;
     }
 
     /**
@@ -30,16 +32,29 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public PageInfo<SampleReportDTO> getReportListByUserId(int userId, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<SampleReportDTO> sampleBaseLightList = sampleMapper.selectSamplesByUserId(userId).stream().map(sampleBasePO -> {
-                    SampleReportDTO sampleReportDTO = new SampleReportDTO();
-                    sampleReportDTO.setId(sampleBasePO.getId());
-                    sampleReportDTO.setFileMd5(sampleBasePO.getFileMd5());
-                    sampleReportDTO.setPdfPath(sampleBasePO.getPdfPath());
-                    sampleReportDTO.setPdfSize(sampleBasePO.getPdfSize());
-                    sampleReportDTO.setPdfCreateTime(sampleBasePO.getPdfCreateTime());
-                    return sampleReportDTO;
-                }).toList();
-        return new PageInfo<>(sampleBaseLightList);
+
+        Page<SampleBasePO> sampleBasePOPage = reportMapper.getSampleReport(userId);
+
+        List<SampleReportDTO> sampleReportDTOList = sampleBasePOPage.stream().map(this::convertToSampleReportDTO)
+                .toList();
+
+        PageInfo<SampleReportDTO> pageInfo = new PageInfo<>(sampleReportDTOList);
+        pageInfo.setTotal(sampleBasePOPage.getTotal());
+        pageInfo.setPages(sampleBasePOPage.getPages());
+        pageInfo.setPageNum(sampleBasePOPage.getPageNum());
+        pageInfo.setPageSize(sampleBasePOPage.getPageSize());
+
+        return pageInfo;
+    }
+
+    private SampleReportDTO convertToSampleReportDTO(SampleBasePO sampleBasePO) {
+        SampleReportDTO sampleReportDTO = new SampleReportDTO();
+        sampleReportDTO.setId(sampleBasePO.getId());
+        sampleReportDTO.setFileMd5(sampleBasePO.getFileMd5());
+        sampleReportDTO.setPdfPath(sampleBasePO.getPdfPath());
+        sampleReportDTO.setPdfSize(sampleBasePO.getPdfSize());
+        sampleReportDTO.setPdfCreateTime(sampleBasePO.getPdfCreateTime());
+        return sampleReportDTO;
     }
 
 }

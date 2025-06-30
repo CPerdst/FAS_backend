@@ -42,6 +42,11 @@ public class UserBasePO {
     public String avatar;
 
     /**
+     * 是否可删除
+     */
+    public Boolean deletable;
+
+    /**
      * 用户电话号码
      * 用户的联系电话
      */

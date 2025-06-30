@@ -1,16 +1,33 @@
 package com.l1Akr.service.implement;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.l1Akr.common.excption.BusinessException;
 import com.l1Akr.common.result.Result;
 import com.l1Akr.common.util.ShaUtils;
+import com.l1Akr.common.util.UserThreadLocal;
+import com.l1Akr.pojo.dto.UserAddDTO;
+import com.l1Akr.pojo.dto.UserLineHistoryDTO;
 import com.l1Akr.pojo.dto.UserLoginDTO;
 import com.l1Akr.pojo.dto.UserRegisterDTO;
 import com.l1Akr.pojo.dto.UserUpdateDTO;
-import com.l1Akr.mapper.UserMapper;
+import com.l1Akr.pojo.dao.mapper.PermissionMapper;
+import com.l1Akr.pojo.dao.mapper.RoleMapper;
+import com.l1Akr.pojo.dao.mapper.UserMapper;
+import com.l1Akr.pojo.dao.mapper.UserRoleMapper;
+import com.l1Akr.pojo.po.PermissionPO;
+import com.l1Akr.pojo.po.RolePO;
 import com.l1Akr.pojo.po.UserBasePO;
+import com.l1Akr.pojo.po.UserRolePO;
 import com.l1Akr.service.UserService;
 import com.l1Akr.pojo.vo.UserInfoVO;
 import io.micrometer.common.util.StringUtils;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +38,19 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+    
+    @Autowired
+    private RoleMapper roleMapper;
+    
+    @Autowired
+    private PermissionMapper permissionMapper;
+    
+    @Autowired
+    private UserRoleMapper userRoleMapper;
 
     private final ShaUtils shaUtils = new ShaUtils();
+
+    private final Integer USER_ROLE_ID = 2;
 
     /**
      * 用户登录
@@ -31,6 +59,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserInfoVO login(UserLoginDTO userLoginDTO) {
+//        String userId = UserThreadLocal.getCurrentUser().getId().toString();
+//        // 获取用户角色信息
+//        List<RolePO> roles = getRolesByUserId(userId);
+//        // 获取用户权限信息
+//        List<PermissionPO> permissions = getPermissionsByUserId(userId);
         // 创建用户的数据库映射模型
         UserBasePO userBasePO = new UserBasePO();
         BeanUtils.copyProperties(userLoginDTO, userBasePO);
@@ -41,8 +74,13 @@ public class UserServiceImpl implements UserService {
         if(ObjectUtils.isEmpty(byUser)) {
             return null;
         }
+        String userId = byUser.getId().toString();
+        List<RolePO> roles = getRolesByUserId(userId);
+        List<PermissionPO> permissions = getPermissionsByUserId(userId);
         UserInfoVO userInfoVO = new UserInfoVO();
         BeanUtils.copyProperties(byUser, userInfoVO);
+        userInfoVO.setRoles(roles);
+        userInfoVO.setPermissions(permissions);
         return userInfoVO;
     }
 
@@ -75,6 +113,8 @@ public class UserServiceImpl implements UserService {
 
         // 如果不存在，再继续插入
         userMapper.insertByUserBasePo(userBasePO);
+        // 同时为该用户添加默认USER角色
+        assignRoleToUser(userBasePO.getId().toString(), USER_ROLE_ID);
     }
 
     /**
@@ -132,6 +172,10 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public int updateUserByUserBasePo(UserBasePO userBasePO) {
+        List<RolePO> roles = UserThreadLocal.getCurrentUser().getRoles();
+        if(roles.stream().anyMatch(r -> r.getName().equalsIgnoreCase("ADMIN"))) {
+            return userMapper.updateByUserBasePoForAdmin(userBasePO);
+        }
         return userMapper.updateByUserBasePo(userBasePO);
     }
 
@@ -146,6 +190,37 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.findByUserBasePo(userBasePO);
     }
+    
+    public List<RolePO> getRolesByUserId(String userId) {
+        return roleMapper.findByUserId(Integer.valueOf(userId));
+    }
+    
+    public List<PermissionPO> getPermissionsByUserId(String userId) {
+        return permissionMapper.findByUserId(Integer.valueOf(userId));
+    }
+    
+    public boolean hasPermission(String userId, String permission) {
+        List<PermissionPO> permissions = getPermissionsByUserId(userId);
+        return permissions.stream().anyMatch(p -> p.getPermissionName().equals(permission));
+    }
+    
+    public boolean hasRole(String userId, String roleName) {
+        List<RolePO> roles = getRolesByUserId(userId);
+        return roles.stream().anyMatch(r -> r.getName().equals(roleName));
+    }
+    
+    public void assignRoleToUser(String userId, Integer roleId) {
+        UserRolePO userRolePO = new UserRolePO();
+        userRolePO.setUserId(Integer.valueOf(userId));
+        userRolePO.setRoleId(roleId);
+        userRolePO.setCreateTime(LocalDateTime.now());
+        userRolePO.setUpdateTime(LocalDateTime.now());
+        userRoleMapper.insert(userRolePO);
+    }
+    
+    public void removeRoleFromUser(String userId, Integer roleId) {
+        userRoleMapper.deleteByUserIdAndRoleId(Integer.valueOf(userId), roleId);
+    }
 
     /**
      * 通过用户Id获取用户头像地址
@@ -156,6 +231,98 @@ public class UserServiceImpl implements UserService {
         UserBasePO userBasePO = new UserBasePO();
         userBasePO.setId(Integer.valueOf(userId));
         return userMapper.findByUserBasePo(userBasePO).getAvatar();
+    }
+    
+    @Override
+    public int getUserCount() {
+        return userMapper.getUserCount();
+    }
+    
+    @Override
+    public PageInfo<UserInfoVO> getAllUsers(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        try {
+            Page<UserBasePO> userPage = userMapper.findAllUsers();
+            List<UserInfoVO> userInfoVOList = userPage.stream().map(user -> {
+                UserInfoVO userInfoVO = new UserInfoVO();
+                BeanUtils.copyProperties(user, userInfoVO);
+                String userId = user.getId().toString();
+                userInfoVO.setRoles(getRolesByUserId(userId));
+                userInfoVO.setPermissions(getPermissionsByUserId(userId));
+                return userInfoVO;
+            }).collect(Collectors.toList());
+            
+            PageInfo<UserInfoVO> pageInfo = new PageInfo<>(userInfoVOList);
+            pageInfo.setTotal(userPage.getTotal());
+            pageInfo.setPageNum(userPage.getPageNum());
+            pageInfo.setPageSize(userPage.getPageSize());
+            pageInfo.setPages(userPage.getPages());
+            return pageInfo;
+        } finally {
+            PageHelper.clearPage();
+        }
+    }
+    
+    @Override
+    public void addUser(UserAddDTO userAddDTO) {
+        UserBasePO userBasePO = new UserBasePO();
+        BeanUtils.copyProperties(userAddDTO, userBasePO);
+        userBasePO.setPassword(shaUtils.SHA256(userAddDTO.getPassword()));
+        userBasePO.initTime();
+        
+        UserBasePO tempUser = new UserBasePO();
+        tempUser.setUsername(userBasePO.getUsername());
+        if(!ObjectUtils.isEmpty(userMapper.findByUserBasePo(tempUser))) {
+            throw new BusinessException(Result.ResultEnum.USER_EXIST);
+        }
+        
+        userMapper.insertByUserBasePo(userBasePO);
+        // 为用户添加默认USER角色
+        assignRoleToUser(userBasePO.getId().toString(), USER_ROLE_ID);
+    }
+    
+    @Override
+    public void deleteUser(Integer id) {
+        // 先检查用户是否存在且可删除
+        UserBasePO user = getUserById(id.toString());
+        if (user == null) {
+            throw new BusinessException(Result.ResultEnum.USER_NOT_EXIST);
+        }
+        
+        if (!user.getDeletable()) {
+            throw new BusinessException(Result.ResultEnum.USER_NOT_DELETABLE);
+        }
+        
+        if(userMapper.deleteByUserId(id) <= 0) {
+            throw new BusinessException(Result.ResultEnum.USER_DELETE_FAILED);
+        }
+    }
+    
+    @Override
+    public void updateUserInfo(UserUpdateDTO userUpdateDTO, Integer id) {
+        // 先检查用户是否存在且可修改
+        UserBasePO existingUser = getUserById(id.toString());
+        if (existingUser == null) {
+            throw new BusinessException(Result.ResultEnum.USER_NOT_EXIST);
+        }
+        
+        if (!existingUser.getDeletable()) {
+            throw new BusinessException(Result.ResultEnum.USER_NOT_UPDATABLE);
+        }
+        
+        UserBasePO userBasePO = new UserBasePO();
+        BeanUtils.copyProperties(userUpdateDTO, userBasePO);
+        userBasePO.setId(id);
+        userBasePO.initUpdateDate();
+        
+        if(userMapper.updateByUserBasePo(userBasePO) <= 0) {
+            throw new BusinessException(Result.ResultEnum.USER_UPDATE_FAILED);
+        }
+    }
+    
+    @Override
+    public List<UserLineHistoryDTO> getLineUserHistory(int days) {
+        return userMapper.selectLineUserHistory(days);
     }
 
 }

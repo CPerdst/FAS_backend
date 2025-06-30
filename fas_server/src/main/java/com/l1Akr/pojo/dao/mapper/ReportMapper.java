@@ -1,14 +1,14 @@
-package com.l1Akr.mapper;
+package com.l1Akr.pojo.dao.mapper;
 
-import java.util.List;
-
+import com.github.pagehelper.Page;
+import com.l1Akr.pojo.po.SampleBasePO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-
-import com.l1Akr.pojo.po.SampleBasePO;
+import org.springframework.stereotype.Component;
 
 @Mapper
-public interface SampleMapper {
+@Component
+public interface ReportMapper {
 
     /**
      * 根据用户id获取样本列表
@@ -19,6 +19,6 @@ public interface SampleMapper {
             "JOIN user_sample_mapping m ON s.id = m.sample_id " +
             "WHERE m.user_id = #{userId} " +
             "ORDER BY s.create_time DESC")
-    List<SampleBasePO> selectSamplesByUserId(int userId);
+    Page<SampleBasePO> getSampleReport(int userId);
 
 }

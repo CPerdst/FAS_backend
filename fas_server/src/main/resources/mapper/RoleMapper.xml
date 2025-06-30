@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.l1Akr.pojo.dao.mapper.RoleMapper">
+    <select id="findById" resultType="com.l1Akr.pojo.po.RolePO">
+        SELECT * FROM role WHERE id = #{id}
+    </select>
+    
+    <select id="findAll" resultType="com.l1Akr.pojo.po.RolePO">
+        SELECT * FROM role
+    </select>
+    
+    <insert id="insert" parameterType="com.l1Akr.pojo.po.RolePO">
+        INSERT INTO role(name, description, deletable) 
+        VALUES(#{name}, #{description}, #{deletable})
+    </insert>
+
+    <insert id="insertByRolePO" parameterType="com.l1Akr.pojo.po.RolePO">
+        INSERT INTO role(name, description, deletable, create_time, update_time)
+        VALUES(#{name}, #{description}, #{deletable}, #{createTime}, #{updateTime})
+    </insert>
+    
+    <update id="update" parameterType="com.l1Akr.pojo.po.RolePO">
+        UPDATE role 
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="deletable != null">
+                deletable = #{deletable},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </set>
+        WHERE id = #{id} AND deletable = true
+    </update>
+
+    <update id="updateByRolePO" parameterType="com.l1Akr.pojo.po.RolePO">
+        UPDATE role 
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="deletable != null">
+                deletable = #{deletable},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </set>
+        WHERE id = #{id} AND deletable = true
+    </update>
+    
+    <delete id="delete">
+        DELETE FROM role WHERE id = #{id} AND deletable = true
+    </delete>
+    
+    <select id="findByUserId" resultType="com.l1Akr.pojo.po.RolePO">
+        SELECT r.* FROM role r 
+        JOIN user_role ur ON r.id = ur.role_id 
+        WHERE ur.user_id = #{userId}
+    </select>
+    
+    <select id="findAllRoles" resultType="com.l1Akr.pojo.po.RolePO">
+        SELECT * FROM role
+    </select>
+    
+    <select id="findByRolePO" resultType="com.l1Akr.pojo.po.RolePO" parameterType="com.l1Akr.pojo.po.RolePO">
+        SELECT * FROM role
+        <where>
+            <if test="name != null">
+                AND name = #{name}
+            </if>
+            <if test="description != null">
+                AND description = #{description}
+            </if>
+            <if test="deletable != null">
+                AND deletable = #{deletable}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM role WHERE id = #{id} AND deletable = true
+    </delete>
+</mapper>

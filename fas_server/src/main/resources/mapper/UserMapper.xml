@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.l1Akr.mapper.UserMapper">
+<mapper namespace="com.l1Akr.pojo.dao.mapper.UserMapper">
     <insert id="insertByUserBasePo" useGeneratedKeys="true" keyProperty="id" parameterType="com.l1Akr.pojo.po.UserBasePO">
-        INSERT INTO user_base (id, username, password, sex, avatar, telephone, create_time, update_time)
-        VALUES (#{id}, #{username}, #{password}, #{sex}, #{avatar}, #{telephone}, #{createTime}, #{updateTime})
+        INSERT INTO user_base (id, username, password, sex, avatar, telephone, deletable, create_time, update_time)
+        VALUES (#{id}, #{username}, #{password}, #{sex}, #{avatar}, #{telephone}, #{deletable}, #{createTime}, #{updateTime})
     </insert>
 
     <select id="findByUserBasePo" resultType="com.l1Akr.pojo.po.UserBasePO">
@@ -15,6 +15,7 @@
             <if test="password != null">and password = #{password}</if>
             <if test="sex != null">and sex = #{sex}</if>
             <if test="telephone != null">and telephone = #{telephone}</if>
+            <if test="deletable != null">and deletable = #{deletable}</if>
             <if test="createTime != null">and create_time =#{createTime}</if>
         </where>
     </select>
@@ -37,7 +38,71 @@
             <if test="telephone != null">
                 telephone = #{telephone},
             </if>
+            <if test="deletable != null">
+                deletable = #{deletable},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        WHERE id = #{id} AND deletable = true
+    </update>
+
+    <update id="updateByUserBasePoForAdmin">
+        UPDATE user_base
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar},
+            </if>
+            <if test="telephone != null">
+                telephone = #{telephone},
+            </if>
+            <if test="deletable != null">
+                deletable = #{deletable},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
         </set>
         WHERE id = #{id}
     </update>
+
+    <select id="getUserCount" resultType="int">
+        SELECT COUNT(*) FROM user_base
+    </select>
+    
+    <select id="findAllUsers" resultType="com.l1Akr.pojo.po.UserBasePO">
+        SELECT * FROM user_base
+    </select>
+    
+    <delete id="deleteByUserId" parameterType="java.lang.Integer">
+        DELETE FROM user_base WHERE id = #{id} AND deletable = true
+    </delete>
+    
+    <select id="selectLineUserHistory" resultType="com.l1Akr.pojo.dto.UserLineHistoryDTO">
+        WITH date_series AS (
+            SELECT CURDATE() - INTERVAL (a.a + (10 * b.a)) DAY AS date
+            FROM (SELECT 0 AS a UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) AS a
+            CROSS JOIN (SELECT 0 AS a UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) AS b
+            WHERE (a.a + (10 * b.a)) &lt;= #{days}
+            ORDER BY date
+        )
+        SELECT 
+            ds.date AS date,
+            IFNULL(COUNT(CASE WHEN DATE(u.create_time) = ds.date THEN 1 END), 0) AS createCount,
+            IFNULL(COUNT(CASE WHEN DATE(u.update_time) = ds.date AND DATE(u.create_time) != ds.date THEN 1 END), 0) AS updateCount
+        FROM date_series ds
+        LEFT JOIN user_base u ON (DATE(u.create_time) = ds.date OR DATE(u.update_time) = ds.date)
+        GROUP BY ds.date
+        ORDER BY ds.date
+    </select>
 </mapper>

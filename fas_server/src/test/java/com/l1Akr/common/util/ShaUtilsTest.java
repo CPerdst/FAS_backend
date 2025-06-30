@@ -33,6 +33,5 @@ public class ShaUtilsTest {
             String STR_FILE_MD5 = "15d5f7681abb9dc405e4c85a73482a8d";
             Assertions.assertEquals(STR_FILE_MD5, shaUtils.MD5(file));
         }
-        boolean delete = file.delete();
     }
 }

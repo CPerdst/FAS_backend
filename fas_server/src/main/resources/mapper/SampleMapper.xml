@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.l1Akr.pojo.dao.mapper.SampleMapper">
+    <select id="selectSampleTotalCount" resultType="int">
+        SELECT COUNT(*) FROM sample_base
+    </select>
+    
+    <select id="selectReportTotalCount" resultType="int">
+        SELECT COUNT(*) FROM sample_base where sample_base.pdf_path is not null;
+    </select>
+    
+    <select id="selectAllSamplesWithUserInfo" resultType="com.l1Akr.pojo.dto.SampleUserDTO">
+        SELECT 
+            s.id, s.filename, s.file_ext as fileExt, s.file_size as fileSize, 
+            s.file_md5 as fileMd5, s.file_type as fileType, s.file_desc as fileDesc,
+            s.create_time as createTime, s.update_time as updateTime, s.dispose_status as disposeStatus,
+            s.pdf_path as pdfPath, s.pdf_create_time as pdfCreateTime, 
+            u.id as userId, u.username, u.avatar
+        FROM sample_base s
+        JOIN user_sample_mapping m ON s.id = m.sample_id
+        JOIN user_base u ON m.user_id = u.id
+        ORDER BY s.create_time DESC
+    </select>
+    
+    <select id="selectSampleDetailById" resultType="com.l1Akr.pojo.dto.SampleUserDTO">
+        SELECT 
+            s.id, s.filename, s.file_ext as fileExt, s.file_size as fileSize, 
+            s.file_md5 as fileMd5, s.file_type as fileType, s.file_desc as fileDesc,
+            s.create_time as createTime, s.update_time as updateTime, s.dispose_status as disposeStatus,
+            s.pdf_path as pdfPath, s.pdf_create_time as pdfCreateTime, 
+            u.id as userId, u.username, u.avatar
+        FROM sample_base s
+        JOIN user_sample_mapping m ON s.id = m.sample_id
+        JOIN user_base u ON m.user_id = u.id
+        WHERE s.id = #{id}
+    </select>
+    
+    <delete id="deleteSampleById" parameterType="java.lang.Integer">
+        DELETE FROM sample_base WHERE id = #{id}
+    </delete>
+    
+    <select id="selectSampleById" parameterType="java.lang.Integer" resultType="com.l1Akr.pojo.po.SampleBasePO">
+        SELECT * FROM sample_base WHERE id = #{id}
+    </select>
+</mapper>
