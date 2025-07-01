@@ -8,13 +8,17 @@ import com.l1Akr.common.util.UserThreadLocal;
 import com.l1Akr.manager.SampleCheckManager;
 import com.l1Akr.pojo.dao.mapper.FileMapper;
 import com.l1Akr.pojo.dao.mapper.UserSampleMappingMapper;
+import com.l1Akr.pojo.dto.SampleBaseLightDTO;
+import com.l1Akr.pojo.dto.TaskWithUserSampleDTO;
 import com.l1Akr.pojo.po.SampleBasePO;
 import com.l1Akr.pojo.po.UserBasePO;
 import com.l1Akr.pojo.po.UserSampleMappingPO;
 import com.l1Akr.service.FileService;
 import com.l1Akr.service.UserService;
+import com.l1Akr.websocket.handler.SampleStatusWebSocketHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,16 +35,20 @@ public class FileServiceImpl implements FileService {
     private final FileMapper fileMapper;
     private final UserSampleMappingMapper userSampleMappingMapper;
     private final SampleCheckManager sampleCheckManager;
+    private final SampleStatusWebSocketHandler sampleStatusWebSocketHandler;
 
     public FileServiceImpl(OssUtils ossUtils,
                            UserService userService,
                            FileMapper fileMapper,
-                           UserSampleMappingMapper userSampleMappingMapper, SampleCheckManager sampleCheckManager) {
+                           UserSampleMappingMapper userSampleMappingMapper,
+                           SampleCheckManager sampleCheckManager,
+                           SampleStatusWebSocketHandler sampleStatusWebSocketHandler) {
         this.ossUtils = ossUtils;
         this.userService = userService;
         this.fileMapper = fileMapper;
         this.userSampleMappingMapper = userSampleMappingMapper;
         this.sampleCheckManager = sampleCheckManager;
+        this.sampleStatusWebSocketHandler = sampleStatusWebSocketHandler;
     }
 
     @Override
@@ -101,6 +109,13 @@ public class FileServiceImpl implements FileService {
         // 将样本添加至数据库
         fileMapper.insertBySampleBasePo(sampleBasePO);
 
+        // 首先通知当前文件已经被接收到
+        SampleBaseLightDTO sampleBaseLightDTO = new SampleBaseLightDTO();
+        BeanUtils.copyProperties(sampleBasePO, sampleBaseLightDTO);
+        sampleStatusWebSocketHandler.notifyUserWithSampleUploaded(userId, sampleBaseLightDTO);
+        // 首先通知用户当前文件的状态为 未开始-1
+        sampleStatusWebSocketHandler.notifyUserWithNewStatus(userId, sampleBasePO.getId(), 1);
+
         // 创建用户-样本映射
         UserSampleMappingPO userSampleMappingPO = new UserSampleMappingPO();
         userSampleMappingPO.setUserId(userId);
@@ -109,7 +124,10 @@ public class FileServiceImpl implements FileService {
         log.info("File {} upload to OSS success, url: {}", filename, ossUrlPath);
 
         // 将该样本提交检测
-        sampleCheckManager.addSampleToQueue(sampleBasePO);
+        TaskWithUserSampleDTO taskWithUserSampleDTO = new TaskWithUserSampleDTO();
+        taskWithUserSampleDTO.setUserId(userId);
+        taskWithUserSampleDTO.setSampleBasePO(sampleBasePO);
+        sampleCheckManager.addSampleToQueue(taskWithUserSampleDTO);
         log.info("sample {} was added to checkQueue", filename);
 
         return true;

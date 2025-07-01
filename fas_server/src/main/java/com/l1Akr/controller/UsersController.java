@@ -10,6 +10,8 @@ import com.l1Akr.pojo.dto.UserLineHistoryDTO;
 import com.l1Akr.pojo.dto.UserLoginDTO;
 import com.l1Akr.pojo.dto.UserRegisterDTO;
 import com.l1Akr.pojo.dto.UserUpdateDTO;
+import com.l1Akr.pojo.vo.PermissionJwtVO;
+import com.l1Akr.pojo.vo.RoleJwtVO;
 import com.l1Akr.service.UserService;
 import com.l1Akr.pojo.vo.UserInfoVO;
 import com.l1Akr.pojo.vo.UserVO;
@@ -17,6 +19,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +43,21 @@ public class UsersController {
     @Autowired
     public JwtUtils jwtUtils;
 
+    private String generateToken(UserInfoVO userInfoVO) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("roles", userInfoVO.getRoles().stream().map(role -> {
+            RoleJwtVO roleJwtVO = new RoleJwtVO();
+            BeanUtils.copyProperties(role, roleJwtVO);
+            return roleJwtVO;
+        }).toList());
+        map.put("permissions", userInfoVO.getPermissions().stream().map(permission -> {
+            PermissionJwtVO permissionJwtVO = new PermissionJwtVO();
+            BeanUtils.copyProperties(permission, permissionJwtVO);
+            return permissionJwtVO;
+        }).toList());
+        return jwtUtils.generateToken(userInfoVO.getId().toString(), map);
+    }
+
     @Operation(summary = "用户登录")
     @PostMapping("/login")
     public Result<UserVO> login(@RequestBody UserLoginDTO userLoginDTO) {
@@ -50,10 +68,7 @@ public class UsersController {
         }
 
         // 为用户生成token
-        Map<String, Object> map = new HashMap<>();
-        map.put("roles", userInfoVO.getRoles());
-        map.put("permissions", userInfoVO.getPermissions());
-        String token = jwtUtils.generateToken(userInfoVO.getId().toString(), map);
+        String token = generateToken(userInfoVO);
 
         UserVO userVO = new UserVO();
         userVO.setToken(token);

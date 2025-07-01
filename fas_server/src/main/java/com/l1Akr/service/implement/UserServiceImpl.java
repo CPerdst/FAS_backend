@@ -20,6 +20,7 @@ import com.l1Akr.pojo.po.PermissionPO;
 import com.l1Akr.pojo.po.RolePO;
 import com.l1Akr.pojo.po.UserBasePO;
 import com.l1Akr.pojo.po.UserRolePO;
+import com.l1Akr.pojo.vo.RoleJwtVO;
 import com.l1Akr.service.UserService;
 import com.l1Akr.pojo.vo.UserInfoVO;
 import io.micrometer.common.util.StringUtils;
@@ -172,7 +173,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public int updateUserByUserBasePo(UserBasePO userBasePO) {
-        List<RolePO> roles = UserThreadLocal.getCurrentUser().getRoles();
+        List<RoleJwtVO> roles = UserThreadLocal.getCurrentUser().getRoles();
         if(roles.stream().anyMatch(r -> r.getName().equalsIgnoreCase("ADMIN"))) {
             return userMapper.updateByUserBasePoForAdmin(userBasePO);
         }

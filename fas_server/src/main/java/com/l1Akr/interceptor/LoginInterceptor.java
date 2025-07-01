@@ -9,6 +9,8 @@ import com.l1Akr.pojo.dto.InnerUserInfo;
 import com.l1Akr.pojo.po.PermissionPO;
 import com.l1Akr.pojo.po.RolePO;
 import com.l1Akr.pojo.po.UserBasePO;
+import com.l1Akr.pojo.vo.PermissionJwtVO;
+import com.l1Akr.pojo.vo.RoleJwtVO;
 import com.l1Akr.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -67,8 +69,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 
             String userId = decodedJWT.getSubject();
             Map<String, Claim> claims = decodedJWT.getClaims();
-            List<RolePO> roles = jwtUtils.parseListClaim(claims.get("roles"), RolePO.class);
-            List<PermissionPO> permissions = jwtUtils.parseListClaim(claims.get("permissions"), PermissionPO.class);
+            List<RoleJwtVO> roles = jwtUtils.parseListClaim(claims.get("roles"), RoleJwtVO.class);
+            List<PermissionJwtVO> permissions = jwtUtils.parseListClaim(claims.get("permissions"), PermissionJwtVO.class);
 
             // 校验用户角色
             if(Arrays.stream(permissionAnnotation.roles())

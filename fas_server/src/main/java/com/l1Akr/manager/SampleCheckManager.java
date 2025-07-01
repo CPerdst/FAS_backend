@@ -6,10 +6,12 @@ import com.l1Akr.common.util.OssUtils;
 import com.l1Akr.common.util.ShaUtils;
 import com.l1Akr.pojo.dao.mapper.FileMapper;
 import com.l1Akr.pojo.dao.mapper.UserSampleMappingMapper;
+import com.l1Akr.pojo.dto.TaskWithUserSampleDTO;
 import com.l1Akr.pojo.po.SampleBasePO;
 import com.l1Akr.pojo.po.UserSampleMappingPO;
 import com.l1Akr.utils.ClamAVClient;
 import com.l1Akr.utils.ClamAVScanner;
+import com.l1Akr.websocket.handler.SampleStatusWebSocketHandler;
 import io.micrometer.common.util.StringUtils;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +32,7 @@ public class SampleCheckManager {
     private final Integer EXECUTOR_THREAD_POOL_SIZE = 4;
 
     // 待查杀样本队列
-    private final BlockingQueue<SampleBasePO>sampleQueue = new LinkedBlockingQueue<>(1000);
+    private final BlockingQueue<TaskWithUserSampleDTO>sampleQueue = new LinkedBlockingQueue<>(1000);
 
     // 线程池
     private final ExecutorService executorService = Executors.newFixedThreadPool(EXECUTOR_THREAD_POOL_SIZE);
@@ -45,14 +47,18 @@ public class SampleCheckManager {
 
     private final ShaUtils shaUtils = new ShaUtils();
 
+    private final SampleStatusWebSocketHandler sampleStatusWebSocketHandler;
+
     public SampleCheckManager(OssUtils ossUtils, 
         FileMapper fileMapper, 
         ClamAVScanner clamAVScanner,
-        UserSampleMappingMapper userSampleMappingMapper) {
+        UserSampleMappingMapper userSampleMappingMapper,
+        SampleStatusWebSocketHandler sampleStatusWebSocketHandler) {
         this.ossUtils = ossUtils;
         this.fileMapper = fileMapper;
         this.clamAVScanner = clamAVScanner;
         this.userSampleMappingMapper = userSampleMappingMapper;
+        this.sampleStatusWebSocketHandler = sampleStatusWebSocketHandler;
     }
 
     @PostConstruct
@@ -60,15 +66,15 @@ public class SampleCheckManager {
         startAsyncProcess();
     }
 
-    public void addSampleToQueue(SampleBasePO sampleBasePO) {
+    public void addSampleToQueue(TaskWithUserSampleDTO taskWithUserSampleDTO) {
         try {
-            if(!sampleQueue.offer(sampleBasePO)) {
-                log.info("SampleQueue was full, sample {} waiting to check", sampleBasePO.getFilename());
+            if(!sampleQueue.offer(taskWithUserSampleDTO)) {
+                log.info("SampleQueue was full, sample {} waiting to check", taskWithUserSampleDTO.getSampleBasePO().getFilename());
                 return;
             }
             // 更新到处理中的状态
-            SampleBasePO.getToUpdateDisposeStatus(sampleBasePO.getId(), 2);
-            fileMapper.updateSampleBySampleBasePo(sampleBasePO);
+            SampleBasePO.getToUpdateDisposeStatus(taskWithUserSampleDTO.getSampleBasePO().getId(), 2);
+            fileMapper.updateSampleBySampleBasePo(taskWithUserSampleDTO.getSampleBasePO());
         } catch (Exception e) {
             log.error("Error occurred while adding sample to queue: {}", e.getMessage());
         }
@@ -80,12 +86,16 @@ public class SampleCheckManager {
             executorService.submit(() -> {
                while(!Thread.currentThread().isInterrupted()) {
                    try {
-                       SampleBasePO sampleBasePO = sampleQueue.take();
+                       TaskWithUserSampleDTO taskWithUserSampleDTO = sampleQueue.take();
+                       SampleBasePO sampleBasePO = taskWithUserSampleDTO.getSampleBasePO();
+                       Integer userId = taskWithUserSampleDTO.getUserId();
+                       // 首先通知用户当前文件的状态为 检测中-2
+                       sampleStatusWebSocketHandler.notifyUserWithNewStatus(userId, sampleBasePO.getId(), 2);
                        log.info("Sample {} is checking", sampleBasePO.getFilename());
-                       processSample(sampleBasePO);
+                       processSample(userId, sampleBasePO);
                    } catch (InterruptedException e) {
-                       Thread.currentThread().interrupt();
                        log.info("Thread was interrupt");
+                       Thread.currentThread().interrupt();
                    } catch (Exception e) {
                        log.error("Error occurred while processing sample: {}", e.getMessage());
                    }
@@ -94,7 +104,7 @@ public class SampleCheckManager {
         }
     }
 
-    public void processSample(SampleBasePO sampleBasePO) {
+    public void processSample(Integer userId, SampleBasePO sampleBasePO) {
         if(ObjectUtils.isEmpty(sampleBasePO)) {
             log.info("sample was null");
             return;
@@ -151,6 +161,8 @@ public class SampleCheckManager {
                 toUpdateSample.setPdfCreateTime(LocalDateTime.now());
                 toUpdateSample.setPdfDownloadTimes(0);
                 toUpdateSample.setDisposeStatus(scan.isInfected() ? 4 : 3);
+                // 首先通知用户当前文件的状态为 安全-3 发现病毒-4
+                sampleStatusWebSocketHandler.notifyUserWithNewStatus(userId, sampleBasePO.getId(), scan.isInfected() ? 4 : 3);
                 fileMapper.updateSampleBySampleBasePo(toUpdateSample);
                 log.info("sample {}:{}:{} pdf upload success",
                         sampleBasePO.getFilename(),
